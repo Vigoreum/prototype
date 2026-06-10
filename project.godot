@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="prototype-game"
+run/main_scene="uid://c66pno1fugtcl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [physics]
