@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bmm87vm2vhvjw"]
+
+[ext_resource type="Texture2D" uid="uid://wxa3asp5g8u5" path="res://superficies/Base pack/Tiles/grassHillLeft.png" id="1_dcbnx"]
+[ext_resource type="Texture2D" uid="uid://dkuee7ekbiqxf" path="res://superficies/Base pack/Tiles/grassCenter.png" id="2_a3pbv"]
+[ext_resource type="Texture2D" uid="uid://dswvvqxgt1jdo" path="res://superficies/Base pack/Tiles/grassHillLeft2.png" id="3_3b76a"]
+
+[node name="pendiente" type="StaticBody2D" unique_id=1600510281]
+
+[node name="GrassHillLeft" type="Sprite2D" parent="." unique_id=1104740865]
+position = Vector2(-57, -56)
+texture = ExtResource("1_dcbnx")
+
+[node name="GrassCenter" type="Sprite2D" parent="." unique_id=271099784]
+position = Vector2(-57, 84)
+texture = ExtResource("2_a3pbv")
+
+[node name="GrassHillLeft2" type="Sprite2D" parent="." unique_id=1127392880]
+position = Vector2(-57, 14)
+texture = ExtResource("3_3b76a")
+
+[node name="GrassHillLeft3" type="Sprite2D" parent="." unique_id=730787790]
+position = Vector2(13, -125)
+texture = ExtResource("1_dcbnx")
+
+[node name="GrassCenter2" type="Sprite2D" parent="." unique_id=676478279]
+position = Vector2(13, 14)
+texture = ExtResource("2_a3pbv")
+
+[node name="GrassHillLeft4" type="Sprite2D" parent="." unique_id=1446884840]
+position = Vector2(13, -55)
+texture = ExtResource("3_3b76a")
+
+[node name="GrassHillLeft5" type="Sprite2D" parent="." unique_id=524006403]
+position = Vector2(81, -193)
+texture = ExtResource("1_dcbnx")
+
+[node name="GrassCenter3" type="Sprite2D" parent="." unique_id=1721658409]
+position = Vector2(81, -53)
+texture = ExtResource("2_a3pbv")
+
+[node name="GrassHillLeft6" type="Sprite2D" parent="." unique_id=1726477365]
+position = Vector2(81, -123)
+texture = ExtResource("3_3b76a")
+
+[node name="GrassCenter4" type="Sprite2D" parent="." unique_id=2038625342]
+position = Vector2(13, 84)
+texture = ExtResource("2_a3pbv")
+
+[node name="GrassCenter5" type="Sprite2D" parent="." unique_id=1833991536]
+position = Vector2(81, 17)
+texture = ExtResource("2_a3pbv")
+
+[node name="GrassCenter6" type="Sprite2D" parent="." unique_id=1946197375]
+position = Vector2(82, 84)
+texture = ExtResource("2_a3pbv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=291006576]
+position = Vector2(-529, -306)
+polygon = PackedVector2Array(649, 75, 663, 75, 662, 421, 439, 424, 439, 284)
