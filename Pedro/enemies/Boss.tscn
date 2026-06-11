@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dxpakwp1gxkl1"]
+
+[ext_resource type="Script" uid="uid://dk80an7nqpnl2" path="res://Pedro/enemies/boss.gd" id="1_7c3b6"]
+[ext_resource type="Texture2D" path="res://superficies/Base pack/Enemies/slimeWalk1.png" id="2_e2igm"]
+[ext_resource type="PackedScene" path="res://animaciones/Half_spinner.tscn" id="3_7c3b6"]
+[ext_resource type="PackedScene" path="res://animaciones/fly.tscn" id="4_1egj4"]
+[ext_resource type="PackedScene" path="res://animaciones/spinner.tscn" id="5_e2igm"]
+
+[sub_resource type="Animation" id="Animation_1egj4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spinner:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-35, -81)]
+}
+
+[sub_resource type="Animation" id="Animation_e2igm"]
+resource_name = "movimiento"
+length = 5.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spinner:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 2.0333333, 4.4666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 2.0666666, 4.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-30, -95), Vector2(-202, -100), Vector2(-155.50197, -94.7098), Vector2(-35, -81)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.0300999, 2.2333333, 4.4, 4.5666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(-1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1yis"]
+_data = {
+&"RESET": SubResource("Animation_1egj4"),
+&"movimiento": SubResource("Animation_e2igm")
+}
+
+[node name="Boss" type="Node2D" unique_id=710380933]
+script = ExtResource("1_7c3b6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=119192860]
+position = Vector2(-99, -19.5)
+scale = Vector2(1, 1.1071429)
+texture = ExtResource("2_e2igm")
+
+[node name="HalfSpinner" parent="." unique_id=1875940087 instance=ExtResource("3_7c3b6")]
+position = Vector2(-43, -20)
+
+[node name="HalfSpinner2" parent="." unique_id=1976392677 instance=ExtResource("3_7c3b6")]
+position = Vector2(21, -20)
+
+[node name="Fly" parent="." unique_id=1438118392 instance=ExtResource("4_1egj4")]
+position = Vector2(-35, -81)
+
+[node name="Spinner" parent="Fly" unique_id=1031868970 instance=ExtResource("5_e2igm")]
+position = Vector2(0, 42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fly" unique_id=392161506]
+libraries/ = SubResource("AnimationLibrary_l1yis")
