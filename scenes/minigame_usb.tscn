@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c3qtr0ahd1y8p"]
+
+[ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://scripts/usb.gd" id="1_384yc"]
+[ext_resource type="Script" uid="uid://hnp0ohurkdn2" path="res://scripts/notebook.gd" id="2_btnsq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_no8j4"]
+size = Vector2(120, 50)
+
+[node name="USBMinigame" type="Node2D" unique_id=778499891]
+
+[node name="Notebook" type="Node2D" parent="." unique_id=1165950147]
+position = Vector2(576, 324)
+script = ExtResource("2_btnsq")
+
+[node name="Body" type="ColorRect" parent="Notebook" unique_id=1172866789]
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Port" type="ColorRect" parent="Notebook" unique_id=151926155]
+offset_right = 30.0
+offset_bottom = 40.0
+color = Color(0, 0.4, 1, 1)
+
+[node name="USB" type="Node2D" parent="." unique_id=928305446]
+position = Vector2(576, 324)
+script = ExtResource("1_384yc")
+
+[node name="Body" type="ColorRect" parent="USB" unique_id=548462431]
+offset_left = -60.0
+offset_top = -25.0
+offset_right = 60.0
+offset_bottom = 25.0
+mouse_filter = 2
+color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[node name="FrontFace" type="ColorRect" parent="USB" unique_id=893169396]
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+mouse_filter = 2
+color = Color(0, 0.4, 1, 1)
+
+[node name="Connector" type="ColorRect" parent="USB" unique_id=235432148]
+offset_left = 60.0
+offset_top = -20.0
+offset_right = 90.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="Area" type="Area2D" parent="USB" unique_id=837389692]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="USB/Area" unique_id=1017546957]
+shape = SubResource("RectangleShape2D_no8j4")
