@@ -3,6 +3,15 @@
 [ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://scripts/usb.gd" id="1_384yc"]
 [ext_resource type="Script" uid="uid://hnp0ohurkdn2" path="res://scripts/notebook.gd" id="2_btnsq"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btnsq"]
+size = Vector2(300, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ece1"]
+size = Vector2(50, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyaqt"]
+size = Vector2(180, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_no8j4"]
 size = Vector2(120, 50)
 
@@ -25,7 +34,17 @@ offset_right = 30.0
 offset_bottom = 40.0
 color = Color(0, 0.4, 1, 1)
 
-[node name="USB" type="Node2D" parent="." unique_id=928305446]
+[node name="Solid" type="StaticBody2D" parent="Notebook" unique_id=429155103]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Notebook/Solid" unique_id=231401488]
+shape = SubResource("RectangleShape2D_btnsq")
+
+[node name="PortArea" type="Area2D" parent="Notebook" unique_id=424079023]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Notebook/PortArea" unique_id=834351383]
+shape = SubResource("RectangleShape2D_3ece1")
+
+[node name="USB" type="CharacterBody2D" parent="." unique_id=1188663404]
 position = Vector2(576, 324)
 script = ExtResource("1_384yc")
 
@@ -52,6 +71,9 @@ offset_right = 90.0
 offset_bottom = 20.0
 mouse_filter = 2
 color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="BodyCollision" type="CollisionShape2D" parent="USB" unique_id=1076650748]
+shape = SubResource("RectangleShape2D_gyaqt")
 
 [node name="Area" type="Area2D" parent="USB" unique_id=837389692]
 
