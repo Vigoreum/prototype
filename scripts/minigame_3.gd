@@ -1,13 +1,11 @@
 extends Node2D
 
-# --- Configuration ---
 const FILE_COUNT_GOOD: int = 3
 const FILE_COUNT_BAD: int = 3
 const SPAWN_AREA_MIN: Vector2 = Vector2(80, 100)
 const SPAWN_AREA_MAX: Vector2 = Vector2(900, 480)
 const MIN_DISTANCE_BETWEEN_FILES: float = 110.0
 
-# --- Node references ---
 @onready var trash_can: Area2D = $TrashCan
 @onready var files_container: Node2D = $FilesContainer
 
