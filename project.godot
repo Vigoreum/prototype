@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 GameManager="*uid://drvsyqai0mf46"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 space_bar={
