@@ -1,16 +1,16 @@
 extends Node
 
-# Lista de microjuegos disponibles. AJUSTA las rutas según tus archivos reales.
+# Lista de microjuegos disponibles
 const MICROGAME_SCENES: Array[String] = [
-	"res://microgames/usb/usb.tscn",           # USB!
-	"res://microgames/delete/delete.tscn",     # DELETE!
-	"res://microgames/draw/draw.tscn"          # DRAW!
-	# Si tienes WAKE UP! como escena, agrégala aquí
+	"res://microgames/usb/usb.tscn",
+	"res://microgames/delete/delete.tscn",
+	"res://microgames/draw/draw.tscn"
 ]
-
 
 const MAIN_MENU_SCENE: String = "res://menus/main_menu.tscn"
 
+# Duración de cada microjuego en segundos (Opción A: todos igual)
+const MICROGAME_DURATION: float = 5.0
 
 # Estado del modo PLAY
 var play_queue: Array[String] = []
@@ -31,7 +31,7 @@ func play_single_microgame(scene_path: String) -> void:
 	get_tree().change_scene_to_file(scene_path)
 
 
-# Llamada por cada microjuego cuando termina (o cuando el jugador presiona ESC)
+# Llamada por cada microjuego cuando termina (timer agotado o jugador gana)
 func microgame_finished() -> void:
 	if is_in_play_mode and not play_queue.is_empty():
 		_load_next_microgame()
@@ -39,11 +39,16 @@ func microgame_finished() -> void:
 		return_to_main_menu()
 
 
-# Llamada cuando se vuelve al menú manualmente
+# Llamada cuando se vuelve al menú manualmente (ESC)
 func return_to_main_menu() -> void:
 	is_in_play_mode = false
 	play_queue.clear()
 	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+
+
+# Devuelve la duración configurada para los microjuegos
+func get_microgame_duration() -> float:
+	return MICROGAME_DURATION
 
 
 func _load_next_microgame() -> void:

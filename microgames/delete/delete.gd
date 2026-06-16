@@ -6,6 +6,7 @@ const SPAWN_AREA_MIN: Vector2 = Vector2(80, 100)
 const SPAWN_AREA_MAX: Vector2 = Vector2(900, 480)
 const MIN_DISTANCE_BETWEEN_FILES: float = 110.0
 const TRASH_SPAWN_MARGIN: float = 80.0
+const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
 
 @onready var trash_can: Area2D = $TrashCan
 @onready var files_container: Node2D = $FilesContainer
@@ -14,12 +15,25 @@ const FileItemScene: PackedScene = preload("res://microgames/delete/file_item.ts
 
 # Estado global: indica si hay algún archivo siendo arrastrado
 var any_file_grabbed: bool = false
-
+var timer_bar: Control = null
 
 func _ready() -> void:
 	randomize()
 	_spawn_files()
+	if GameManager.is_in_play_mode:
+		_setup_timer_bar()
 
+
+func _setup_timer_bar() -> void:
+	timer_bar = TimerBarScene.instantiate()
+	var canvas: CanvasLayer = CanvasLayer.new()
+	add_child(canvas)
+	canvas.add_child(timer_bar)
+	timer_bar.time_up.connect(_on_time_up)
+	timer_bar.start(GameManager.get_microgame_duration())
+
+func _on_time_up() -> void:
+	GameManager.microgame_finished()
 
 func _spawn_files() -> void:
 	var spawned_positions: Array[Vector2] = []
