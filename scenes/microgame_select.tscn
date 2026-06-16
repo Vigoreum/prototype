@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c2lvrlyox5jf8"]
+
+[ext_resource type="Script" uid="uid://chib15b3swwsy" path="res://scripts/microgame_select.gd" id="1_ohxc1"]
+
+[node name="MicrogameSelect" type="Control" unique_id=1584486885]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ohxc1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=89668279]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+
+[node name="Title" type="Label" parent="." unique_id=97750317]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_right = 89.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "ESCOGER MICROJUEGO"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1679945624]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UsbButton" type="Button" parent="ButtonContainer" unique_id=793105883]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "USB!"
+
+[node name="DeleteButton" type="Button" parent="ButtonContainer" unique_id=490890835]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "DELETE!"
+
+[node name="DrawButton" type="Button" parent="ButtonContainer" unique_id=1692395382]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "DRAW!"
+
+[node name="WakeUpButton" type="Button" parent="ButtonContainer" unique_id=87204204]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "WAKE UP! "
+
+[node name="BackButton" type="Button" parent="." unique_id=2067305188]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -86.0
+offset_right = 234.0
+offset_bottom = -26.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "← VOLVER"
+
+[connection signal="pressed" from="ButtonContainer/UsbButton" to="." method="_on_usb_pressed"]
+[connection signal="pressed" from="ButtonContainer/DeleteButton" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="ButtonContainer/DrawButton" to="." method="_on_draw_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]

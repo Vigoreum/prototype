@@ -92,3 +92,7 @@ func borrar_en_posicion(pos_local: Vector2):
 	#if etiqueta_progreso:
 		## "%.1f" muestra solo 1 decimal (ejemplo: "42.5%")
 		#etiqueta_progreso.text = "Borrado: " + "%.1f" % porcentaje + "%"
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):  # ui_cancel = tecla ESC por defecto
+		GameManager.return_to_main_menu()
