@@ -14,6 +14,10 @@ config/name="prototype-game"
 run/main_scene="uid://c66pno1fugtcl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+GameManager="*uid://drvsyqai0mf46"
+
 [input]
 
 space_bar={

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://d1eyj7tjyr3ot"]
 
-[ext_resource type="Script" path="res://scripts/usb.gd" id="1_384yc"]
-[ext_resource type="Script" path="res://scripts/notebook.gd" id="2_btnsq"]
+[ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://scripts/usb.gd" id="1_384yc"]
+[ext_resource type="Script" uid="uid://b6ujtjs2ih340" path="res://scripts/minigame_usb.gd" id="1_gyaqt"]
+[ext_resource type="Script" uid="uid://hnp0ohurkdn2" path="res://scripts/notebook.gd" id="2_btnsq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_btnsq"]
 size = Vector2(300, 200)
@@ -16,6 +17,7 @@ size = Vector2(180, 50)
 size = Vector2(120, 50)
 
 [node name="USBMinigame" type="Node2D" unique_id=778499891]
+script = ExtResource("1_gyaqt")
 
 [node name="Notebook" type="Node2D" parent="." unique_id=1165950147]
 position = Vector2(576, 324)
