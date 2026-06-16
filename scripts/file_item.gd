@@ -3,6 +3,8 @@ extends Area2D
 @warning_ignore("unused_signal")
 signal dropped_in_trash(was_malware: bool)
 
+const DRAG_SMOOTHNESS: float = 0.15
+
 var is_malware: bool = false
 var is_being_dragged: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -11,6 +13,7 @@ var has_been_disposed: bool = false
 
 @onready var visual: ColorRect = $Visual
 @onready var icon: Label = $Icon
+@onready var minigame: Node2D = get_tree().current_scene
 
 
 func _ready() -> void:
@@ -43,15 +46,20 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 
 
 func _start_drag() -> void:
+	if not minigame.try_grab_file():
+		print("Otro archivo ya está siendo arrastrado, ignorando clic")
+		return
+	
 	is_being_dragged = true
 	drag_offset = global_position - get_global_mouse_position()
 	get_parent().move_child(self, -1)
 	print("Drag started. Offset: ", drag_offset)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if is_being_dragged:
-		global_position = get_global_mouse_position() + drag_offset
+		var target_position: Vector2 = get_global_mouse_position() + drag_offset
+		global_position = global_position.lerp(target_position, DRAG_SMOOTHNESS * delta * 60.0)
 		
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			print("Mouse released, ending drag")
@@ -60,6 +68,7 @@ func _process(_delta: float) -> void:
 
 func _end_drag() -> void:
 	is_being_dragged = false
+	minigame.release_grabbed_file()
 	print("Drag ended. Over trash: ", _is_over_trash_can())
 	if _is_over_trash_can():
 		_dispose()
