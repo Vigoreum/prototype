@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://c3qtr0ahd1y8p"]
+[gd_scene format=3 uid="uid://d1eyj7tjyr3ot"]
 
-[ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://scripts/usb.gd" id="1_384yc"]
-[ext_resource type="Script" uid="uid://hnp0ohurkdn2" path="res://scripts/notebook.gd" id="2_btnsq"]
+[ext_resource type="Script" path="res://scripts/usb.gd" id="1_384yc"]
+[ext_resource type="Script" path="res://scripts/notebook.gd" id="2_btnsq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_btnsq"]
 size = Vector2(300, 200)
