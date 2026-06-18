@@ -166,3 +166,4 @@ func connect_to_port(port_global_pos: Vector2) -> void:
 
 func _on_connected_complete() -> void:
 	print("USB conectado correctamente! 🎉")
+	GameManager.microgame_finished()

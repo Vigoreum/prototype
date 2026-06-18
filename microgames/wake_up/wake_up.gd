@@ -3,7 +3,7 @@ extends Node2D
 # Valores configurables desde el Inspector
 @export var energy_per_press: float = 30.0
 @export var energy_drain_per_second: float = 60.0
-@export var max_energy: float = 500.0   # ahora también configurable
+@export var max_energy: float = 500.0
 
 @onready var energy_bar_background: ColorRect = $EnergyBarBackground
 @onready var energy_bar_fill: ColorRect = $EnergyBarFill
@@ -15,7 +15,6 @@ var current_energy: float = 0.0
 var has_reached_max: bool = false
 var timer_bar: Control = null
 
-
 func _ready() -> void:
 	# Ajustar el Fill al ancho y posición del Background automáticamente
 	energy_bar_fill.size.x = energy_bar_background.size.x
@@ -23,8 +22,7 @@ func _ready() -> void:
 	_update_bar_visual()
 	if GameManager.is_in_play_mode:
 		_setup_timer_bar()
-
-
+		
 func _setup_timer_bar() -> void:
 	timer_bar = TimerBarScene.instantiate()
 	# Agregar la barra como hijo de un CanvasLayer para que se vea sobre todo
@@ -33,7 +31,6 @@ func _setup_timer_bar() -> void:
 	canvas.add_child(timer_bar)
 	timer_bar.time_up.connect(_on_time_up)
 	timer_bar.start(GameManager.get_microgame_duration())
-
 
 func _on_time_up() -> void:
 	GameManager.microgame_finished()
@@ -64,6 +61,7 @@ func _add_energy() -> void:
 	if current_energy >= max_energy and not has_reached_max:
 		has_reached_max = true
 		print("¡Barra de energía llena! ⚡")
+		GameManager.microgame_finished()
 
 
 func _update_bar_visual() -> void:

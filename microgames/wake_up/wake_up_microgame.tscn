@@ -4,7 +4,7 @@
 
 [node name="WakeUpMicrogame" type="Node2D" unique_id=138692089]
 script = ExtResource("1_333qp")
-energy_drain_per_second = 150.0
+energy_drain_per_second = 140.0
 
 [node name="EnergyBarBackground" type="ColorRect" parent="." unique_id=65640013]
 offset_left = 1050.0
@@ -21,3 +21,21 @@ offset_right = 1090.0
 offset_bottom = 459.0
 mouse_filter = 2
 color = Color(0.29803923, 0.6862745, 0.3137255, 1)
+
+[node name="Label" type="Label" parent="." unique_id=359347509]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 399.0
+offset_top = 266.0
+offset_right = 638.0
+offset_bottom = 341.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "WAKE UP!
+
+Presiona espacio rapidamente!"

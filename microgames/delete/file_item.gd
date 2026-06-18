@@ -85,10 +85,18 @@ func _is_over_trash_can() -> bool:
 
 func _dispose() -> void:
 	has_been_disposed = true
+	
+	# Avisar al microjuego según el tipo de archivo
+	var microgame = get_tree().current_scene
 	if is_malware:
 		print("Malware deleted ✓")
+		if microgame.has_method("on_malware_disposed"):
+			microgame.on_malware_disposed()
 	else:
 		print("Important file deleted ✗")
+		if microgame.has_method("on_innocent_disposed"):
+			microgame.on_innocent_disposed()
+	
 	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.2)

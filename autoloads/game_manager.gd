@@ -11,7 +11,7 @@ const MICROGAME_SCENES: Array[String] = [
 
 const MAIN_MENU_SCENE: String = "res://menus/main_menu.tscn"
 
-# Duración de cada microjuego en segundos (Opción A: todos igual)
+# Duración de cada microjuego en segundos
 const MICROGAME_DURATION: float = 5.0
 
 # Estado del modo PLAY
