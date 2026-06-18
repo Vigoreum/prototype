@@ -8,9 +8,12 @@ extends Node2D
 @onready var energy_bar_background: ColorRect = $EnergyBarBackground
 @onready var energy_bar_fill: ColorRect = $EnergyBarFill
 
+const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
+
 # Estado
 var current_energy: float = 0.0
 var has_reached_max: bool = false
+var timer_bar: Control = null
 
 
 func _ready() -> void:
@@ -18,7 +21,22 @@ func _ready() -> void:
 	energy_bar_fill.size.x = energy_bar_background.size.x
 	energy_bar_fill.position.x = energy_bar_background.position.x
 	_update_bar_visual()
+	if GameManager.is_in_play_mode:
+		_setup_timer_bar()
 
+
+func _setup_timer_bar() -> void:
+	timer_bar = TimerBarScene.instantiate()
+	# Agregar la barra como hijo de un CanvasLayer para que se vea sobre todo
+	var canvas: CanvasLayer = CanvasLayer.new()
+	add_child(canvas)
+	canvas.add_child(timer_bar)
+	timer_bar.time_up.connect(_on_time_up)
+	timer_bar.start(GameManager.get_microgame_duration())
+
+
+func _on_time_up() -> void:
+	GameManager.microgame_finished()
 
 func _process(delta: float) -> void:
 	if current_energy > 0:
