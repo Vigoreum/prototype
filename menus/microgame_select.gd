@@ -20,7 +20,7 @@ func _on_draw_pressed() -> void:
 
 
 func _on_wake_up_pressed() -> void:
-	pass
+	GameManager.play_single_microgame("res://microgames/wake_up/wake_up_microgame.tscn")
 
 
 func _on_back_pressed() -> void:
