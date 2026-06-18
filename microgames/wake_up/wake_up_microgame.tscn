@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://covquqyknstlo"]
+
+[ext_resource type="Script" uid="uid://cjelobird4lwq" path="res://microgames/wake_up/wake_up.gd" id="1_333qp"]
+
+[node name="WakeUpMicrogame" type="Node2D" unique_id=138692089]
+script = ExtResource("1_333qp")
+energy_drain_per_second = 150.0
+
+[node name="EnergyBarBackground" type="ColorRect" parent="." unique_id=65640013]
+offset_left = 1050.0
+offset_top = 139.0
+offset_right = 1090.0
+offset_bottom = 459.0
+mouse_filter = 2
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="EnergyBarFill" type="ColorRect" parent="." unique_id=1380435336]
+offset_left = 1050.0
+offset_top = 459.0
+offset_right = 1090.0
+offset_bottom = 459.0
+mouse_filter = 2
+color = Color(0.29803923, 0.6862745, 0.3137255, 1)
