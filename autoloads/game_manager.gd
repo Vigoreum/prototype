@@ -4,12 +4,14 @@ extends Node
 const MICROGAME_SCENES: Array[String] = [
 	"res://microgames/usb/usb.tscn",
 	"res://microgames/delete/delete.tscn",
-	"res://microgames/draw/draw.tscn"
+	"res://microgames/draw/draw.tscn",
+	"res://microgames/wake_up/wake_up_microgame.tscn"
+	
 ]
 
 const MAIN_MENU_SCENE: String = "res://menus/main_menu.tscn"
 
-# Duración de cada microjuego en segundos (Opción A: todos igual)
+# Duración de cada microjuego en segundos
 const MICROGAME_DURATION: float = 5.0
 
 # Estado del modo PLAY

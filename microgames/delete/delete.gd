@@ -16,6 +16,8 @@ const FileItemScene: PackedScene = preload("res://microgames/delete/file_item.ts
 # Estado global: indica si hay algún archivo siendo arrastrado
 var any_file_grabbed: bool = false
 var timer_bar: Control = null
+var malware_remaining: int = 0
+var has_finished: bool = false  # evita que se llame microgame_finished dos veces
 
 func _ready() -> void:
 	randomize()
@@ -33,6 +35,10 @@ func _setup_timer_bar() -> void:
 	timer_bar.start(GameManager.get_microgame_duration())
 
 func _on_time_up() -> void:
+	if has_finished:
+		return
+	has_finished = true
+	print("¡Se acabó el tiempo en DELETE!")
 	GameManager.microgame_finished()
 
 func _spawn_files() -> void:
@@ -47,6 +53,9 @@ func _spawn_files() -> void:
 		var pos: Vector2 = _get_valid_spawn_position(spawned_positions)
 		spawned_positions.append(pos)
 		_spawn_file(pos, true)
+	
+	# Inicializar el contador de malwares por eliminar
+	malware_remaining = FILE_COUNT_BAD
 
 
 func _get_valid_spawn_position(existing: Array[Vector2]) -> Vector2:
@@ -122,3 +131,34 @@ func release_grabbed_file() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):  # ui_cancel = tecla ESC por defecto
 		GameManager.return_to_main_menu()
+
+# Llamada por file_item.gd cuando se elimina un malware
+func on_malware_disposed() -> void:
+	if has_finished:
+		return
+	malware_remaining -= 1
+	if malware_remaining <= 0:
+		_on_win()
+
+
+# Llamada por file_item.gd cuando se elimina un archivo inocente (perdiste)
+func on_innocent_disposed() -> void:
+	if has_finished:
+		return
+	_on_lose()
+
+
+func _on_win() -> void:
+	has_finished = true
+	print("¡Ganaste DELETE! Todos los malwares eliminados 🎉")
+	if timer_bar != null:
+		timer_bar.stop()
+	GameManager.microgame_finished()
+
+
+func _on_lose() -> void:
+	has_finished = true
+	print("¡Perdiste DELETE! Borraste un archivo importante 💀")
+	if timer_bar != null:
+		timer_bar.stop()
+	GameManager.return_to_main_menu()
