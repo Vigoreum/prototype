@@ -8,6 +8,10 @@ extends Node2D
 @onready var energy_bar_background: ColorRect = $EnergyBarBackground
 @onready var energy_bar_fill: ColorRect = $EnergyBarFill
 
+@onready var hand_pivot: Node2D = $HandPivot
+@onready var can_pivot: Node2D = $CanPivot
+@onready var head_anim: AnimatedSprite2D = $HeadAnim
+
 const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
 
 # Estado
@@ -15,11 +19,23 @@ var current_energy: float = 0.0
 var has_reached_max: bool = false
 var timer_bar: Control = null
 
+# Posiciones originales para volver al estado base
+var hand_original_position: Vector2
+var can_original_position: Vector2
+
 func _ready() -> void:
 	# Ajustar el Fill al ancho y posición del Background automáticamente
 	energy_bar_fill.size.x = energy_bar_background.size.x
 	energy_bar_fill.position.x = energy_bar_background.position.x
 	_update_bar_visual()
+	
+	# Guardar posiciones originales de mano y lata
+	hand_original_position = hand_pivot.position
+	can_original_position = can_pivot.position
+	
+	# Arrancar la animación de cabeza en loop
+	head_anim.play("head_nod")
+	
 	if GameManager.is_in_play_mode:
 		_setup_timer_bar()
 		
@@ -58,11 +74,41 @@ func _add_energy() -> void:
 	current_energy = min(current_energy, max_energy)
 	_update_bar_visual()
 	
+	# Reproducir animación de presión
+	_play_press_animation()
+	
 	if current_energy >= max_energy and not has_reached_max:
 		has_reached_max = true
 		print("¡Barra de energía llena! ⚡")
 		GameManager.microgame_finished()
 
+
+
+func _play_press_animation() -> void:
+	# Valores aleatorios pequeños para que cada presión se sienta distinta
+	var rotation_amount: float = deg_to_rad(randf_range(-8.0, 8.0))
+	var shake_offset_x: float = randf_range(-3.0, 3.0)
+	var shake_offset_y: float = randf_range(-3.0, 3.0)
+	var target_hand_pos: Vector2 = hand_original_position + Vector2(shake_offset_x, shake_offset_y)
+	var target_can_pos: Vector2 = can_original_position + Vector2(shake_offset_x * 0.5, shake_offset_y * 0.5)
+	
+	# === Animar la mano ===
+	var hand_tween: Tween = create_tween()
+	hand_tween.set_parallel(true)
+	# Fase 1: ir al punto exagerado (rotación + posición)
+	hand_tween.tween_property(hand_pivot, "rotation", rotation_amount, 0.05)
+	hand_tween.tween_property(hand_pivot, "position", target_hand_pos, 0.05)
+	# Fase 2: volver al estado original (con delay para que arranque después)
+	hand_tween.tween_property(hand_pivot, "rotation", 0.0, 0.08).set_delay(0.05)
+	hand_tween.tween_property(hand_pivot, "position", hand_original_position, 0.08).set_delay(0.05)
+	
+	# === Animar la lata ===
+	var can_tween: Tween = create_tween()
+	can_tween.set_parallel(true)
+	can_tween.tween_property(can_pivot, "rotation", rotation_amount * 0.3, 0.05)
+	can_tween.tween_property(can_pivot, "position", target_can_pos, 0.05)
+	can_tween.tween_property(can_pivot, "rotation", 0.0, 0.08).set_delay(0.05)
+	can_tween.tween_property(can_pivot, "position", can_original_position, 0.08).set_delay(0.05)
 
 func _update_bar_visual() -> void:
 	# Calcular el alto del Fill como proporción del alto del Background
