@@ -63,8 +63,8 @@ func return_to_main_menu() -> void:
 	play_queue.clear()
 	pending_intro_data = null
 	pending_microgame_data = null
-	current_microgame_data = null  # limpiar también esto
-	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+	current_microgame_data = null
+	IrisTransition.transition_to_scene(MAIN_MENU_SCENE)
 
 func start_pending_microgame() -> void:
 	if pending_microgame_data == null:
@@ -72,12 +72,10 @@ func start_pending_microgame() -> void:
 		return_to_main_menu()
 		return
 	
-	# Guardar el dato del microjuego en curso (para que el microjuego lo lea)
 	current_microgame_data = pending_microgame_data
-	
 	var scene: PackedScene = pending_microgame_data.scene
 	pending_microgame_data = null
-	get_tree().change_scene_to_packed(scene)
+	IrisTransition.transition_to_packed_scene(scene)
 
 func get_microgame_duration() -> float:
 	if current_microgame_data != null:
@@ -96,11 +94,9 @@ func _load_next_microgame() -> void:
 
 
 func _start_microgame_with_intro(data: MicrogameData) -> void:
-	# Llenar los "buzones" antes de cambiar de escena
 	pending_intro_data = data
 	pending_microgame_data = data
-	# Cargar la escena de intro
-	get_tree().change_scene_to_file(MICROGAME_INTRO_SCENE)
+	IrisTransition.transition_to_scene(MICROGAME_INTRO_SCENE)
 
 
 func _load_all_microgame_data() -> Array[MicrogameData]:

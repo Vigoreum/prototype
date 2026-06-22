@@ -4,7 +4,7 @@ extends Control
 @onready var controls_container: HBoxContainer = $ControlsContainer
 
 # Duración total que se muestra la pantalla de intro
-const INTRO_DURATION: float = 1.5
+const INTRO_DURATION: float = 1.1  # 1.5 - 0.4 (duración de la transición de salida)
 
 # Tamaño con el que se muestran los iconos
 const ICON_SIZE: Vector2 = Vector2(128, 128)

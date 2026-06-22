@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 GameManager="*uid://drvsyqai0mf46"
+IrisTransition="*uid://dy8efsklmn8ti"
 
 [display]
 
