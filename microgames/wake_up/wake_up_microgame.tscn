@@ -44,6 +44,7 @@ animations = [{
 
 [node name="WakeUpMicrogame" type="Node2D" unique_id=138692089]
 script = ExtResource("1_333qp")
+energy_per_press = 50.0
 energy_drain_per_second = 140.0
 
 [node name="Base" type="Sprite2D" parent="." unique_id=479560499]
