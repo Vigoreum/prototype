@@ -49,7 +49,7 @@ func _setup_timer_bar() -> void:
 	timer_bar.start(GameManager.get_microgame_duration())
 
 func _on_time_up() -> void:
-	GameManager.microgame_finished()
+	GameManager.notify_microgame_timed_out()
 
 func _process(delta: float) -> void:
 	if current_energy > 0:
@@ -80,7 +80,7 @@ func _add_energy() -> void:
 	if current_energy >= max_energy and not has_reached_max:
 		has_reached_max = true
 		print("¡Barra de energía llena! ⚡")
-		GameManager.microgame_finished()
+		GameManager.notify_microgame_won()
 
 
 

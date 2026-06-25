@@ -20,7 +20,7 @@ func _setup_timer_bar() -> void:
 
 
 func _on_time_up() -> void:
-	GameManager.microgame_finished()
+	GameManager.notify_microgame_timed_out()
 
 
 func _unhandled_input(event: InputEvent) -> void:
