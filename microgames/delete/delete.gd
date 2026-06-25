@@ -117,7 +117,10 @@ func _spawn_file(spawn_position: Vector2, is_malware: bool) -> void:
 # ===== Control global de arrastre =====
 
 func try_grab_file() -> bool:
-	# Devuelve true si el archivo puede agarrarse, false si ya hay uno agarrado
+	# Si ya terminó el microjuego, no permitir agarrar más archivos
+	if has_finished:
+		return false
+	
 	if any_file_grabbed:
 		return false
 	any_file_grabbed = true
@@ -129,7 +132,10 @@ func release_grabbed_file() -> void:
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):  # ui_cancel = tecla ESC por defecto
+	if has_finished:
+		return
+	
+	if event.is_action_pressed("ui_cancel"):
 		GameManager.return_to_main_menu()
 
 # Llamada por file_item.gd cuando se elimina un malware

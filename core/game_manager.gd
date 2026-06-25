@@ -28,7 +28,7 @@ var is_in_play_mode: bool = false
 var pending_intro_data: MicrogameData = null
 var pending_microgame_data: MicrogameData = null
 var current_microgame_data: MicrogameData = null
-
+var is_transitioning: bool = false
 
 # ===== READY =====
 
@@ -60,6 +60,7 @@ func play_single_microgame(data_path: String) -> void:
 # ===== FUNCIONES QUE LLAMAN LOS MICROJUEGOS =====
 
 func notify_microgame_won() -> void:
+	print("📡 notify_microgame_won emitida")
 	microgame_won.emit()
 
 
@@ -74,14 +75,24 @@ func notify_microgame_timed_out() -> void:
 # ===== RESPUESTAS A LAS SEÑALES =====
 
 func _on_microgame_won() -> void:
+	if is_transitioning:
+		print("⚠️ Ignorando microgame_won duplicado (ya en transición)")
+		return
+	is_transitioning = true
 	_advance_or_finish()
 
 
 func _on_microgame_lost() -> void:
+	if is_transitioning:
+		return
+	is_transitioning = true
 	_show_game_over()
 
 
 func _on_microgame_timed_out() -> void:
+	if is_transitioning:
+		return
+	is_transitioning = true
 	_show_game_over()
 
 
@@ -106,6 +117,7 @@ func return_to_main_menu() -> void:
 	pending_intro_data = null
 	pending_microgame_data = null
 	current_microgame_data = null
+	is_transitioning = false  # ← reset
 	IrisTransition.transition_to_scene(MAIN_MENU_SCENE)
 
 
@@ -120,6 +132,7 @@ func start_pending_microgame() -> void:
 	current_microgame_data = pending_microgame_data
 	var scene: PackedScene = pending_microgame_data.scene
 	pending_microgame_data = null
+	is_transitioning = false  # ← reset cuando arranca el siguiente microjuego
 	IrisTransition.transition_to_packed_scene(scene)
 
 
