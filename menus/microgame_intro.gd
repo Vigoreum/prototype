@@ -14,6 +14,7 @@ var microgame_data: MicrogameData = null
 
 
 func _ready() -> void:
+	print("🎬 MicrogameIntro _ready ejecutándose. Datos: ", microgame_data.title if microgame_data else "NULL")
 	# TEST: hardcodear datos para verificar visualmente
 	title_label.text = "¡USB!"
 	# Si el GameManager nos pasó datos, los usamos

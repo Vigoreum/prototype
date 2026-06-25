@@ -8,11 +8,7 @@ extends Control
 
 
 func _ready() -> void:
-	usb_button.pressed.connect(_on_usb_pressed)
-	delete_button.pressed.connect(_on_delete_pressed)
-	draw_button.pressed.connect(_on_draw_pressed)
-	wake_up_button.pressed.connect(_on_wake_up_pressed)
-	back_button.pressed.connect(_on_back_pressed)
+	pass
 
 
 func _on_usb_pressed() -> void:

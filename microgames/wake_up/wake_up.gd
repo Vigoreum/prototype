@@ -49,7 +49,7 @@ func _setup_timer_bar() -> void:
 	timer_bar.start(GameManager.get_microgame_duration())
 
 func _on_time_up() -> void:
-	GameManager.microgame_finished()
+	GameManager.notify_microgame_timed_out()
 
 func _process(delta: float) -> void:
 	if current_energy > 0:
@@ -63,6 +63,12 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("space_bar"):
+		print("WAKE UP recibió espacio. has_reached_max: ", has_reached_max)
+	
+	if has_reached_max:
+		return
+	
+	if event.is_action_pressed("space_bar"):
 		_add_energy()
 	
 	if event.is_action_pressed("ui_cancel"):
@@ -70,17 +76,23 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _add_energy() -> void:
+	if has_reached_max:
+		return
+	
 	current_energy += energy_per_press
 	current_energy = min(current_energy, max_energy)
 	_update_bar_visual()
 	
-	# Reproducir animación de presión
 	_play_press_animation()
 	
 	if current_energy >= max_energy and not has_reached_max:
 		has_reached_max = true
-		print("¡Barra de energía llena! ⚡")
-		GameManager.microgame_finished()
+		print("🎉 ¡Barra llena!")
+		# Deshabilitar TODO el procesamiento de input desde ahora
+		set_process_input(false)
+		set_process_unhandled_input(false)
+		set_process(false)
+		GameManager.notify_microgame_won()
 
 
 

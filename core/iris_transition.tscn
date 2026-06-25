@@ -7,7 +7,7 @@
 shader = ExtResource("2_6fy1o")
 shader_parameter/progress = 0.0
 shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/color = Color(0.101960786, 0.101960786, 0.18039216, 1)
 shader_parameter/aspect = Vector2(16, 9)
 
 [node name="IrisTransition" type="CanvasLayer" unique_id=733743512]
