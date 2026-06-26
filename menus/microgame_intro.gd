@@ -4,7 +4,8 @@ extends Control
 @onready var controls_container: HBoxContainer = $ControlsContainer
 
 # Duración total que se muestra la pantalla de intro
-const INTRO_DURATION: float = 1.1  # 1.5 - 0.4 (duración de la transición de salida)
+# 1.1 = 1.5 visible - 0.4 (duración de la transición iris de salida)
+const INTRO_DURATION: float = 1.1
 
 # Tamaño con el que se muestran los iconos
 const ICON_SIZE: Vector2 = Vector2(128, 128)
@@ -14,22 +15,19 @@ var microgame_data: MicrogameData = null
 
 
 func _ready() -> void:
-	print("🎬 MicrogameIntro _ready ejecutándose. Datos: ", microgame_data.title if microgame_data else "NULL")
-	# TEST: hardcodear datos para verificar visualmente
-	title_label.text = "¡USB!"
 	# Si el GameManager nos pasó datos, los usamos
 	if GameManager.pending_intro_data != null:
 		microgame_data = GameManager.pending_intro_data
-		GameManager.pending_intro_data = null  # limpiar después de usar
+		GameManager.pending_intro_data = null
 		_apply_data()
 	else:
-		# Caso edge: nadie nos pasó datos. Volver al menú.
 		print("⚠️ MicrogameIntro: no hay datos de microjuego, volviendo al menú")
 		GameManager.return_to_main_menu()
 		return
 	
-	# Esperar la duración configurada y después continuar
-	await get_tree().create_timer(INTRO_DURATION).timeout
+	# Crear timer pausable que respeta get_tree().paused
+	var timer: SceneTreeTimer = get_tree().create_timer(INTRO_DURATION, false)
+	await timer.timeout
 	_on_intro_finished()
 
 
@@ -50,3 +48,8 @@ func _apply_data() -> void:
 func _on_intro_finished() -> void:
 	# Avisar al GameManager que la intro terminó, ahora carga el microjuego real
 	GameManager.start_pending_microgame()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		GameManager.try_open_pause_menu()

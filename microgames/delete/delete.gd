@@ -136,7 +136,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("ui_cancel"):
-		GameManager.return_to_main_menu()
+		GameManager.try_open_pause_menu()
 
 # Llamada por file_item.gd cuando se elimina un malware
 func on_malware_disposed() -> void:

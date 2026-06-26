@@ -18,6 +18,8 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 GameManager="*uid://drvsyqai0mf46"
 IrisTransition="*uid://dy8efsklmn8ti"
+PauseMenu="*uid://du7ywpvabdy3g"
+CountdownOverlay="*uid://d12th0jmj7f5u"
 
 [display]
 

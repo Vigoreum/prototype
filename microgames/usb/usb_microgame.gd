@@ -25,4 +25,4 @@ func _on_time_up() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		GameManager.return_to_main_menu()
+		GameManager.try_open_pause_menu()
