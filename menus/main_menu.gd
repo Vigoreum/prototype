@@ -3,6 +3,10 @@ extends Control
 @onready var play_button: Button = $PlayButton
 @onready var select_button: Button = $SelectButton
 
+func _ready() -> void:
+	AudioManager.register_button_positive(play_button)
+	AudioManager.register_button_neutral(select_button)
+
 func _on_play_pressed() -> void:
 	GameManager.start_play_mode()
 

@@ -10,6 +10,9 @@ var just_opened: bool = false
 
 
 func _ready() -> void:
+	AudioManager.register_button_neutral(continue_button)
+	AudioManager.register_button_back(exit_button)
+
 	continue_button.pressed.connect(_on_continue_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 	
