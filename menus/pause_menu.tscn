@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://du7ywpvabdy3g"]
+
+[ext_resource type="Script" uid="uid://b20epe68qkbng" path="res://menus/pause_menu.gd" id="1_s0u37"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=230568321]
+layer = 150
+script = ExtResource("1_s0u37")
+
+[node name="Background" type="ColorRect" parent="." unique_id=583349381]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="VBoxContainer" parent="." unique_id=859446856]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer" unique_id=56829029]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "PAUSA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CenterContainer" unique_id=975846016]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "CONTINUAR"
+
+[node name="ExitButton" type="Button" parent="CenterContainer" unique_id=1634429441]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "SALIR"

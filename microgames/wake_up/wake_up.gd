@@ -72,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_add_energy()
 	
 	if event.is_action_pressed("ui_cancel"):
-		GameManager.return_to_main_menu()
+		GameManager.try_open_pause_menu()
 
 
 func _add_energy() -> void:

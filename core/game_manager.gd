@@ -30,6 +30,7 @@ var pending_microgame_data: MicrogameData = null
 var current_microgame_data: MicrogameData = null
 var is_transitioning: bool = false
 
+
 # ===== READY =====
 
 func _ready() -> void:
@@ -60,7 +61,6 @@ func play_single_microgame(data_path: String) -> void:
 # ===== FUNCIONES QUE LLAMAN LOS MICROJUEGOS =====
 
 func notify_microgame_won() -> void:
-	print("📡 notify_microgame_won emitida")
 	microgame_won.emit()
 
 
@@ -76,7 +76,6 @@ func notify_microgame_timed_out() -> void:
 
 func _on_microgame_won() -> void:
 	if is_transitioning:
-		print("⚠️ Ignorando microgame_won duplicado (ya en transición)")
 		return
 	is_transitioning = true
 	_advance_or_finish()
@@ -117,7 +116,7 @@ func return_to_main_menu() -> void:
 	pending_intro_data = null
 	pending_microgame_data = null
 	current_microgame_data = null
-	is_transitioning = false  # ← reset
+	is_transitioning = false
 	IrisTransition.transition_to_scene(MAIN_MENU_SCENE)
 
 
@@ -132,7 +131,7 @@ func start_pending_microgame() -> void:
 	current_microgame_data = pending_microgame_data
 	var scene: PackedScene = pending_microgame_data.scene
 	pending_microgame_data = null
-	is_transitioning = false  # ← reset cuando arranca el siguiente microjuego
+	is_transitioning = false
 	IrisTransition.transition_to_packed_scene(scene)
 
 
@@ -140,6 +139,48 @@ func get_microgame_duration() -> float:
 	if current_microgame_data != null:
 		return current_microgame_data.duration
 	return 5.0
+
+
+# ===== PAUSA =====
+
+# Llamada por el jugador (ESC) o por pérdida de foco
+# Nota: la transición iris sigue corriendo aunque el juego esté pausado
+# porque IrisTransition tiene process_mode = ALWAYS
+func try_open_pause_menu() -> void:
+	if get_tree().paused:
+		return
+	
+	if not _is_pausable_scene():
+		return
+	
+	get_tree().paused = true
+	PauseMenu.show_menu()
+
+
+# True si la escena actual permite pausa
+func _is_pausable_scene() -> bool:
+	var current_scene: Node = get_tree().current_scene
+	if current_scene == null:
+		return false
+	
+	var scene_name: String = current_scene.scene_file_path
+	
+	# Escenas que NO permiten pausa
+	if scene_name.ends_with("main_menu.tscn"):
+		return false
+	if scene_name.ends_with("microgame_select.tscn"):
+		return false
+	if scene_name.ends_with("game_over.tscn"):
+		return false
+	
+	# Todo lo demás (microjuegos, intro) sí permite pausa
+	return true
+
+
+# Detección de pérdida de foco (alt-tab, minimizar)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		try_open_pause_menu()
 
 
 # ===== LÓGICA INTERNA =====
