@@ -4,11 +4,7 @@ extends Node
 const HOVER_SOUND: AudioStream = preload("res://assets/audio/ui/hover.wav")
 const CLICK_POSITIVE_SOUND: AudioStream = preload("res://assets/audio/ui/click_positive.mp3")
 const CLICK_BACK_SOUND: AudioStream = preload("res://assets/audio/ui/click_back.wav")
-
-# El sonido neutral todavía no existe.
-# y borrar el const NEUTRAL_SOUND_PATH que está abajo.
-# const CLICK_NEUTRAL_SOUND: AudioStream = preload("res://assets/audio/ui/click_neutral.mp3")
-const CLICK_NEUTRAL_SOUND: AudioStream = null
+const CLICK_NEUTRAL_SOUND: AudioStream = preload("res://assets/audio/UI/click_neutral.wav")
 
 var ui_player: AudioStreamPlayer = null
 
