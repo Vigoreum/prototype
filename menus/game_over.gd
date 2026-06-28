@@ -5,7 +5,8 @@ extends Control
 
 
 func _ready() -> void:
-	pass
+	AudioManager.register_button_positive(retry_button)
+	AudioManager.register_button_back(exit_button)
 	
 	# Desactivar botones brevemente para evitar clics accidentales 
 	# durante la transición de entrada

@@ -8,8 +8,11 @@ extends Control
 
 
 func _ready() -> void:
-	pass
-
+	AudioManager.register_button_positive(usb_button)
+	AudioManager.register_button_positive(delete_button)
+	AudioManager.register_button_positive(draw_button)
+	AudioManager.register_button_positive(wake_up_button)
+	AudioManager.register_button_back(back_button)
 
 func _on_usb_pressed() -> void:
 	GameManager.play_single_microgame("res://microgames/usb/usb_data.tres")
