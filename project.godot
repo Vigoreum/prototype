@@ -22,6 +22,7 @@ PauseMenu="*uid://du7ywpvabdy3g"
 CountdownOverlay="*uid://d12th0jmj7f5u"
 AudioManager="*uid://p3nxfl1yi3h1"
 SettingsManager="*uid://dj3kbtcik2bnt"
+OptionsMenu="*uid://bckw487m0rjx3"
 
 [display]
 

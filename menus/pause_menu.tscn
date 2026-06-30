@@ -43,8 +43,18 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "CONTINUAR"
 
+[node name="OptionsButton" type="Button" parent="CenterContainer" unique_id=1835733318]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "OPCIONES"
+
 [node name="ExitButton" type="Button" parent="CenterContainer" unique_id=1634429441]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "SALIR"
+
+[connection signal="pressed" from="CenterContainer/ContinueButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CenterContainer/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/ExitButton" to="." method="_on_exit_pressed"]

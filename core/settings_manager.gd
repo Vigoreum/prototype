@@ -10,6 +10,7 @@ const KEY_FULLSCREEN: String = "fullscreen"
 # Estado actual de los settings
 var is_fullscreen: bool = false
 
+signal fullscreen_changed(enabled: bool)
 
 func _ready() -> void:
 	# Funciona aunque el juego esté pausado (F11 debe responder siempre)
@@ -25,6 +26,7 @@ func set_fullscreen(enabled: bool) -> void:
 	is_fullscreen = enabled
 	_apply_fullscreen(enabled)
 	_save_settings()
+	fullscreen_changed.emit(enabled)  # ← nuevo
 
 
 # Alterna entre fullscreen y ventana

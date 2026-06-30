@@ -35,36 +35,32 @@ text = "HubLab Micro Games"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="." unique_id=1245528072]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -40.0
-offset_right = 150.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 789.0
+offset_top = 448.0
+offset_right = 1131.0
+offset_bottom = 511.0
 theme_override_font_sizes/font_size = 40
 text = "PLAY"
 
 [node name="SelectButton" type="Button" parent="." unique_id=239859181]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = 76.0
-offset_right = 200.0
-offset_bottom = 136.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 789.0
+offset_top = 515.0
+offset_right = 1131.0
+offset_bottom = 565.0
 theme_override_font_sizes/font_size = 30
 text = "ESCOGER MICROJUEGO"
 
+[node name="OptionsButton" type="Button" parent="." unique_id=1429165810]
+layout_mode = 0
+offset_left = 789.0
+offset_top = 569.0
+offset_right = 1131.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 40
+text = "OPCIONES"
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="SelectButton" to="." method="_on_select_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_pressed"]
