@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var background: ColorRect = $Background
 @onready var center_container: VBoxContainer = $CenterContainer
 @onready var continue_button: Button = $CenterContainer/ContinueButton
+@onready var options_button: Button = $CenterContainer/OptionsButton
 @onready var exit_button: Button = $CenterContainer/ExitButton
 
 # Flag para evitar que el mismo ESC abra y cierre el menú
@@ -11,10 +12,8 @@ var just_opened: bool = false
 
 func _ready() -> void:
 	AudioManager.register_button_neutral(continue_button)
+	AudioManager.register_button_neutral(options_button)
 	AudioManager.register_button_back(exit_button)
-
-	continue_button.pressed.connect(_on_continue_pressed)
-	exit_button.pressed.connect(_on_exit_pressed)
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide_menu()
@@ -56,6 +55,8 @@ func _on_continue_pressed() -> void:
 	await CountdownOverlay.countdown_finished
 	get_tree().paused = false
 
+func _on_options_pressed() -> void:
+	OptionsMenu.show_menu()
 
 func _on_exit_pressed() -> void:
 	get_tree().paused = false
