@@ -17,6 +17,8 @@ size = Vector2(180, 50)
 size = Vector2(120, 50)
 
 [node name="USBMicrogame" type="Node2D" unique_id=778499891]
+position = Vector2(128, 72)
+scale = Vector2(0.333, 0.333)
 script = ExtResource("1_leboi")
 
 [node name="Notebook" type="Node2D" parent="." unique_id=1165950147]

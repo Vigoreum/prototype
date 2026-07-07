@@ -1,9 +1,9 @@
 extends Control
 
-@onready var usb_button: Button = $ButtonContainer/UsbButton
-@onready var delete_button: Button = $ButtonContainer/DeleteButton
-@onready var draw_button: Button = $ButtonContainer/DrawButton
-@onready var wake_up_button: Button = $ButtonContainer/WakeUpButton
+@onready var usb_button: Button = $ButtonsContainer/UsbButton
+@onready var delete_button: Button = $ButtonsContainer/DeleteButton
+@onready var draw_button: Button = $ButtonsContainer/DrawButton
+@onready var wake_up_button: Button = $ButtonsContainer/WakeUpButton
 @onready var back_button: Button = $BackButton
 
 

@@ -12,6 +12,7 @@ const COLOR_FRONT: Color = Color("0066FF")  # azul (cara correcta)
 const COLOR_BACK: Color = Color("FF3333")   # rojo (cara incorrecta)
 
 # Constantes para la posición inicial aleatoria
+# (Espacio interno del microjuego, no del canvas final)
 const SCREEN_WIDTH: float = 1152.0
 const SCREEN_HEIGHT: float = 648.0
 const NOTEBOOK_CENTER: Vector2 = Vector2(576, 324)
@@ -89,7 +90,7 @@ func randomize_position() -> void:
 			new_pos.x = randf_range(SCREEN_MARGIN, SCREEN_WIDTH - SCREEN_MARGIN)
 			new_pos.y = randf_range(NOTEBOOK_CENTER.y + NOTEBOOK_HALF_HEIGHT, SCREEN_HEIGHT - SCREEN_MARGIN)
 	
-	global_position = new_pos
+	position = new_pos
 
 
 func flip() -> void:
@@ -147,15 +148,21 @@ func connect_to_port(port_global_pos: Vector2) -> void:
 	is_connected = true
 	is_grabbed = false
 	
-	# Calcular la posición final del USB para que el conector quede centrado en el puerto.
-	# El centro del conector está a 75 px del centro del USB (en eje X).
-	var target: Vector2 = port_global_pos
+	# Convertir a espacio local del padre para trabajar con las coordenadas del microjuego
+	var port_local_pos: Vector2 = get_parent().to_local(port_global_pos)
+	
+	# Offset para que el conector del USB tape el puerto del notebook
+	# Valor ajustado visualmente para el placeholder actual
+	var offset: float = 75.0
+	
+	var target_local: Vector2 = port_local_pos
 	if connector_on_right:
-		# Conector a la derecha del USB → el centro del USB queda 75 px a la izquierda del puerto
-		target.x -= 75
+		target_local.x -= offset
 	else:
-		# Conector a la izquierda del USB → el centro del USB queda 75 px a la derecha del puerto
-		target.x += 75
+		target_local.x += offset
+	
+	# Convertir de vuelta a global para el tween
+	var target: Vector2 = get_parent().to_global(target_local)
 	
 	# Animar la entrada con una pausa breve seguida de la introducción completa
 	var tween = create_tween()
@@ -165,5 +172,4 @@ func connect_to_port(port_global_pos: Vector2) -> void:
 
 
 func _on_connected_complete() -> void:
-	print("USB conectado correctamente! 🎉")
-	GameManager.notify_microgame_won()  
+	GameManager.notify_microgame_won()

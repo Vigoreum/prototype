@@ -1,8 +1,8 @@
 extends Control
 
-@onready var play_button: Button = $PlayButton
-@onready var select_button: Button = $SelectButton
-@onready var options_button: Button = $OptionsButton
+@onready var play_button: Button = $ButtonsContainer/PlayButton
+@onready var select_button: Button = $ButtonsContainer/SelectButton
+@onready var options_button: Button = $ButtonsContainer/OptionsButton
 
 func _ready() -> void:
 	AudioManager.register_button_positive(play_button)
