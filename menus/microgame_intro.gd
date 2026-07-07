@@ -8,7 +8,7 @@ extends Control
 const INTRO_DURATION: float = 1.1
 
 # Tamaño con el que se muestran los iconos
-const ICON_SIZE: Vector2 = Vector2(128, 128)
+const ICON_SIZE: Vector2 = Vector2(32, 32)
 
 # Datos del microjuego que se va a presentar
 var microgame_data: MicrogameData = null

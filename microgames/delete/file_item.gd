@@ -47,22 +47,21 @@ func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 
 func _start_drag() -> void:
 	if not microgame.try_grab_file():
-		print("Otro archivo ya está siendo arrastrado, ignorando clic")
 		return
 	
 	is_being_dragged = true
-	drag_offset = global_position - get_global_mouse_position()
+	# Calcular offset en espacio local del padre
+	drag_offset = position - get_parent().to_local(get_global_mouse_position())
 	get_parent().move_child(self, -1)
-	print("Drag started. Offset: ", drag_offset)
 
 
 func _process(delta: float) -> void:
 	if is_being_dragged:
-		var target_position: Vector2 = get_global_mouse_position() + drag_offset
-		global_position = global_position.lerp(target_position, DRAG_SMOOTHNESS * delta * 60.0)
+		# Convertir la posición del mouse al espacio local del padre
+		var target_local: Vector2 = get_parent().to_local(get_global_mouse_position() + drag_offset)
+		position = position.lerp(target_local, DRAG_SMOOTHNESS * delta * 60.0)
 		
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			print("Mouse released, ending drag")
 			_end_drag()
 
 

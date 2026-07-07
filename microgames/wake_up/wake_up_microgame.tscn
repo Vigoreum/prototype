@@ -48,10 +48,12 @@ energy_per_press = 50.0
 energy_drain_per_second = 140.0
 
 [node name="Base" type="Sprite2D" parent="." unique_id=479560499]
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("2_ek0ar")
 centered = false
 
 [node name="HeadAnim" type="AnimatedSprite2D" parent="." unique_id=1053095860]
+scale = Vector2(0.33, 0.33)
 sprite_frames = SubResource("SpriteFrames_5tuea")
 animation = &"head_nod"
 frame_progress = 0.5793109
@@ -59,28 +61,37 @@ centered = false
 
 [node name="CanPivot" type="Node2D" parent="." unique_id=2029990896]
 position = Vector2(1216, 803)
+scale = Vector2(0.33, 0.33)
 
 [node name="Can" type="Sprite2D" parent="CanPivot" unique_id=433028840]
+position = Vector2(-2469.6968, -1633.333)
+scale = Vector2(1.0143303, 1.01433)
 texture = ExtResource("4_nb2ep")
 
 [node name="HandPivot" type="Node2D" parent="." unique_id=806155944]
 position = Vector2(1428, 577)
+scale = Vector2(0.33, 0.33)
 
 [node name="Hand" type="Sprite2D" parent="HandPivot" unique_id=1318252522]
+position = Vector2(-2890.909, -1172.7272)
 texture = ExtResource("5_nb2ep")
 
 [node name="EnergyBarBackground" type="ColorRect" parent="." unique_id=65640013]
-offset_left = 1833.0
-offset_top = 357.0
-offset_right = 1873.0
-offset_bottom = 677.0
+offset_left = 623.0
+offset_top = 114.0
+offset_right = 663.0
+offset_bottom = 434.0
+scale = Vector2(0.33, 0.33)
 mouse_filter = 2
 color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="EnergyBarFill" type="ColorRect" parent="." unique_id=1380435336]
-offset_left = 1833.0
-offset_top = 677.0
-offset_right = 1873.0
-offset_bottom = 677.0
+offset_left = 623.0
+offset_top = 218.605
+offset_right = 663.0
+offset_bottom = 218.605
+scale = Vector2(0.33, 0.33)
 mouse_filter = 2
 color = Color(0.29803923, 0.6862745, 0.3137255, 1)
+metadata/_edit_use_anchors_ = true

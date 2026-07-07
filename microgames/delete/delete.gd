@@ -5,11 +5,11 @@ const FILE_COUNT_BAD: int = 3
 const SPAWN_AREA_MIN: Vector2 = Vector2(80, 100)
 const SPAWN_AREA_MAX: Vector2 = Vector2(900, 480)
 const MIN_DISTANCE_BETWEEN_FILES: float = 110.0
-const TRASH_SPAWN_MARGIN: float = 80.0
+const TRASH_SPAWN_MARGIN: float = 350
 const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
 
-@onready var trash_can: Area2D = $TrashCan
-@onready var files_container: Node2D = $FilesContainer
+@onready var trash_can: Area2D = $GameContainer/TrashCan
+@onready var files_container: Node2D = $GameContainer/FilesContainer
 
 const FileItemScene: PackedScene = preload("res://microgames/delete/file_item.tscn")
 
@@ -96,13 +96,16 @@ func _is_position_over_trash(pos: Vector2) -> bool:
 	if shape == null:
 		return false
 	
-	var trash_center: Vector2 = trash_can.position + collision.position
-	var half_size: Vector2 = shape.size / 2
+	var trash_center: Vector2 = trash_can.position
+	var half_size: Vector2 = (shape.size * trash_can.scale) / 2
 	
-	var min_x: float = trash_center.x - half_size.x - TRASH_SPAWN_MARGIN
-	var max_x: float = trash_center.x + half_size.x + TRASH_SPAWN_MARGIN
-	var min_y: float = trash_center.y - half_size.y - TRASH_SPAWN_MARGIN
-	var max_y: float = trash_center.y + half_size.y + TRASH_SPAWN_MARGIN
+	# Agregar espacio para el tamaño típico de un archivo (~150 pixels)
+	var file_half_size: float = 100.0
+	
+	var min_x: float = trash_center.x - half_size.x - TRASH_SPAWN_MARGIN - file_half_size
+	var max_x: float = trash_center.x + half_size.x + TRASH_SPAWN_MARGIN + file_half_size
+	var min_y: float = trash_center.y - half_size.y - TRASH_SPAWN_MARGIN - file_half_size
+	var max_y: float = trash_center.y + half_size.y + TRASH_SPAWN_MARGIN + file_half_size
 	
 	return pos.x > min_x and pos.x < max_x and pos.y > min_y and pos.y < max_y
 

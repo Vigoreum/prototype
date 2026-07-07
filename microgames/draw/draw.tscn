@@ -15,25 +15,26 @@ radius = 57.939625
 script = ExtResource("1_t7xbd")
 
 [node name="base" type="Sprite2D" parent="." unique_id=455653019]
-position = Vector2(576, 322)
+position = Vector2(320, 178)
+scale = Vector2(0.5555556, 0.5555556)
 texture = ExtResource("1_3egv1")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=531308806]
 texture_filter = 1
-offset_left = 310.0
-offset_top = 108.0
-offset_right = 793.0
-offset_bottom = 590.0
+offset_left = 196.02075
+offset_top = 59.0
+offset_right = 473.59543
+offset_bottom = 336.0
 texture = ExtResource("2_j1as3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1670053347]
-position = Vector2(540, 351)
-scale = Vector2(0.36118785, 0.4521179)
+position = Vector2(321, 200)
+scale = Vector2(0.4143646, 0.26335174)
 texture = ExtResource("3_m75ne")
 script = ExtResource("4_m75ne")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=141423870]
-position = Vector2(531, 377)
+position = Vector2(302, 228)
 script = ExtResource("4_j1as3")
 metadata/_edit_group_ = true
 

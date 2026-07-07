@@ -14,45 +14,45 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="VBoxContainer" parent="." unique_id=859446856]
+[node name="CenterContainer" type="VBoxContainer" parent="." unique_id=378266010]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
-offset_bottom = 200.0
+offset_left = -80.0
+offset_top = -81.5
+offset_right = 80.0
+offset_bottom = 81.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Title" type="Label" parent="CenterContainer" unique_id=56829029]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 40
 text = "PAUSA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="CenterContainer" unique_id=975846016]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 14
 text = "CONTINUAR"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer" unique_id=1835733318]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 14
 text = "OPCIONES"
 
 [node name="ExitButton" type="Button" parent="CenterContainer" unique_id=1634429441]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 14
 text = "SALIR"
 
 [connection signal="pressed" from="CenterContainer/ContinueButton" to="." method="_on_continue_pressed"]

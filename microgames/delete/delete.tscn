@@ -6,6 +6,7 @@
 size = Vector2(160, 200)
 
 [node name="TrashFiles" type="Node2D" unique_id=1838729029]
+scale = Vector2(1.1, 1.1)
 script = ExtResource("1_563rc")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=885734872]
@@ -20,25 +21,30 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.09411765, 0.09411765, 0.6666667, 1)
 
-[node name="TrashCan" type="Area2D" parent="." unique_id=1666929239]
-position = Vector2(576, 540)
+[node name="GameContainer" type="Node2D" parent="." unique_id=1532325114]
+position = Vector2(128, 72)
+scale = Vector2(0.333, 0.333)
+
+[node name="TrashCan" type="Area2D" parent="GameContainer" unique_id=1666929239]
+position = Vector2(297.99997, 157)
 input_pickable = false
 
-[node name="Visual" type="ColorRect" parent="TrashCan" unique_id=1571880602]
+[node name="Visual" type="ColorRect" parent="GameContainer/TrashCan" unique_id=1571880602]
 offset_left = -80.0
 offset_top = -100.0
 offset_right = 80.0
 offset_bottom = 100.0
 color = Color(0.23532155, 0.59179604, 0.28991932, 1)
 
-[node name="Label" type="Label" parent="TrashCan" unique_id=1373934775]
+[node name="Label" type="Label" parent="GameContainer/TrashCan" unique_id=1373934775]
 offset_left = -60.0
 offset_top = -40.0
 offset_right = 60.0
 offset_bottom = 40.0
 text = "TRASH"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TrashCan" unique_id=380589090]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/TrashCan" unique_id=380589090]
 shape = SubResource("RectangleShape2D_ijwtv")
 
-[node name="FilesContainer" type="Node2D" parent="." unique_id=2072727915]
+[node name="FilesContainer" type="Node2D" parent="GameContainer" unique_id=2072727915]
+position = Vector2(-384.38437, -216.21622)

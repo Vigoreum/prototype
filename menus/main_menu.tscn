@@ -25,42 +25,46 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -83.0
-offset_top = 100.0
-offset_right = 83.0
-offset_bottom = 123.0
+offset_left = -160.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 80.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 24
 text = "HubLab Micro Games"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PlayButton" type="Button" parent="." unique_id=1245528072]
-layout_mode = 0
-offset_left = 789.0
-offset_top = 448.0
-offset_right = 1131.0
-offset_bottom = 511.0
-theme_override_font_sizes/font_size = 40
+[node name="ButtonsContainer" type="VBoxContainer" parent="." unique_id=1012838996]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="PlayButton" type="Button" parent="ButtonsContainer" unique_id=1245528072]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "PLAY"
 
-[node name="SelectButton" type="Button" parent="." unique_id=239859181]
-layout_mode = 0
-offset_left = 789.0
-offset_top = 515.0
-offset_right = 1131.0
-offset_bottom = 565.0
-theme_override_font_sizes/font_size = 30
+[node name="SelectButton" type="Button" parent="ButtonsContainer" unique_id=239859181]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "ESCOGER MICROJUEGO"
 
-[node name="OptionsButton" type="Button" parent="." unique_id=1429165810]
-layout_mode = 0
-offset_left = 789.0
-offset_top = 569.0
-offset_right = 1131.0
-offset_bottom = 632.0
-theme_override_font_sizes/font_size = 40
+[node name="OptionsButton" type="Button" parent="ButtonsContainer" unique_id=1429165810]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "OPCIONES"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="SelectButton" to="." method="_on_select_pressed"]
-[connection signal="pressed" from="OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ButtonsContainer/SelectButton" to="." method="_on_select_pressed"]
+[connection signal="pressed" from="ButtonsContainer/OptionsButton" to="." method="_on_options_pressed"]

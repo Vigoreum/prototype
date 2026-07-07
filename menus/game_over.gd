@@ -1,7 +1,7 @@
 extends Control
 
-@onready var retry_button: Button = $ButtonContainer/RetryButton
-@onready var exit_button: Button = $ButtonContainer/ExitButton
+@onready var retry_button: Button = $ButtonsContainer/RetryButton
+@onready var exit_button: Button = $ButtonsContainer/ExitButton
 
 
 func _ready() -> void:
