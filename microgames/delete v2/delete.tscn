@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cer7bsje8ytyi"]
+
+[ext_resource type="Texture2D" uid="uid://h4x8hllgvgtk" path="res://assets/Delete_Escenario.png" id="1_qh2f4"]
+
+[node name="Delete" type="Node2D" unique_id=1683115907]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2009634357]
+position = Vector2(320, 180)
+texture = ExtResource("1_qh2f4")
+metadata/_edit_lock_ = true
