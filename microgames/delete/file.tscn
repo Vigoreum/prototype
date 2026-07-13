@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cuvyqyo6kexa0"]
 
-[ext_resource type="Script" uid="uid://jqgdgah1h740" path="res://microgames/delete v2/file.gd" id="1_2s22h"]
+[ext_resource type="Script" uid="uid://jqgdgah1h740" path="res://microgames/delete/file.gd" id="1_2s22h"]
 [ext_resource type="Texture2D" uid="uid://bvo1x6silabwk" path="res://assets/delete_spritesheet.png" id="2_8ue3c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2x86"]
