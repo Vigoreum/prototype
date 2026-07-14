@@ -11,6 +11,7 @@ var trash_can_ref: Area2D = null
 var has_been_disposed: bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var microgame: Node2D = get_tree().current_scene
 
 func _ready() -> void:
@@ -38,14 +39,25 @@ func _start_drag() -> void:
 		return
 	is_being_dragged = true
 	drag_offset = position - get_parent().to_local(get_global_mouse_position())
-	get_parent().move_child(self, -1)  # traer al frente
+	get_parent().move_child(self, -1)
 
 func _process(delta: float) -> void:
 	if is_being_dragged:
 		var target_local: Vector2 = get_parent().to_local(get_global_mouse_position()) + drag_offset
+		var rect: Rect2 = microgame.get_playable_rect()
+		var half: Vector2 = _get_half_size()
+		rect = Rect2(rect.position + half, rect.size - half * 2)
+		target_local.x = clamp(target_local.x, rect.position.x, rect.end.x)
+		target_local.y = clamp(target_local.y, rect.position.y, rect.end.y)
 		position = position.lerp(target_local, DRAG_SMOOTHNESS * delta * 60.0)
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			_end_drag()
+
+func _get_half_size() -> Vector2:
+	var shape: RectangleShape2D = collision.shape as RectangleShape2D
+	if shape == null:
+		return Vector2.ZERO
+	return (shape.size * scale) / 2
 
 func _end_drag() -> void:
 	is_being_dragged = false

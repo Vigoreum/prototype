@@ -4,8 +4,29 @@
 [ext_resource type="Texture2D" uid="uid://h4x8hllgvgtk" path="res://assets/Delete_Escenario.png" id="1_qh2f4"]
 [ext_resource type="Texture2D" uid="uid://b7jgq5dfxji70" path="res://assets/trash.png" id="3_xqwb3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iucx"]
+size = Vector2(600, 327)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3y1xb"]
 size = Vector2(128, 149)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7esp"]
+size = Vector2(108, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hffi4"]
+size = Vector2(124.25, 146)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5pdb"]
+size = Vector2(638, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfeqe"]
+size = Vector2(18, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy5io"]
+size = Vector2(637, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nno"]
+size = Vector2(19, 320)
 
 [node name="DeleteMicrogame" type="Node2D" unique_id=1683115907]
 script = ExtResource("1_mpk3a")
@@ -14,6 +35,13 @@ script = ExtResource("1_mpk3a")
 position = Vector2(320, 180)
 texture = ExtResource("1_qh2f4")
 metadata/_edit_lock_ = true
+
+[node name="PlayableArea" type="Area2D" parent="." unique_id=1089122157]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayableArea" unique_id=1922351490]
+position = Vector2(320, 179.5)
+shape = SubResource("RectangleShape2D_8iucx")
+debug_color = Color(0.7580208, 0.8105935, 0, 0.41960785)
 
 [node name="TrashCan" type="Area2D" parent="." unique_id=1967977516]
 
@@ -26,3 +54,35 @@ position = Vector2(556, 247.5)
 shape = SubResource("RectangleShape2D_3y1xb")
 
 [node name="FilesContainer" type="Node2D" parent="." unique_id=2108558272]
+
+[node name="ExclusionZone" type="Area2D" parent="." unique_id=1871316924]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExclusionZone" unique_id=7386441]
+position = Vector2(75, 83.5)
+shape = SubResource("RectangleShape2D_n7esp")
+debug_color = Color(0.6947832, 0.29865882, 0.97758204, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExclusionZone" unique_id=1217414688]
+position = Vector2(555.125, 247)
+shape = SubResource("RectangleShape2D_hffi4")
+debug_color = Color(0.6947832, 0.29865882, 0.97758204, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ExclusionZone" unique_id=1780518850]
+position = Vector2(320, 341)
+shape = SubResource("RectangleShape2D_e5pdb")
+debug_color = Color(0.6947832, 0.29865882, 0.97758204, 0.41960785)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ExclusionZone" unique_id=86351970]
+position = Vector2(630, 161)
+shape = SubResource("RectangleShape2D_gfeqe")
+debug_color = Color(0.6947832, 0.29865882, 0.97758204, 0.41960785)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ExclusionZone" unique_id=656409237]
+position = Vector2(320.5, 8.5)
+shape = SubResource("RectangleShape2D_iy5io")
+debug_color = Color(0.6947832, 0.29865882, 0.97758204, 0.41960785)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ExclusionZone" unique_id=1202069504]
+position = Vector2(9.5, 161)
+shape = SubResource("RectangleShape2D_j6nno")
+debug_color = Color(0.6947832, 0.29865882, 0.97758204, 0.41960785)
