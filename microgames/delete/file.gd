@@ -13,9 +13,18 @@ var has_been_disposed: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var microgame: Node2D = get_tree().current_scene
+@onready var outline: Sprite2D = $Outline
 
 func _ready() -> void:
 	input_pickable = true
+
+func _on_mouse_entered() -> void:
+	if has_been_disposed:
+		return
+	outline.visible = true
+
+func _on_mouse_exited() -> void:
+	outline.visible = false
 
 func setup(malware: bool, trash_can: Area2D) -> void:
 	is_malware = malware
