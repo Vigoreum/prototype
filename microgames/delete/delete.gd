@@ -2,29 +2,36 @@ extends Node2D
 
 const FILE_COUNT_GOOD: int = 3
 const FILE_COUNT_BAD: int = 3
-const SPAWN_AREA_MIN: Vector2 = Vector2(80, 100)
-const SPAWN_AREA_MAX: Vector2 = Vector2(900, 480)
-const MIN_DISTANCE_BETWEEN_FILES: float = 110.0
-const TRASH_SPAWN_MARGIN: float = 350
+const MIN_DISTANCE_BETWEEN_FILES: float = 60.0
+
+const FileScene: PackedScene = preload("res://microgames/delete/file.tscn")
 const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
 
-@onready var trash_can: Area2D = $GameContainer/TrashCan
-@onready var files_container: Node2D = $GameContainer/FilesContainer
+@onready var trash_can: Area2D = $TrashCan
+@onready var files_container: Node2D = $FilesContainer
+@onready var playable_area: Area2D = $PlayableArea
+@onready var exclusion_zone: Area2D = $ExclusionZone
 
-const FileItemScene: PackedScene = preload("res://microgames/delete/file_item.tscn")
-
-# Estado global: indica si hay algún archivo siendo arrastrado
 var any_file_grabbed: bool = false
 var timer_bar: Control = null
 var malware_remaining: int = 0
-var has_finished: bool = false  # evita que se llame microgame_finished dos veces
+var has_finished: bool = false
+var file_half_size: Vector2 = Vector2(20, 20)
 
 func _ready() -> void:
 	randomize()
+	_measure_file_size()
 	_spawn_files()
 	if GameManager.is_in_play_mode:
 		_setup_timer_bar()
 
+func _measure_file_size() -> void:
+	var probe: Node2D = FileScene.instantiate()
+	var collision: CollisionShape2D = probe.get_node("CollisionShape2D")
+	var shape: RectangleShape2D = collision.shape as RectangleShape2D
+	if shape != null:
+		file_half_size = (shape.size * probe.scale) / 2
+	probe.queue_free()
 
 func _setup_timer_bar() -> void:
 	timer_bar = TimerBarScene.instantiate()
@@ -38,110 +45,94 @@ func _on_time_up() -> void:
 	if has_finished:
 		return
 	has_finished = true
-	print("¡Se acabó el tiempo en DELETE!")
 	GameManager.notify_microgame_timed_out()
+
+func get_playable_rect() -> Rect2:
+	var collision: CollisionShape2D = playable_area.get_node("CollisionShape2D")
+	var shape: RectangleShape2D = collision.shape as RectangleShape2D
+	var center: Vector2 = playable_area.position + collision.position
+	return Rect2(center - shape.size / 2, shape.size)
 
 func _spawn_files() -> void:
 	var spawned_positions: Array[Vector2] = []
-	
 	for i in FILE_COUNT_GOOD:
 		var pos: Vector2 = _get_valid_spawn_position(spawned_positions)
 		spawned_positions.append(pos)
 		_spawn_file(pos, false)
-	
 	for i in FILE_COUNT_BAD:
 		var pos: Vector2 = _get_valid_spawn_position(spawned_positions)
 		spawned_positions.append(pos)
 		_spawn_file(pos, true)
-	
-	# Inicializar el contador de malwares por eliminar
 	malware_remaining = FILE_COUNT_BAD
 
-
 func _get_valid_spawn_position(existing: Array[Vector2]) -> Vector2:
+	var rect: Rect2 = get_playable_rect()
+	rect = Rect2(rect.position + file_half_size, rect.size - file_half_size * 2)
+	
 	for attempt in 30:
 		var candidate: Vector2 = Vector2(
-			randf_range(SPAWN_AREA_MIN.x, SPAWN_AREA_MAX.x),
-			randf_range(SPAWN_AREA_MIN.y, SPAWN_AREA_MAX.y)
+			randf_range(rect.position.x, rect.end.x),
+			randf_range(rect.position.y, rect.end.y)
 		)
-		
-		if _is_position_over_trash(candidate):
+		if _is_position_in_area(candidate, exclusion_zone):
 			continue
-		
 		var is_valid: bool = true
 		for pos in existing:
 			if candidate.distance_to(pos) < MIN_DISTANCE_BETWEEN_FILES:
 				is_valid = false
 				break
-		
 		if is_valid:
 			return candidate
 	
 	var fallback: Vector2
 	for attempt in 10:
 		fallback = Vector2(
-			randf_range(SPAWN_AREA_MIN.x, SPAWN_AREA_MAX.x),
-			randf_range(SPAWN_AREA_MIN.y, SPAWN_AREA_MAX.y)
+			randf_range(rect.position.x, rect.end.x),
+			randf_range(rect.position.y, rect.end.y)
 		)
-		if not _is_position_over_trash(fallback):
+		if not _is_position_in_area(fallback, exclusion_zone):
 			return fallback
-	
 	return fallback
 
-
-func _is_position_over_trash(pos: Vector2) -> bool:
-	var collision: CollisionShape2D = trash_can.get_node("CollisionShape2D")
-	var shape: RectangleShape2D = collision.shape as RectangleShape2D
-	
-	if shape == null:
-		return false
-	
-	var trash_center: Vector2 = trash_can.position
-	var half_size: Vector2 = (shape.size * trash_can.scale) / 2
-	
-	# Agregar espacio para el tamaño típico de un archivo (~150 pixels)
-	var file_half_size: float = 100.0
-	
-	var min_x: float = trash_center.x - half_size.x - TRASH_SPAWN_MARGIN - file_half_size
-	var max_x: float = trash_center.x + half_size.x + TRASH_SPAWN_MARGIN + file_half_size
-	var min_y: float = trash_center.y - half_size.y - TRASH_SPAWN_MARGIN - file_half_size
-	var max_y: float = trash_center.y + half_size.y + TRASH_SPAWN_MARGIN + file_half_size
-	
-	return pos.x > min_x and pos.x < max_x and pos.y > min_y and pos.y < max_y
-
+func _is_position_in_area(pos: Vector2, area: Area2D) -> bool:
+	for child in area.get_children():
+		if child is CollisionShape2D:
+			var shape: RectangleShape2D = child.shape as RectangleShape2D
+			if shape == null:
+				continue
+			var center: Vector2 = area.position + child.position
+			var half_size: Vector2 = (shape.size * area.scale) / 2
+			var min_x: float = center.x - half_size.x - file_half_size.x
+			var max_x: float = center.x + half_size.x + file_half_size.x
+			var min_y: float = center.y - half_size.y - file_half_size.y
+			var max_y: float = center.y + half_size.y + file_half_size.y
+			if pos.x > min_x and pos.x < max_x and pos.y > min_y and pos.y < max_y:
+				return true
+	return false
 
 func _spawn_file(spawn_position: Vector2, is_malware: bool) -> void:
-	var file_instance: Node2D = FileItemScene.instantiate()
+	var file_instance: Node2D = FileScene.instantiate()
 	files_container.add_child(file_instance)
 	file_instance.position = spawn_position
 	file_instance.setup(is_malware, trash_can)
 
-
-# ===== Control global de arrastre =====
-
 func try_grab_file() -> bool:
-	# Si ya terminó el microjuego, no permitir agarrar más archivos
 	if has_finished:
 		return false
-	
 	if any_file_grabbed:
 		return false
 	any_file_grabbed = true
 	return true
 
-
 func release_grabbed_file() -> void:
 	any_file_grabbed = false
-	
-	
+
 func _unhandled_input(event: InputEvent) -> void:
 	if has_finished:
 		return
-	
 	if event.is_action_pressed("ui_cancel"):
 		GameManager.try_open_pause_menu()
 
-# Llamada por file_item.gd cuando se elimina un malware
 func on_malware_disposed() -> void:
 	if has_finished:
 		return
@@ -149,25 +140,19 @@ func on_malware_disposed() -> void:
 	if malware_remaining <= 0:
 		_on_win()
 
-
-# Llamada por file_item.gd cuando se elimina un archivo inocente (perdiste)
 func on_innocent_disposed() -> void:
 	if has_finished:
 		return
 	_on_lose()
 
-
 func _on_win() -> void:
 	has_finished = true
-	print("¡Ganaste DELETE! Todos los malwares eliminados 🎉")
 	if timer_bar != null:
 		timer_bar.stop()
-	GameManager.notify_microgame_won()  
-
+	GameManager.notify_microgame_won()
 
 func _on_lose() -> void:
 	has_finished = true
-	print("¡Perdiste DELETE! Borraste un archivo importante 💀")
 	if timer_bar != null:
 		timer_bar.stop()
 	GameManager.notify_microgame_lost()
