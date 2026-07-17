@@ -19,10 +19,13 @@ const MICROGAME_DATA_PATHS: Array[String] = [
 const MAIN_MENU_SCENE: String = "res://menus/main_menu.tscn"
 const MICROGAME_INTRO_SCENE: String = "res://menus/microgame_intro.tscn"
 const GAME_OVER_SCENE: String = "res://menus/game_over.tscn"
+const LIFE_LOST_SCENE: String = "res://menus/life_lost.tscn"
+const MAX_LIVES: int = 4
 
 
 # ===== ESTADO =====
 
+var lives: int = MAX_LIVES
 var play_queue: Array[MicrogameData] = []
 var is_in_play_mode: bool = false
 var pending_intro_data: MicrogameData = null
@@ -43,6 +46,7 @@ func _ready() -> void:
 
 func start_play_mode() -> void:
 	is_in_play_mode = true
+	lives = MAX_LIVES
 	play_queue = _load_all_microgame_data()
 	play_queue.shuffle()
 	_load_next_microgame()
@@ -85,15 +89,34 @@ func _on_microgame_lost() -> void:
 	if is_transitioning:
 		return
 	is_transitioning = true
-	_show_game_over()
+	_handle_life_loss()
 
 
 func _on_microgame_timed_out() -> void:
 	if is_transitioning:
 		return
 	is_transitioning = true
-	_show_game_over()
+	_handle_life_loss()
 
+
+
+func _handle_life_loss() -> void:
+	# En single mode no hay vidas: perder va directo a game over
+	if not is_in_play_mode:
+		_show_game_over()
+		return
+	
+	lives -= 1
+	IrisTransition.transition_to_scene(LIFE_LOST_SCENE)
+
+
+# Llamada por life_lost.gd cuando termina la animación
+func continue_after_life_lost() -> void:
+	if lives <= 0:
+		_show_game_over()
+	else:
+		is_transitioning = false
+		_advance_or_finish()
 
 # ===== REINTENTAR =====
 
