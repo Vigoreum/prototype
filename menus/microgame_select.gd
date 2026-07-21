@@ -30,5 +30,8 @@ func _on_wake_up_pressed() -> void:
 	GameManager.play_single_microgame("res://microgames/wake_up/wake_up_data.tres")
 
 
+func _on_correct_password_pressed() -> void:
+	GameManager.play_single_microgame("res://microgames/correct_password/correct_password_data.tres")
+
 func _on_back_pressed() -> void:
 	GameManager.return_to_main_menu()
