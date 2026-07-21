@@ -70,7 +70,6 @@ layout_mode = 2
 text = "SALIR"
 
 [node name="ExitConfirmPanel" type="Control" parent="." unique_id=2045423072]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,16 +113,16 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_left = 50.0
 offset_top = 77.0
-offset_right = 72.0
-offset_bottom = 108.0
+offset_right = 85.0
+offset_bottom = 112.0
 text = "SÍ"
 
 [node name="NoButton" type="Button" parent="ExitConfirmPanel" unique_id=844125770]
 layout_mode = 0
 offset_left = 204.0
 offset_top = 77.0
-offset_right = 238.0
-offset_bottom = 108.0
+offset_right = 239.0
+offset_bottom = 112.0
 text = "NO"
 
 [connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_pressed"]
