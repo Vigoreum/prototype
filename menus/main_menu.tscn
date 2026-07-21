@@ -70,6 +70,7 @@ layout_mode = 2
 text = "SALIR"
 
 [node name="ExitConfirmPanel" type="Control" parent="." unique_id=2045423072]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
