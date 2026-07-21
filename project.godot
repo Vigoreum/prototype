@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="prototype-game"
+config/name="Tecno - Dash"
 run/main_scene="uid://c66pno1fugtcl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
@@ -28,6 +28,7 @@ OptionsMenu="*uid://bckw487m0rjx3"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"

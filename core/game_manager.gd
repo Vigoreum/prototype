@@ -13,7 +13,8 @@ const MICROGAME_DATA_PATHS: Array[String] = [
 	"res://microgames/usb/usb_data.tres",
 	"res://microgames/delete/delete_data.tres",
 	"res://microgames/draw/draw_data.tres",
-	"res://microgames/wake_up/wake_up_data.tres"
+	"res://microgames/wake_up/wake_up_data.tres",
+	"res://microgames/correct_password/correct_password_data.tres"
 ]
 
 const MAIN_MENU_SCENE: String = "res://menus/main_menu.tscn"
