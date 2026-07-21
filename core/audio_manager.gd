@@ -1,9 +1,9 @@
 extends Node
 
 # Sonidos UI
-const HOVER_SOUND: AudioStream = preload("res://assets/audio/ui/hover.wav")
-const CLICK_POSITIVE_SOUND: AudioStream = preload("res://assets/audio/ui/click_positive.mp3")
-const CLICK_BACK_SOUND: AudioStream = preload("res://assets/audio/ui/click_back.wav")
+const HOVER_SOUND: AudioStream = preload("res://assets/audio/UI/hover.wav")
+const CLICK_POSITIVE_SOUND: AudioStream = preload("res://assets/audio/UI/click_positive.mp3")
+const CLICK_BACK_SOUND: AudioStream = preload("res://assets/audio/UI/click_back.wav")
 const CLICK_NEUTRAL_SOUND: AudioStream = preload("res://assets/audio/UI/click_neutral.wav")
 
 var ui_player: AudioStreamPlayer = null

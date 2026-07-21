@@ -75,6 +75,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "WAKE UP! "
 
+[node name="CorrectPassword" type="Button" parent="ButtonsContainer" unique_id=309519616]
+layout_mode = 2
+text = "CORRECT PASSWORD!"
+
 [node name="BackButton" type="Button" parent="." unique_id=2067305188]
 layout_mode = 1
 anchors_preset = 2
@@ -92,4 +96,5 @@ text = "← VOLVER"
 [connection signal="pressed" from="ButtonsContainer/DeleteButton" to="." method="_on_delete_pressed"]
 [connection signal="pressed" from="ButtonsContainer/DrawButton" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="ButtonsContainer/WakeUpButton" to="." method="_on_wake_up_pressed"]
+[connection signal="pressed" from="ButtonsContainer/CorrectPassword" to="." method="_on_correct_password_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
