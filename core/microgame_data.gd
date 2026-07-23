@@ -12,3 +12,7 @@ extends Resource
 
 # Lista de controles que usa este microjuego
 @export var controls: Array[ControlData] = []
+
+# Si el cursor del mouse es visible durante este microjuego.
+# Desactivar en microjuegos que solo usan teclado (ej. CORRECT PASSWORD)
+@export var show_cursor: bool = true

@@ -9,7 +9,6 @@ extends CanvasLayer
 # Flag para evitar que el mismo ESC abra y cierre el menú
 var just_opened: bool = false
 
-
 func _ready() -> void:
 	AudioManager.register_button_neutral(continue_button)
 	AudioManager.register_button_neutral(options_button)
@@ -17,7 +16,6 @@ func _ready() -> void:
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide_menu()
-
 
 func show_menu() -> void:
 	background.visible = true
@@ -27,15 +25,12 @@ func show_menu() -> void:
 	await get_tree().process_frame
 	just_opened = false
 
-
 func hide_menu() -> void:
 	background.visible = false
 	center_container.visible = false
 
-
 func is_open() -> bool:
 	return background.visible
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Solo procesar si el menú está abierto Y no acaba de abrirse
@@ -48,12 +43,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_continue_pressed()
 		get_viewport().set_input_as_handled()
 
-
 func _on_continue_pressed() -> void:
 	hide_menu()
+	GameManager.hide_cursor()
 	CountdownOverlay.start_countdown(3)
 	await CountdownOverlay.countdown_finished
 	get_tree().paused = false
+	GameManager.refresh_cursor()
 
 func _on_options_pressed() -> void:
 	OptionsMenu.show_menu()
