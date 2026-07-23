@@ -46,6 +46,8 @@ func _ready() -> void:
 # ===== MODO PLAY =====
 
 func start_play_mode() -> void:
+	if IrisTransition.is_busy:
+		return
 	is_in_play_mode = true
 	lives = MAX_LIVES
 	play_queue = _load_all_microgame_data()
@@ -100,7 +102,6 @@ func _on_microgame_timed_out() -> void:
 	_handle_life_loss()
 
 
-
 func _handle_life_loss() -> void:
 	# En single mode no hay vidas: perder va directo a game over
 	if not is_in_play_mode:
@@ -118,6 +119,7 @@ func continue_after_life_lost() -> void:
 	else:
 		is_transitioning = false
 		_advance_or_finish()
+
 
 # ===== REINTENTAR =====
 
@@ -142,6 +144,55 @@ func return_to_main_menu() -> void:
 	current_microgame_data = null
 	is_transitioning = false
 	IrisTransition.transition_to_scene(MAIN_MENU_SCENE)
+
+
+# ===== CURSOR =====
+
+func show_cursor() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	# Fuerza el redibujado inmediato del cursor
+	var vp: Viewport = get_viewport()
+	if vp != null:
+		vp.warp_mouse(vp.get_mouse_position())
+
+
+func hide_cursor() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
+# Aplica el cursor según el MicrogameData del microjuego actual
+func restore_microgame_cursor() -> void:
+	if current_microgame_data != null and current_microgame_data.show_cursor:
+		show_cursor()
+	else:
+		hide_cursor()
+
+
+# Decide el estado correcto del cursor según la escena actual.
+# La llama IrisTransition al terminar una transición, y pause_menu al reanudar.
+func refresh_cursor() -> void:
+	var scene: Node = get_tree().current_scene
+	if scene == null:
+		hide_cursor()
+		return
+	
+	var path: String = scene.scene_file_path
+	
+	# Menús con botones: cursor visible
+	if path.ends_with("main_menu.tscn") \
+	or path.ends_with("microgame_select.tscn") \
+	or path.ends_with("game_over.tscn"):
+		show_cursor()
+		return
+	
+	# Intro y pantalla de vidas: sin cursor
+	if path.ends_with("microgame_intro.tscn") \
+	or path.ends_with("life_lost.tscn"):
+		hide_cursor()
+		return
+	
+	# Microjuego: según su MicrogameData
+	restore_microgame_cursor()
 
 
 # ===== INTRO Y CARGA DE MICROJUEGOS =====
@@ -177,6 +228,7 @@ func try_open_pause_menu() -> void:
 	if not _is_pausable_scene():
 		return
 	
+	show_cursor()
 	get_tree().paused = true
 	PauseMenu.show_menu()
 
@@ -197,7 +249,7 @@ func _is_pausable_scene() -> bool:
 	if scene_name.ends_with("game_over.tscn"):
 		return false
 	
-	# Todo lo demás (microjuegos, intro) sí permite pausa
+	# Todo lo demás (microjuegos, intro, life_lost) sí permite pausa
 	return true
 
 

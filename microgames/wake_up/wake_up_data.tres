@@ -10,4 +10,5 @@ script = ExtResource("2_bjcx0")
 title = "WAKE UP!"
 scene = ExtResource("3_sejm2")
 controls = Array[ExtResource("1_intuu")]([ExtResource("2_3ikak")])
+show_cursor = false
 metadata/_custom_type_script = "uid://b6kx6kf7cjb5o"

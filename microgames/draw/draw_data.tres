@@ -10,4 +10,5 @@ script = ExtResource("2_dewpg")
 title = "DRAW!"
 scene = ExtResource("3_3jlkv")
 controls = Array[ExtResource("1_r4ysk")]([ExtResource("2_xst6l")])
+show_cursor = false
 metadata/_custom_type_script = "uid://b6kx6kf7cjb5o"
