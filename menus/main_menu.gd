@@ -1,5 +1,7 @@
 extends Control
 
+const FADE_DURATION: float = 0.6  # que coincida con el de la pantalla de título
+
 @onready var play_button: Button = $ButtonsContainer/PlayButton
 @onready var select_button: Button = $ButtonsContainer/SelectButton
 @onready var options_button: Button = $ButtonsContainer/OptionsButton
@@ -9,7 +11,10 @@ extends Control
 @onready var yes_button: Button = $ExitConfirmPanel/YesButton
 @onready var no_button: Button = $ExitConfirmPanel/NoButton
 
+@onready var fade_overlay: ColorRect = $FadeOverlay
+
 func _ready() -> void:
+	GameManager.show_cursor()
 	AudioManager.register_button_positive(play_button)
 	AudioManager.register_button_neutral(select_button)
 	AudioManager.register_button_neutral(options_button)
@@ -21,6 +26,13 @@ func _ready() -> void:
 	
 	# El panel arranca oculto
 	exit_confirm_panel.visible = false
+	_fade_in()
+
+
+func _fade_in() -> void:
+	fade_overlay.modulate.a = 1.0  # asegurar que arranca tapado
+	var tween: Tween = create_tween()
+	tween.tween_property(fade_overlay, "modulate:a", 0.0, FADE_DURATION)
 
 func _on_play_pressed() -> void:
 	GameManager.start_play_mode()
