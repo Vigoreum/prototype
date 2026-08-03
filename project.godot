@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tecno - Dash"
-run/main_scene="uid://c66pno1fugtcl"
+run/main_scene="uid://bl75a5um6prp1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
