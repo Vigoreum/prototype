@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqkec7u22hw1u"]
 
 [ext_resource type="Script" uid="uid://uvfs7jr0w8ym" path="res://title_screen.gd" id="1_v6p8y"]
+[ext_resource type="Texture2D" uid="uid://bh0xcd6dxpllr" path="res://assets/title_menu.png" id="2_ak2if"]
 
 [node name="TitleScreen" type="Control" unique_id=690020471]
 layout_mode = 3
@@ -20,11 +21,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1259554748]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="PressStart" type="Label" parent="." unique_id=1122489931]
 layout_mode = 1
 anchors_preset = 8
@@ -32,10 +28,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -97.5
+offset_top = 23.0
+offset_right = 97.5
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Presiona cualquier botón"
@@ -54,3 +50,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1259554748]
+layout_mode = 1
+offset_left = 211.0
+offset_top = 85.0
+offset_right = 851.0
+offset_bottom = 445.0
+texture = ExtResource("2_ak2if")

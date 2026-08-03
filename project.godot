@@ -13,6 +13,10 @@ config_version=5
 config/name="Tecno - Dash"
 run/main_scene="uid://bl75a5um6prp1"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/use_filter=false
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
