@@ -4,9 +4,36 @@
 [ext_resource type="Texture2D" uid="uid://drco7hnyc4u5c" path="res://assets/characters_menu.png" id="2_ij7vn"]
 [ext_resource type="Texture2D" uid="uid://btqna8kuf4rql" path="res://assets/stars_menu.png" id="2_rqbgu"]
 [ext_resource type="Texture2D" uid="uid://bh0xcd6dxpllr" path="res://assets/title_menu.png" id="3_yjgyn"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/prstartk.ttf" id="5_oblsv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjgyn"]
 bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a63lr"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oblsv"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
 
 [node name="MainMenu" type="Control" unique_id=1848816016]
 layout_mode = 3
@@ -43,42 +70,59 @@ metadata/_edit_lock_ = true
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="." unique_id=1012838996]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = -1
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 29.0
-offset_top = -53.0
-offset_right = 193.0
-offset_bottom = 107.0
+offset_left = 14.0
+offset_top = -35.0
+offset_right = 212.0
+offset_bottom = 131.0
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="ButtonsContainer" unique_id=1245528072]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
 text = "PLAY"
 
 [node name="SelectButton" type="Button" parent="ButtonsContainer" unique_id=239859181]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
 text = "ESCOGER MICROJUEGO"
 
 [node name="OptionsButton" type="Button" parent="ButtonsContainer" unique_id=1429165810]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
 text = "OPCIONES"
 
 [node name="ExitButton" type="Button" parent="ButtonsContainer" unique_id=1872442369]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
 text = "SALIR"
 
 [node name="ExitConfirmPanel" type="Control" parent="." unique_id=2045423072]
@@ -139,6 +183,7 @@ offset_bottom = 112.0
 text = "NO"
 
 [node name="FadeOverlay" type="ColorRect" parent="." unique_id=507309995]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
