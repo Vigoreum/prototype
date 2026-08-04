@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0.1254902, 0.23137255, 1)
 
 [node name="PressStart" type="Label" parent="." unique_id=1122489931]
 layout_mode = 1
@@ -47,6 +47,7 @@ one_shot = true
 autostart = true
 
 [node name="FadeOverlay" type="ColorRect" parent="." unique_id=745389133]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
