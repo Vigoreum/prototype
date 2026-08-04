@@ -1,46 +1,39 @@
 [gd_scene format=3 uid="uid://tg7py78qt4m3"]
 
 [ext_resource type="Texture2D" uid="uid://dtcdf11u5q51a" path="res://microgames/draw/base_canvas.jpeg" id="1_3egv1"]
-[ext_resource type="Script" uid="uid://5xmm2mvvrdmo" path="res://microgames/draw/draw.gd" id="1_t7xbd"]
+[ext_resource type="Script" uid="uid://df5mrlodrjwsk" path="res://microgames/draw/draw.gd" id="1_t7xbd"]
 [ext_resource type="Texture2D" uid="uid://cwaxcpvm438d" path="res://microgames/draw/hud_p1.png" id="2_j1as3"]
-[ext_resource type="Texture2D" uid="uid://8ncb3typduf4" path="res://microgames/draw/white_canvas.png" id="3_m75ne"]
-[ext_resource type="Script" uid="uid://7wk8xqf00ll2" path="res://microgames/draw/character_body_2d.gd" id="4_j1as3"]
-[ext_resource type="Script" uid="uid://d3htt8va4cptb" path="res://microgames/draw/sprite_2d.gd" id="4_m75ne"]
+[ext_resource type="Shader" uid="uid://b8ique5qdb8yd" path="res://microgames/draw/new_shader.gdshader" id="3_t7xbd"]
+[ext_resource type="Script" uid="uid://bhgtv53g28xex" path="res://microgames/draw/pencil.gd" id="4_k3s2v"]
 [ext_resource type="Texture2D" uid="uid://b5yfxyl2hv7f1" path="res://microgames/draw/background-remover-hand.png" id="4_n51c8"]
+[ext_resource type="Script" uid="uid://c1wnnprx2jrct" path="res://microgames/draw/draw_canvas.gd" id="5_t7xbd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bcsgs"]
-radius = 57.939625
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqk1j"]
+shader = ExtResource("3_t7xbd")
 
-[node name="Base" type="Node2D" unique_id=1383296044]
+[node name="DrawMicrogame" type="Node2D" unique_id=1383296044]
 script = ExtResource("1_t7xbd")
 
-[node name="base" type="Sprite2D" parent="." unique_id=455653019]
-position = Vector2(320, 178)
+[node name="Background" type="Sprite2D" parent="." unique_id=2061575732]
+position = Vector2(320, 180)
 scale = Vector2(0.5555556, 0.5555556)
 texture = ExtResource("1_3egv1")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=531308806]
-texture_filter = 1
-offset_left = 196.02075
-offset_top = 59.0
-offset_right = 473.59543
-offset_bottom = 336.0
+[node name="Drawing" type="Sprite2D" parent="." unique_id=2005336783]
+material = SubResource("ShaderMaterial_iqk1j")
+position = Vector2(323, 199.99998)
+scale = Vector2(5.856383, 5.856383)
 texture = ExtResource("2_j1as3")
+script = ExtResource("5_t7xbd")
+brush_radius = 15.0
+soft_edge = 0.092
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1670053347]
-position = Vector2(321, 200)
-scale = Vector2(0.4143646, 0.26335174)
-texture = ExtResource("3_m75ne")
-script = ExtResource("4_m75ne")
+[node name="Pencil" type="Node2D" parent="." unique_id=863923546]
+script = ExtResource("4_k3s2v")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=141423870]
-position = Vector2(302, 228)
-script = ExtResource("4_j1as3")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=812399629]
-shape = SubResource("CircleShape2D_bcsgs")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=403208489]
-position = Vector2(674, 329)
+[node name="Sprite2D" type="Sprite2D" parent="Pencil" unique_id=2095997004]
+position = Vector2(498, 245)
+scale = Vector2(0.7449355, 0.7449356)
 texture = ExtResource("4_n51c8")
+
+[connection signal="drawing_completed" from="Drawing" to="." method="_on_drawing_completed"]
