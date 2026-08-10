@@ -2,13 +2,13 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://c7xrts4he4rnt"
-path="res://.godot/imported/click_positive.mp3-7b0d6af8590c5e80a80dbb4bd2618587.mp3str"
+uid="uid://d3fnbge30juct"
+path="res://.godot/imported/click_positive.mp3-38cac4588718f899181a9e453279765d.mp3str"
 
 [deps]
 
-source_file="res://assets/audio/ui/click_positive.mp3"
-dest_files=["res://.godot/imported/click_positive.mp3-7b0d6af8590c5e80a80dbb4bd2618587.mp3str"]
+source_file="res://assets/audio/UI/click_positive.mp3"
+dest_files=["res://.godot/imported/click_positive.mp3-38cac4588718f899181a9e453279765d.mp3str"]
 
 [params]
 

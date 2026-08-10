@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://8c2jfyfy56pi"
-path="res://.godot/imported/click_neutral.wav-1859e8939774a4143cc606688afbb824.sample"
+uid="uid://de0c78v0s00au"
+path="res://.godot/imported/click_neutral.wav-05b70ee3713cef6f075593ec79e271cf.sample"
 
 [deps]
 
-source_file="res://assets/audio/ui/click_neutral.wav"
-dest_files=["res://.godot/imported/click_neutral.wav-1859e8939774a4143cc606688afbb824.sample"]
+source_file="res://assets/audio/UI/click_neutral.wav"
+dest_files=["res://.godot/imported/click_neutral.wav-05b70ee3713cef6f075593ec79e271cf.sample"]
 
 [params]
 
