@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://drptuq68lihlb"]
 
-<<<<<<< Updated upstream:menus/game_over.tscn
-[ext_resource type="Script" uid="uid://bh4djqavj0lls" path="res://menus/game_over.gd" id="1_v8xbx"]
-=======
 [ext_resource type="Script" uid="uid://bh4djqavj0lls" path="res://ui/screens/game_over.gd" id="1_v8xbx"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_mq8lb"]
->>>>>>> Stashed changes:ui/screens/game_over.tscn
 
 [node name="GameOver" type="Control" unique_id=1910833274]
 layout_mode = 3

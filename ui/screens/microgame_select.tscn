@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://c2lvrlyox5jf8"]
 
-<<<<<<< Updated upstream:menus/microgame_select.tscn
-[ext_resource type="Script" uid="uid://chib15b3swwsy" path="res://menus/microgame_select.gd" id="1_k1np5"]
-=======
 [ext_resource type="Script" uid="uid://chib15b3swwsy" path="res://ui/screens/microgame_select.gd" id="1_k1np5"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_gikhl"]
->>>>>>> Stashed changes:ui/screens/microgame_select.tscn
 
 [node name="MicrogameSelect" type="Control" unique_id=1584486885]
 layout_mode = 3

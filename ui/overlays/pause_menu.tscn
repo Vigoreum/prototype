@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://du7ywpvabdy3g"]
 
-<<<<<<< Updated upstream:menus/pause_menu.tscn
-[ext_resource type="Script" uid="uid://b20epe68qkbng" path="res://menus/pause_menu.gd" id="1_s0u37"]
-=======
 [ext_resource type="Script" uid="uid://b20epe68qkbng" path="res://ui/overlays/pause_menu.gd" id="1_s0u37"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_p1qj3"]
->>>>>>> Stashed changes:ui/overlays/pause_menu.tscn
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=230568321]
 layer = 150

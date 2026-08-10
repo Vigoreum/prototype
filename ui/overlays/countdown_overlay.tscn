@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://d12th0jmj7f5u"]
 
-<<<<<<< Updated upstream:menus/countdown_overlay.tscn
-[ext_resource type="Script" uid="uid://3ngh2k06oawc" path="res://menus/countdown_overlay.gd" id="1_20pup"]
-=======
 [ext_resource type="Script" uid="uid://3ngh2k06oawc" path="res://ui/overlays/countdown_overlay.gd" id="1_20pup"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_vcqd7"]
->>>>>>> Stashed changes:ui/overlays/countdown_overlay.tscn
 
 [node name="CountdownOverlay" type="CanvasLayer" unique_id=1260431000]
 layer = 150

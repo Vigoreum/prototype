@@ -1,11 +1,7 @@
 [gd_scene format=3 uid="uid://bckw487m0rjx3"]
 
-<<<<<<< Updated upstream:menus/options_menu.tscn
-[ext_resource type="Script" uid="uid://dq0lfpj65asm6" path="res://menus/options_menu.gd" id="1_6r3ve"]
-=======
 [ext_resource type="Script" uid="uid://dq0lfpj65asm6" path="res://ui/overlays/options_menu.gd" id="1_6r3ve"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_wyyb7"]
->>>>>>> Stashed changes:ui/overlays/options_menu.tscn
 
 [node name="OptionsMenu" type="CanvasLayer" unique_id=1435655782]
 layer = 150
