@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://c66pno1fugtcl"]
+
+[ext_resource type="Script" uid="uid://bmkle8ml5ilyc" path="res://ui/screens/main_menu.gd" id="1_8gy84"]
+[ext_resource type="Texture2D" uid="uid://drco7hnyc4u5c" path="res://assets/sprites/ui/menu_characters.png" id="2_ij7vn"]
+[ext_resource type="Texture2D" uid="uid://btqna8kuf4rql" path="res://assets/sprites/ui/menu_stars.png" id="2_rqbgu"]
+[ext_resource type="Texture2D" uid="uid://bh0xcd6dxpllr" path="res://assets/sprites/ui/menu_title.png" id="3_yjgyn"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="5_oblsv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjgyn"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a63lr"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oblsv"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[node name="MainMenu" type="Control" unique_id=1848816016]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gy84")
+
+[node name="BGColor" type="ColorRect" parent="." unique_id=674258728]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.1254902, 0.23137255, 1)
+
+[node name="Stars" type="Sprite2D" parent="." unique_id=630727485]
+position = Vector2(320, 180)
+texture = ExtResource("2_rqbgu")
+metadata/_edit_lock_ = true
+
+[node name="Characters" type="Sprite2D" parent="." unique_id=740164462]
+position = Vector2(320, 180)
+texture = ExtResource("2_ij7vn")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Sprite2D" parent="." unique_id=2069146890]
+position = Vector2(320, 180)
+texture = ExtResource("3_yjgyn")
+metadata/_edit_lock_ = true
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="." unique_id=1012838996]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -35.0
+offset_right = 212.0
+offset_bottom = 131.0
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="ButtonsContainer" unique_id=1245528072]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
+text = "PLAY"
+
+[node name="SelectButton" type="Button" parent="ButtonsContainer" unique_id=239859181]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
+text = "ESCOGER MICROJUEGO"
+
+[node name="OptionsButton" type="Button" parent="ButtonsContainer" unique_id=1429165810]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
+text = "OPCIONES"
+
+[node name="ExitButton" type="Button" parent="ButtonsContainer" unique_id=1872442369]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("5_oblsv")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
+text = "SALIR"
+
+[node name="ExitConfirmPanel" type="Control" parent="." unique_id=2045423072]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -94.0
+offset_right = 150.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="ExitConfirmPanel" unique_id=604611430]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="PanelContainer" parent="ExitConfirmPanel" unique_id=1276918116]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmLabel" type="Label" parent="ExitConfirmPanel" unique_id=2012073883]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "¿Seguro que quieres salir?"
+horizontal_alignment = 1
+
+[node name="YesButton" type="Button" parent="ExitConfirmPanel" unique_id=1308131536]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 77.0
+offset_right = 85.0
+offset_bottom = 112.0
+text = "SÍ"
+
+[node name="NoButton" type="Button" parent="ExitConfirmPanel" unique_id=844125770]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 77.0
+offset_right = 239.0
+offset_bottom = 112.0
+text = "NO"
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=507309995]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ButtonsContainer/SelectButton" to="." method="_on_select_pressed"]
+[connection signal="pressed" from="ButtonsContainer/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonsContainer/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ExitConfirmPanel/YesButton" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="ExitConfirmPanel/NoButton" to="." method="_on_no_pressed"]

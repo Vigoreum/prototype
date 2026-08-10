@@ -4,8 +4,8 @@ const FILE_COUNT_GOOD: int = 3
 const FILE_COUNT_BAD: int = 3
 const MIN_DISTANCE_BETWEEN_FILES: float = 60.0
 
-const FileScene: PackedScene = preload("res://microgames/delete/file.tscn")
-const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
+const FileScene: PackedScene = preload("res://microgames/delete/file_icon.tscn")
+const TimerBarScene: PackedScene = preload("res://ui/overlays/timer_bar.tscn")
 
 @onready var trash_can: Area2D = $TrashCan
 @onready var files_container: Node2D = $FilesContainer

@@ -18,7 +18,7 @@ var is_locked: bool = false  # bloquea input durante el delay de error
 
 var timer_bar: Control = null
 
-const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
+const TimerBarScene: PackedScene = preload("res://ui/overlays/timer_bar.tscn")
 
 func _ready() -> void:
 	randomize()

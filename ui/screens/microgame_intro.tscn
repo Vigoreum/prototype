@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://e30ymgcu07vv"]
+
+<<<<<<< Updated upstream:menus/microgame_intro.tscn
+[ext_resource type="Script" uid="uid://cv3msp1levu6m" path="res://menus/microgame_intro.gd" id="1_aq367"]
+=======
+[ext_resource type="Script" uid="uid://cv3msp1levu6m" path="res://ui/screens/microgame_intro.gd" id="1_aq367"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_ulfv8"]
+>>>>>>> Stashed changes:ui/screens/microgame_intro.tscn
+
+[node name="MicrogameIntro" type="Control" unique_id=1362837777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aq367")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1836507605]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.1254902, 0.23137255, 1)
+
+[node name="Title" type="Label" parent="." unique_id=1621998979]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "MICROGAME!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsContainer" type="HBoxContainer" parent="." unique_id=1841618177]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -30.0
+offset_right = 100.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1

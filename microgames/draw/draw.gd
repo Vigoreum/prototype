@@ -1,6 +1,6 @@
 extends Node2D
 
-const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
+const TimerBarScene: PackedScene = preload("res://ui/overlays/timer_bar.tscn")
 
 var timer_bar: Control = null
 var has_finished: bool = false

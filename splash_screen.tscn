@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bl75a5um6prp1"]
+[gd_scene format=3 uid="uid://ca0viwqrcbsak"]
 
-[ext_resource type="Script" uid="uid://dvfqealtfjv7f" path="res://splash_screen.gd" id="1_el3v4"]
-[ext_resource type="Texture2D" uid="uid://btpc6iamn5ceo" path="res://assets/logo_hublab.png" id="2_arguk"]
+[ext_resource type="Script" path="res://splash_screen.gd" id="1_el3v4"]
+[ext_resource type="Texture2D" path="res://assets/logo_hublab.png" id="2_arguk"]
 
 [node name="Control" type="Control" unique_id=2140089554]
 layout_mode = 3

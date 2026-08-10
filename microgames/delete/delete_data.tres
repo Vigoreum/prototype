@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="MicrogameData" format=3 uid="uid://c4ae0cxl72qrb"]
 
-[ext_resource type="Script" uid="uid://dxkw05awcinlf" path="res://core/control_data.gd" id="1_q5qug"]
-[ext_resource type="Script" uid="uid://b6kx6kf7cjb5o" path="res://core/microgame_data.gd" id="2_d3wgn"]
-[ext_resource type="Resource" uid="uid://bdtfsesyrs08t" path="res://core/controls/mouse.tres" id="2_lc2qa"]
+[ext_resource type="Script" uid="uid://dxkw05awcinlf" path="res://core/data/control_data.gd" id="1_q5qug"]
+[ext_resource type="Script" uid="uid://b6kx6kf7cjb5o" path="res://core/data/microgame_data.gd" id="2_d3wgn"]
+[ext_resource type="Resource" uid="uid://bdtfsesyrs08t" path="res://core/data/controls/mouse.tres" id="2_lc2qa"]
 [ext_resource type="PackedScene" uid="uid://dpjwri8jtjb0f" path="res://microgames/delete/delete.tscn" id="3_sr7db"]
 
 [resource]

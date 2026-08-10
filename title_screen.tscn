@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bqkec7u22hw1u"]
+[gd_scene format=3 uid="uid://rrv8s0qr6d0m"]
 
-[ext_resource type="Script" uid="uid://uvfs7jr0w8ym" path="res://title_screen.gd" id="1_v6p8y"]
-[ext_resource type="Texture2D" uid="uid://bh0xcd6dxpllr" path="res://assets/title_menu.png" id="2_ak2if"]
-[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/prstartk.ttf" id="2_ig5kc"]
+[ext_resource type="Script" path="res://title_screen.gd" id="1_v6p8y"]
+[ext_resource type="Texture2D" path="res://assets/title_menu.png" id="2_ak2if"]
+[ext_resource type="FontFile" path="res://assets/fonts/prstartk.ttf" id="2_ig5kc"]
 
 [node name="TitleScreen" type="Control" unique_id=690020471]
 layout_mode = 3
