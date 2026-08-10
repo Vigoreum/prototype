@@ -31,6 +31,7 @@ offset_top = 40.0
 offset_right = 160.0
 offset_bottom = 80.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gikhl")
 theme_override_font_sizes/font_size = 24
 text = "ESCOGER MICROJUEGO"
 horizontal_alignment = 1
@@ -55,29 +56,34 @@ alignment = 1
 [node name="UsbButton" type="Button" parent="ButtonsContainer" unique_id=793105883]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gikhl")
 theme_override_font_sizes/font_size = 14
 text = "USB!"
 
 [node name="DeleteButton" type="Button" parent="ButtonsContainer" unique_id=490890835]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gikhl")
 theme_override_font_sizes/font_size = 14
 text = "DELETE!"
 
 [node name="DrawButton" type="Button" parent="ButtonsContainer" unique_id=1692395382]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gikhl")
 theme_override_font_sizes/font_size = 14
 text = "DRAW!"
 
 [node name="WakeUpButton" type="Button" parent="ButtonsContainer" unique_id=87204204]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gikhl")
 theme_override_font_sizes/font_size = 14
 text = "WAKE UP! "
 
 [node name="CorrectPassword" type="Button" parent="ButtonsContainer" unique_id=309519616]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gikhl")
 text = "CORRECT PASSWORD!"
 
 [node name="BackButton" type="Button" parent="." unique_id=2067305188]
@@ -90,6 +96,7 @@ offset_top = -45.0
 offset_right = 120.0
 offset_bottom = -16.0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_gikhl")
 theme_override_font_sizes/font_size = 14
 text = "← VOLVER"
 

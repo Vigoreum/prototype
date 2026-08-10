@@ -25,6 +25,7 @@ offset_top = 40.0
 offset_right = 200.0
 offset_bottom = 80.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 28
 text = "OPCIONES"
 horizontal_alignment = 1
@@ -42,6 +43,7 @@ alignment = 1
 [node name="FullscreenCheck" type="CheckBox" parent="OptionsContainer" unique_id=1752921969]
 custom_minimum_size = Vector2(40, 28)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 14
 text = "Pantalla completa"
 
@@ -54,5 +56,6 @@ offset_top = -46.0
 offset_right = 120.0
 offset_bottom = -17.0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 14
 text = "← VOLVER"

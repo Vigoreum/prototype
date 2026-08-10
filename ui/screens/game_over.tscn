@@ -32,6 +32,7 @@ offset_top = 80.0
 offset_right = 200.0
 offset_bottom = 140.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 36
 text = "PERDISTE"
 horizontal_alignment = 1
@@ -53,12 +54,14 @@ grow_vertical = 2
 [node name="RetryButton" type="Button" parent="ButtonsContainer" unique_id=348567278]
 custom_minimum_size = Vector2(140, 28)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 14
 text = "REINTENTAR"
 
 [node name="ExitButton" type="Button" parent="ButtonsContainer" unique_id=1815474848]
 custom_minimum_size = Vector2(140, 28)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 14
 text = "SALIR"
 
