@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bckw487m0rjx3"]
+
+[ext_resource type="Script" uid="uid://dq0lfpj65asm6" path="res://ui/overlays/options_menu.gd" id="1_6r3ve"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_wyyb7"]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1435655782]
+layer = 150
+script = ExtResource("1_6r3ve")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1362025585]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.1254902, 0.23137255, 1)
+
+[node name="Title" type="Label" parent="." unique_id=621159250]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 28
+text = "OPCIONES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsContainer" type="VBoxContainer" parent="." unique_id=1086009841]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="FullscreenCheck" type="CheckBox" parent="OptionsContainer" unique_id=1752921969]
+custom_minimum_size = Vector2(40, 28)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 14
+text = "Pantalla completa"
+
+[node name="BackButton" type="Button" parent="." unique_id=752156447]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -46.0
+offset_right = 120.0
+offset_bottom = -17.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 14
+text = "← VOLVER"

@@ -12,7 +12,7 @@ extends Node2D
 @onready var can_pivot: Node2D = $CanPivot
 @onready var head_anim: AnimatedSprite2D = $HeadAnim
 
-const TimerBarScene: PackedScene = preload("res://menus/timer_bar.tscn")
+const TimerBarScene: PackedScene = preload("res://ui/overlays/timer_bar.tscn")
 
 # Estado
 var current_energy: float = 0.0

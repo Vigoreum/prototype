@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d1eyj7tjyr3ot"]
 
-[ext_resource type="Script" uid="uid://b6ujtjs2ih340" path="res://microgames/usb/usb_microgame.gd" id="1_leboi"]
+[ext_resource type="Script" uid="uid://b6ujtjs2ih340" path="res://microgames/usb/usb.gd" id="1_leboi"]
 [ext_resource type="Script" uid="uid://hnp0ohurkdn2" path="res://microgames/usb/notebook.gd" id="2_2yyew"]
-[ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://microgames/usb/usb.gd" id="3_rqspj"]
+[ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://microgames/usb/usb_stick.gd" id="3_rqspj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_btnsq"]
 size = Vector2(300, 200)
@@ -16,7 +16,7 @@ size = Vector2(180, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_no8j4"]
 size = Vector2(120, 50)
 
-[node name="USBMicrogame" type="Node2D" unique_id=778499891]
+[node name="UsbMicrogame" type="Node2D" unique_id=778499891]
 position = Vector2(128, 72)
 scale = Vector2(0.333, 0.333)
 script = ExtResource("1_leboi")

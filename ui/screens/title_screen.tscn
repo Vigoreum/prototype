@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bqkec7u22hw1u"]
+
+[ext_resource type="Script" uid="uid://uvfs7jr0w8ym" path="res://ui/screens/title_screen.gd" id="1_v6p8y"]
+[ext_resource type="Texture2D" uid="uid://bh0xcd6dxpllr" path="res://assets/sprites/ui/menu_title.png" id="2_ak2if"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_ig5kc"]
+
+[node name="TitleScreen" type="Control" unique_id=690020471]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v6p8y")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1306253078]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.1254902, 0.23137255, 1)
+
+[node name="PressStart" type="Label" parent="." unique_id=1122489931]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 57.0
+offset_right = 192.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ig5kc")
+theme_override_font_sizes/font_size = 12
+text = "Presiona cualquier botón"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=491666361]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=745389133]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1259554748]
+layout_mode = 1
+offset_left = 211.0
+offset_top = 85.0
+offset_right = 851.0
+offset_bottom = 445.0
+texture = ExtResource("2_ak2if")
+metadata/_edit_lock_ = true

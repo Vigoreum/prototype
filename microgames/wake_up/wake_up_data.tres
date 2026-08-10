@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="MicrogameData" format=3 uid="uid://rasnphjtx4q"]
 
-[ext_resource type="Script" uid="uid://dxkw05awcinlf" path="res://core/control_data.gd" id="1_intuu"]
-[ext_resource type="Resource" uid="uid://p4ksiavihlt2" path="res://core/controls/space_bar.tres" id="2_3ikak"]
-[ext_resource type="Script" uid="uid://b6kx6kf7cjb5o" path="res://core/microgame_data.gd" id="2_bjcx0"]
-[ext_resource type="PackedScene" uid="uid://covquqyknstlo" path="res://microgames/wake_up/wake_up_microgame.tscn" id="3_sejm2"]
+[ext_resource type="Script" uid="uid://dxkw05awcinlf" path="res://core/data/control_data.gd" id="1_intuu"]
+[ext_resource type="Resource" uid="uid://p4ksiavihlt2" path="res://core/data/controls/space_bar.tres" id="2_3ikak"]
+[ext_resource type="Script" uid="uid://b6kx6kf7cjb5o" path="res://core/data/microgame_data.gd" id="2_bjcx0"]
+[ext_resource type="PackedScene" uid="uid://covquqyknstlo" path="res://microgames/wake_up/wake_up.tscn" id="3_sejm2"]
 
 [resource]
 script = ExtResource("2_bjcx0")

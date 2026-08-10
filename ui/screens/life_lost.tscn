@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://biay1xgxlvngy"]
+
+[ext_resource type="Script" uid="uid://btob8g125esbv" path="res://ui/screens/life_lost.gd" id="1_wn2i1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fpfkd"]
+load_path = "res://.godot/imported/life_icon.png-fe68ec4ec0c5a96932309c6e11996b7d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wn2i1"]
+load_path = "res://.godot/imported/life_icon.png-fe68ec4ec0c5a96932309c6e11996b7d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vql8f"]
+load_path = "res://.godot/imported/life_icon.png-fe68ec4ec0c5a96932309c6e11996b7d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvqtq"]
+load_path = "res://.godot/imported/life_icon.png-fe68ec4ec0c5a96932309c6e11996b7d.ctex"
+
+[node name="LifeLost" type="Control" unique_id=2143430130]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wn2i1")
+
+[node name="LivesContainer" type="Control" parent="." unique_id=1436385821]
+anchors_preset = 0
+offset_left = 58.0
+offset_top = 117.0
+offset_right = 582.0
+offset_bottom = 242.0
+
+[node name="Life1" type="TextureRect" parent="LivesContainer" unique_id=1200211759]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 125.0
+texture = SubResource("CompressedTexture2D_fpfkd")
+
+[node name="Life2" type="TextureRect" parent="LivesContainer" unique_id=686805646]
+layout_mode = 0
+offset_left = 132.0
+offset_right = 260.0
+offset_bottom = 125.0
+texture = SubResource("CompressedTexture2D_wn2i1")
+
+[node name="Life3" type="TextureRect" parent="LivesContainer" unique_id=1933559733]
+layout_mode = 0
+offset_left = 264.0
+offset_right = 392.0
+offset_bottom = 125.0
+texture = SubResource("CompressedTexture2D_vql8f")
+
+[node name="Life4" type="TextureRect" parent="LivesContainer" unique_id=1815308128]
+layout_mode = 0
+offset_left = 396.0
+offset_right = 524.0
+offset_bottom = 125.0
+texture = SubResource("CompressedTexture2D_xvqtq")

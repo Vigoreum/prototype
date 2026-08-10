@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://tg7py78qt4m3"]
 
-[ext_resource type="Texture2D" uid="uid://dtcdf11u5q51a" path="res://microgames/draw/base_canvas.jpeg" id="1_3egv1"]
+[ext_resource type="Texture2D" uid="uid://dtcdf11u5q51a" path="res://microgames/draw/assets/canvas_background.jpeg" id="1_3egv1"]
 [ext_resource type="Script" uid="uid://df5mrlodrjwsk" path="res://microgames/draw/draw.gd" id="1_t7xbd"]
-[ext_resource type="Texture2D" uid="uid://cwaxcpvm438d" path="res://microgames/draw/hud_p1.png" id="2_j1as3"]
-[ext_resource type="Shader" uid="uid://b8ique5qdb8yd" path="res://microgames/draw/new_shader.gdshader" id="3_t7xbd"]
+[ext_resource type="Texture2D" uid="uid://cwaxcpvm438d" path="res://microgames/draw/assets/drawing_target.png" id="2_j1as3"]
+[ext_resource type="Shader" uid="uid://b8ique5qdb8yd" path="res://microgames/draw/draw_reveal.gdshader" id="3_t7xbd"]
 [ext_resource type="Script" uid="uid://bhgtv53g28xex" path="res://microgames/draw/pencil.gd" id="4_k3s2v"]
-[ext_resource type="Texture2D" uid="uid://b5yfxyl2hv7f1" path="res://microgames/draw/background-remover-hand.png" id="4_n51c8"]
+[ext_resource type="Texture2D" uid="uid://b5yfxyl2hv7f1" path="res://microgames/draw/assets/pencil_hand.png" id="4_n51c8"]
 [ext_resource type="Script" uid="uid://c1wnnprx2jrct" path="res://microgames/draw/draw_canvas.gd" id="5_t7xbd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iqk1j"]

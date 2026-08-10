@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cppr6rybye4mh"]
+
+[ext_resource type="Script" uid="uid://dhxae0rtjndus" path="res://ui/overlays/timer_bar.gd" id="1_cekmk"]
+
+[node name="TimerBar" type="Control" unique_id=2116983446]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_cekmk")
+
+[node name="Background" type="ColorRect" parent="." unique_id=118702556]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="Fill" type="ColorRect" parent="." unique_id=1144975419]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.29803923, 0.6862745, 0.3137255, 1)
