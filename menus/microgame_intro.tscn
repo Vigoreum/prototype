@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://e30ymgcu07vv"]
 
 [ext_resource type="Script" uid="uid://cv3msp1levu6m" path="res://menus/microgame_intro.gd" id="1_aq367"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/prstartk.ttf" id="2_ulfv8"]
 
 [node name="MicrogameIntro" type="Control" unique_id=1362837777]
 layout_mode = 3
@@ -31,6 +32,7 @@ offset_top = 60.0
 offset_right = 200.0
 offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ulfv8")
 theme_override_font_sizes/font_size = 28
 text = "MICROGAME!"
 horizontal_alignment = 1
