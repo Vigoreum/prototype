@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bckw487m0rjx3"]
 
 [ext_resource type="Script" uid="uid://dq0lfpj65asm6" path="res://menus/options_menu.gd" id="1_6r3ve"]
+[ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/prstartk.ttf" id="2_wyyb7"]
 
 [node name="OptionsMenu" type="CanvasLayer" unique_id=1435655782]
 layer = 150
@@ -24,6 +25,7 @@ offset_top = 40.0
 offset_right = 200.0
 offset_bottom = 80.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 28
 text = "OPCIONES"
 horizontal_alignment = 1
@@ -41,6 +43,7 @@ alignment = 1
 [node name="FullscreenCheck" type="CheckBox" parent="OptionsContainer" unique_id=1752921969]
 custom_minimum_size = Vector2(40, 28)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 14
 text = "Pantalla completa"
 
@@ -53,5 +56,6 @@ offset_top = -46.0
 offset_right = 120.0
 offset_bottom = -17.0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 14
 text = "← VOLVER"
