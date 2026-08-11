@@ -127,6 +127,7 @@ func _update_bar_visual() -> void:
 	var fill_height: float = (current_energy / max_energy) * energy_bar_background.size.y
 	energy_bar_fill.size.y = fill_height
 	
-	# Posicionar el Fill para que crezca desde abajo
-	var bg_bottom: float = energy_bar_background.position.y + energy_bar_background.size.y
-	energy_bar_fill.position.y = bg_bottom - fill_height
+	# Posicionar el Fill para que crezca desde abajo.
+	# position no está afectada por scale, pero size sí: hay que escalar ambas alturas.
+	var bg_bottom: float = energy_bar_background.position.y + energy_bar_background.size.y * energy_bar_background.scale.y
+	energy_bar_fill.position.y = bg_bottom - fill_height * energy_bar_fill.scale.y
