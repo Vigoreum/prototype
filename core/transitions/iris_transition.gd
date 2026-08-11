@@ -12,6 +12,10 @@ var is_busy: bool = false
 signal transition_finished
 
 func _ready() -> void:
+	# La transición debe seguir corriendo con el juego pausado, si no el tween
+	# se congela y is_busy queda en true bloqueando el menú de pausa
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	# Empezar oculto (pantalla descubierta)
 	_set_progress(1.0)
 

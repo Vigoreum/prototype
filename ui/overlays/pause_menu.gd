@@ -48,6 +48,12 @@ func _on_continue_pressed() -> void:
 	GameManager.hide_cursor()
 	CountdownOverlay.start_countdown(3)
 	await CountdownOverlay.countdown_finished
+
+	# Si el menú volvió a abrirse durante el countdown (perder el foco lo cancela),
+	# seguimos en pausa: no hay que despausar
+	if is_open():
+		return
+
 	get_tree().paused = false
 	GameManager.refresh_cursor()
 
@@ -55,6 +61,11 @@ func _on_options_pressed() -> void:
 	OptionsMenu.show_menu()
 
 func _on_exit_pressed() -> void:
+	# Si hay una transición en curso, return_to_main_menu() sería ignorada:
+	# cerrar el menú aquí dejaría al jugador despausado y sin salida
+	if IrisTransition.is_busy:
+		return
+
 	get_tree().paused = false
 	hide_menu()
 	GameManager.return_to_main_menu()

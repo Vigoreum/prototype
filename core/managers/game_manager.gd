@@ -171,11 +171,17 @@ func restore_microgame_cursor() -> void:
 # Decide el estado correcto del cursor según la escena actual.
 # La llama IrisTransition al terminar una transición, y pause_menu al reanudar.
 func refresh_cursor() -> void:
+	# Si una transición termina con el juego pausado, el menú de pausa sigue
+	# abierto y necesita el cursor visible para poder usar sus botones
+	if get_tree().paused:
+		show_cursor()
+		return
+
 	var scene: Node = get_tree().current_scene
 	if scene == null:
 		hide_cursor()
 		return
-	
+
 	var path: String = scene.scene_file_path
 	
 	# Menús con botones: cursor visible
@@ -220,14 +226,24 @@ func get_microgame_duration() -> float:
 
 # Llamada por el jugador (ESC) o por pérdida de foco
 # Nota: la transición iris sigue corriendo aunque el juego esté pausado
-# porque IrisTransition tiene process_mode = ALWAYS
+# porque IrisTransition tiene process_mode = ALWAYS. La escena siguiente se
+# carga ya pausada, así que su timer no empieza a correr
 func try_open_pause_menu() -> void:
-	if get_tree().paused:
-		return
-	
 	if not _is_pausable_scene():
 		return
-	
+
+	# Perder el foco durante el countdown de reanudación tiene que volver a pausar:
+	# el countdown corre aunque el juego esté pausado, y al terminar despausaría
+	# el microjuego con el jugador fuera de la ventana
+	if CountdownOverlay.is_counting():
+		CountdownOverlay.cancel_countdown()
+		show_cursor()
+		PauseMenu.show_menu()
+		return
+
+	if get_tree().paused:
+		return
+
 	show_cursor()
 	get_tree().paused = true
 	PauseMenu.show_menu()
@@ -242,6 +258,10 @@ func _is_pausable_scene() -> bool:
 	var scene_name: String = current_scene.scene_file_path
 	
 	# Escenas que NO permiten pausa
+	if scene_name.ends_with("splash_screen.tscn"):
+		return false
+	if scene_name.ends_with("title_screen.tscn"):
+		return false
 	if scene_name.ends_with("main_menu.tscn"):
 		return false
 	if scene_name.ends_with("microgame_select.tscn"):
