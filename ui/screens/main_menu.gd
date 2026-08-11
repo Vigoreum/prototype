@@ -1,6 +1,7 @@
 extends Control
 
 const FADE_DURATION: float = 0.6  # que coincida con el de la pantalla de título
+const EXIT_FADE_DURATION: float = 0.25  # corto: esperar a que cierre se siente raro
 
 @onready var play_button: Button = $ButtonsContainer/PlayButton
 @onready var select_button: Button = $ButtonsContainer/SelectButton
@@ -12,6 +13,8 @@ const FADE_DURATION: float = 0.6  # que coincida con el de la pantalla de títul
 @onready var no_button: Button = $ExitConfirmPanel/NoButton
 
 @onready var fade_overlay: ColorRect = $FadeOverlay
+
+var _is_quitting: bool = false
 
 func _ready() -> void:
 	GameManager.show_cursor()
@@ -47,12 +50,23 @@ func _on_exit_pressed() -> void:
 	exit_confirm_panel.visible = true
 
 func _on_yes_pressed() -> void:
+	if _is_quitting:
+		return
+	_is_quitting = true
+	# Fundido corto a negro antes de cerrar
+	var tween: Tween = create_tween()
+	tween.tween_property(fade_overlay, "modulate:a", 1.0, EXIT_FADE_DURATION).set_ease(Tween.EASE_IN)
+	await tween.finished
 	get_tree().quit()
 
 func _on_no_pressed() -> void:
+	if _is_quitting:
+		return
 	exit_confirm_panel.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _is_quitting:
+		return
 	if exit_confirm_panel.visible and event.is_action_pressed("ui_cancel"):
 		exit_confirm_panel.visible = false
 		get_viewport().set_input_as_handled()

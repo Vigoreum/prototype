@@ -11,9 +11,11 @@ var did_press_any_button := false
 var blink_tween: Tween
 
 func _ready() -> void:
-	# El overlay arranca transparente
-	fade_overlay.modulate.a = 0.0
-	
+	# Entramos desde el negro del splash: el overlay arranca tapando y se abre
+	fade_overlay.modulate.a = 1.0
+	var fade_in_tween: Tween = create_tween()
+	fade_in_tween.tween_property(fade_overlay, "modulate:a", 0.0, FADE_DURATION)
+
 	# Parpadeo del "Presiona cualquier botón"
 	delay_timer.timeout.connect(_on_delay_timer_timeout)
 	blink_tween = create_tween()

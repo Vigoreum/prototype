@@ -6,6 +6,7 @@ extends Control
 @export var fade_out_time: float = 0.6
 @export var out_time: float = 0.3      # espera después de desaparecer
 @export var skip_lock_time: float = 0.5  # no se puede saltar durante este tiempo
+@export var skip_fade_time: float = 0.15  # fundido rápido al saltar
 
 @onready var logo: TextureRect = $TextureRect
 
@@ -39,10 +40,13 @@ func _start_skip_lock() -> void:
 func _skip() -> void:
 	if not _can_skip:
 		return
+	_can_skip = false
 	if _tween:
 		_tween.kill()
-		_tween = null
-	_finish()
+	# No cortamos en seco: apagamos el logo rápido y recién ahí cambiamos
+	_tween = create_tween()
+	_tween.tween_property(logo, "modulate:a", 0.0, skip_fade_time)
+	_tween.finished.connect(_finish, CONNECT_ONE_SHOT)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _can_skip and event.is_pressed() and not event.is_echo():
