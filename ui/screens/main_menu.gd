@@ -9,8 +9,8 @@ const EXIT_FADE_DURATION: float = 0.25  # corto: esperar a que cierre se siente 
 @onready var exit_button: Button = $ButtonsContainer/ExitButton
 
 @onready var exit_confirm_panel: Control = $ExitConfirmPanel
-@onready var yes_button: Button = $ExitConfirmPanel/YesButton
-@onready var no_button: Button = $ExitConfirmPanel/NoButton
+@onready var yes_button: Button = $ExitConfirmPanel/Panel/Margin/Content/ButtonsRow/YesButton
+@onready var no_button: Button = $ExitConfirmPanel/Panel/Margin/Content/ButtonsRow/NoButton
 
 @onready var fade_overlay: ColorRect = $FadeOverlay
 

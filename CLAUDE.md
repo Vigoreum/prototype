@@ -99,9 +99,17 @@ Pause is triggered by ESC (each microgame forwards `ui_cancel`) or by `NOTIFICAT
 
 Never wire button sounds by hand — call `AudioManager.register_button_positive/neutral/back(button)` in `_ready()`. Positive = affirmative actions (play, retry), back = leaving (volver, salir), neutral = navigation.
 
+### Audio buses
+
+`default_bus_layout.tres` (repo root — Godot's default path, so no project.godot entry) defines **Master**, **Music** and **SFX**; the latter two send to Master. Every new `AudioStreamPlayer` must set `bus` to `Music` or `SFX`, never leave it on Master, or its slider won't reach it. `AudioManager`'s `ui_player` uses the `&"SFX"` literal rather than `SettingsManager.BUS_SFX` because `AudioManager` loads first in the autoload order.
+
 ### Settings
 
-`SettingsManager` persists only fullscreen to `user://settings.cfg` (default on), applies it at boot, and owns the global F11 toggle. `OptionsMenu` mirrors it with `set_pressed_no_signal()` to avoid a toggle loop.
+`SettingsManager` persists fullscreen (default on), window scale (default 2x) and per-bus volumes (default 0.8) to `user://settings.cfg`, applies all of them at boot, and owns the global F11 toggle. `OptionsMenu` mirrors them with `set_pressed_no_signal()` / `set_value_no_signal()` to avoid signal loops.
+
+Volumes live in `volumes: Dictionary[StringName, float]` keyed by bus name, 0.0–1.0, converted with `linear_to_db()` and hard-muted below `SILENCE_THRESHOLD` (`linear_to_db(0.0)` is `-inf`). Sliders fire many times per second, so `set_bus_volume()` applies instantly but routes saving through a `SAVE_DEBOUNCE_SECONDS` one-shot Timer; `_exit_tree()` flushes a pending save on quit. Fullscreen and window scale still save immediately.
+
+Window scale is an integer multiple of `BASE_RESOLUTION` (640×360) so pixels stay square — 1x/2x/3x = 360p/720p/1080p. 3x is the cap (`MAX_WINDOW_SCALE`) because 4x would be 1440p. It only applies in windowed mode; `_apply_fullscreen(false)` reapplies it on the way out, so that is the single place the window gets resized. Picking a scale while fullscreen just saves it — the window changes when fullscreen is turned off. Scales larger than the monitor's usable rect are disabled in the menu and sanitized on load.
 
 ## Layout
 

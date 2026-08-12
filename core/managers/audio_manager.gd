@@ -13,6 +13,10 @@ func _ready() -> void:
 	ui_player = AudioStreamPlayer.new()
 	add_child(ui_player)
 	ui_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	# Los sonidos de UI van al bus SFX para que el slider de SFX los controle.
+	# Literal a propósito: AudioManager se carga antes que SettingsManager
+	# (ver orden de autoloads), así que no podemos usar SettingsManager.BUS_SFX aquí.
+	ui_player.bus = &"SFX"
 
 
 func play_hover() -> void:
