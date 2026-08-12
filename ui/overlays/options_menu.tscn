@@ -1,7 +1,69 @@
-[gd_scene format=3 uid="uid://bckw487m0rjx3"]
+[gd_scene load_steps=9 format=3 uid="uid://bckw487m0rjx3"]
 
 [ext_resource type="Script" uid="uid://dq0lfpj65asm6" path="res://ui/overlays/options_menu.gd" id="1_6r3ve"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_wyyb7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frame"]
+bg_color = Color(0, 0.1254902, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_focus"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_track"]
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(1, 0.87058824, 0.6862745, 0.23529412)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_fill"]
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="OptionsMenu" type="CanvasLayer" unique_id=1435655782]
 layer = 150
@@ -16,46 +78,222 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0.1254902, 0.23137255, 1)
 
-[node name="Title" type="Label" parent="." unique_id=621159250]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 40.0
-offset_right = 200.0
-offset_bottom = 80.0
+[node name="Frame" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = -24.0
+offset_bottom = -18.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_wyyb7")
-theme_override_font_sizes/font_size = 28
-text = "OPCIONES"
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
 
-[node name="OptionsContainer" type="VBoxContainer" parent="." unique_id=1086009841]
+[node name="Margin" type="MarginContainer" parent="Frame"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
-alignment = 1
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
 
-[node name="FullscreenCheck" type="CheckBox" parent="OptionsContainer" unique_id=1752921969]
-custom_minimum_size = Vector2(40, 28)
+[node name="Content" type="VBoxContainer" parent="Frame/Margin"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wyyb7")
-theme_override_font_sizes/font_size = 14
-text = "Pantalla completa"
+theme_override_constants/separation = 10
 
-[node name="BackButton" type="Button" parent="." unique_id=752156447]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -46.0
-offset_right = 120.0
-offset_bottom = -17.0
-grow_vertical = 0
+[node name="TopRow" type="HBoxContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="Frame/Margin/Content/TopRow" unique_id=752156447]
+custom_minimum_size = Vector2(96, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_colors/font_hover_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_colors/font_pressed_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
 text = "← VOLVER"
+
+[node name="Title" type="Label" parent="Frame/Margin/Content/TopRow" unique_id=621159250]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "OPCIONES"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="Control" parent="Frame/Margin/Content"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "VOLUMEN"
+
+[node name="VolumeMargin" type="MarginContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+
+[node name="VolumeRows" type="VBoxContainer" parent="Frame/Margin/Content/VolumeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MasterRow" type="HBoxContainer" parent="Frame/Margin/Content/VolumeMargin/VolumeRows"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MasterLabel" type="Label" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "MASTER"
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_slider_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_slider_fill")
+
+[node name="MasterValue" type="Label" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SfxRow" type="HBoxContainer" parent="Frame/Margin/Content/VolumeMargin/VolumeRows"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SfxLabel" type="Label" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "SFX"
+vertical_alignment = 1
+
+[node name="SfxSlider" type="HSlider" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_slider_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_slider_fill")
+
+[node name="SfxValue" type="Label" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MusicRow" type="HBoxContainer" parent="Frame/Margin/Content/VolumeMargin/VolumeRows"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MusicLabel" type="Label" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "MÚSICA"
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider_track")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_slider_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_slider_fill")
+
+[node name="MusicValue" type="Label" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator2" type="Control" parent="Frame/Margin/Content"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="WindowScaleRow" type="HBoxContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WindowScaleLabel" type="Label" parent="Frame/Margin/Content/WindowScaleRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "ESCALA DE VENTANA"
+vertical_alignment = 1
+
+[node name="WindowScaleOption" type="OptionButton" parent="Frame/Margin/Content/WindowScaleRow"]
+custom_minimum_size = Vector2(52, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_colors/font_hover_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_colors/font_pressed_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
+fit_to_longest_item = false
+
+[node name="FullscreenRow" type="HBoxContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FullscreenLabel" type="Label" parent="Frame/Margin/Content/FullscreenRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "PANTALLA COMPLETA"
+vertical_alignment = 1
+
+[node name="FullscreenCheck" type="CheckBox" parent="Frame/Margin/Content/FullscreenRow" unique_id=1752921969]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
