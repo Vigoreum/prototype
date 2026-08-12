@@ -54,6 +54,7 @@ func _on_continue_pressed() -> void:
 	if is_open():
 		return
 
+	GameManager.restore_game_speed()
 	get_tree().paused = false
 	GameManager.refresh_cursor()
 

@@ -21,13 +21,27 @@ const MAIN_MENU_SCENE: String = "res://ui/screens/main_menu.tscn"
 const MICROGAME_INTRO_SCENE: String = "res://ui/screens/microgame_intro.tscn"
 const GAME_OVER_SCENE: String = "res://ui/screens/game_over.tscn"
 const LIFE_LOST_SCENE: String = "res://ui/screens/life_lost.tscn"
+const SPEED_UP_SCENE: String = "res://ui/screens/speed_up.tscn"
 const MAX_LIVES: int = 4
+
+# Microjuegos que hay que jugar (se ganen o se pierdan) para subir de velocidad
+const MICROGAMES_PER_SPEED_UP: int = 4
+# Cuánto se acelera el juego en cada subida
+const SPEED_STEP: float = 0.25
+# Nivel 1 = x1.0, nivel 5 = x2.0 (tope). Más rápido que x2 los microjuegos
+# dejan de ser legibles
+const MAX_SPEED_LEVEL: int = 5
 
 
 # ===== ESTADO =====
 
 var lives: int = MAX_LIVES
 var play_queue: Array[MicrogameData] = []
+# Microjuegos jugados en la partida actual, para saber cuándo acelerar
+var microgames_played: int = 0
+# Microjuegos ganados en la partida actual: el puntaje que muestra el game over
+var microgames_cleared: int = 0
+var speed_level: int = 1
 var is_in_play_mode: bool = false
 var pending_intro_data: MicrogameData = null
 var pending_microgame_data: MicrogameData = null
@@ -54,6 +68,10 @@ func start_play_mode() -> void:
 	is_game_over_overlay = false
 	is_in_play_mode = true
 	lives = MAX_LIVES
+	microgames_played = 0
+	microgames_cleared = 0
+	speed_level = 1
+	reset_game_speed()
 	play_queue = _load_all_microgame_data()
 	play_queue.shuffle()
 	_load_next_microgame()
@@ -61,6 +79,8 @@ func start_play_mode() -> void:
 
 func play_single_microgame(data_path: String) -> void:
 	is_in_play_mode = false
+	speed_level = 1
+	reset_game_speed()
 	var data: MicrogameData = load(data_path)
 	if data == null:
 		print("⚠️ No se pudo cargar el MicrogameData en: ", data_path)
@@ -89,6 +109,7 @@ func _on_microgame_won() -> void:
 	if is_transitioning:
 		return
 	is_transitioning = true
+	microgames_cleared += 1
 	_advance_or_finish()
 
 
@@ -107,11 +128,13 @@ func _on_microgame_timed_out() -> void:
 
 
 func _handle_life_loss() -> void:
+	reset_game_speed()
+
 	# En single mode no hay vidas: perder va directo a game over
 	if not is_in_play_mode:
 		_show_game_over()
 		return
-	
+
 	lives -= 1
 	IrisTransition.transition_to_scene(LIFE_LOST_SCENE)
 
@@ -133,6 +156,52 @@ func enter_game_over_overlay() -> void:
 	show_cursor()
 
 
+# Llamada por speed_up.gd cuando termina de mostrarse la pantalla
+func continue_after_speed_up() -> void:
+	_load_next_microgame()
+
+
+# ===== VELOCIDAD =====
+
+# Multiplicador de tiempo del nivel de velocidad actual (nivel 1 = x1.0)
+func get_speed_multiplier() -> float:
+	return 1.0 + (speed_level - 1) * SPEED_STEP
+
+
+# Acelerar el juego entero (animaciones, física y barra de tiempo a la vez) en
+# vez de solo recortar la duración: si únicamente durara menos, los microjuegos
+# con movimiento a velocidad fija se volverían imposibles en vez de más difíciles
+func apply_game_speed() -> void:
+	Engine.time_scale = get_speed_multiplier()
+
+
+func reset_game_speed() -> void:
+	Engine.time_scale = 1.0
+
+
+# Vuelve a la velocidad que corresponda a la escena actual. La usa el menú de
+# pausa al reanudar: solo los microjuegos van acelerados, los menús y pantallas
+# intermedias siempre a x1.0
+func restore_game_speed() -> void:
+	if _is_microgame_scene():
+		apply_game_speed()
+	else:
+		reset_game_speed()
+
+
+# True si la escena actual es el microjuego en curso (y no una intro, menú o
+# pantalla intermedia)
+func _is_microgame_scene() -> bool:
+	if current_microgame_data == null or current_microgame_data.scene == null:
+		return false
+
+	var scene: Node = get_tree().current_scene
+	if scene == null:
+		return false
+
+	return scene.scene_file_path == current_microgame_data.scene.resource_path
+
+
 # ===== REINTENTAR =====
 
 func retry_after_loss() -> void:
@@ -150,7 +219,11 @@ func retry_after_loss() -> void:
 # ===== VOLVER AL MENÚ =====
 
 func return_to_main_menu() -> void:
+	reset_game_speed()
 	is_in_play_mode = false
+	speed_level = 1
+	microgames_played = 0
+	microgames_cleared = 0
 	play_queue.clear()
 	pending_intro_data = null
 	pending_microgame_data = null
@@ -205,9 +278,10 @@ func refresh_cursor() -> void:
 		show_cursor()
 		return
 	
-	# Intro y pantalla de vidas: sin cursor
+	# Intro y pantallas intermedias: sin cursor
 	if path.ends_with("microgame_intro.tscn") \
-	or path.ends_with("life_lost.tscn"):
+	or path.ends_with("life_lost.tscn") \
+	or path.ends_with("speed_up.tscn"):
 		hide_cursor()
 		return
 	
@@ -227,6 +301,7 @@ func start_pending_microgame() -> void:
 	var scene: PackedScene = pending_microgame_data.scene
 	pending_microgame_data = null
 	is_transitioning = false
+	apply_game_speed()
 	IrisTransition.transition_to_packed_scene(scene)
 
 
@@ -245,6 +320,10 @@ func get_microgame_duration() -> float:
 func try_open_pause_menu() -> void:
 	if not _is_pausable_scene():
 		return
+
+	# El countdown de reanudación corre aunque el juego esté pausado, así que
+	# con el juego acelerado contaría más rápido
+	reset_game_speed()
 
 	# Perder el foco durante el countdown de reanudación tiene que volver a pausar:
 	# el countdown corre aunque el juego esté pausado, y al terminar despausaría
@@ -300,24 +379,62 @@ func _notification(what: int) -> void:
 
 # ===== LÓGICA INTERNA =====
 
+# Se llama al terminar un microjuego, se haya ganado o perdido (en ese caso
+# después de la pantalla de vidas). En play mode la partida es infinita: solo
+# termina al quedarse sin vidas
 func _advance_or_finish() -> void:
-	if is_in_play_mode and not play_queue.is_empty():
-		_load_next_microgame()
-	else:
+	# Las intros y pantallas intermedias van siempre a velocidad normal
+	reset_game_speed()
+
+	if not is_in_play_mode:
 		return_to_main_menu()
+		return
+
+	microgames_played += 1
+
+	if _should_speed_up():
+		speed_level += 1
+		IrisTransition.transition_to_scene(SPEED_UP_SCENE)
+		return
+
+	_load_next_microgame()
+
+
+# True si toca subir de velocidad después del microjuego recién jugado
+func _should_speed_up() -> bool:
+	if speed_level >= MAX_SPEED_LEVEL:
+		return false
+	return microgames_played % MICROGAMES_PER_SPEED_UP == 0
 
 
 func _show_game_over() -> void:
+	reset_game_speed()
 	IrisTransition.transition_to_scene(GAME_OVER_SCENE)
 
 
 func _load_next_microgame() -> void:
 	if play_queue.is_empty():
+		_refill_play_queue()
+
+	# La cola solo puede seguir vacía si no se pudo cargar ningún microjuego
+	if play_queue.is_empty():
+		print("⚠️ No hay microjuegos para jugar")
 		return_to_main_menu()
 		return
-	
+
 	var next_data: MicrogameData = play_queue.pop_front()
 	_start_microgame_with_intro(next_data)
+
+
+# Vuelve a llenar la cola con todos los microjuegos barajados. Si el primero de
+# la nueva tanda es el que se acaba de jugar, lo cambia de lugar para que no
+# salga dos veces seguidas
+func _refill_play_queue() -> void:
+	play_queue = _load_all_microgame_data()
+	play_queue.shuffle()
+
+	if play_queue.size() > 1 and play_queue[0] == current_microgame_data:
+		play_queue.push_back(play_queue.pop_front())
 
 
 func _start_microgame_with_intro(data: MicrogameData) -> void:
