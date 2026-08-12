@@ -7,8 +7,10 @@ extends Control
 # 1.1 = 1.5 visible - 0.4 (duración de la transición iris de salida)
 const INTRO_DURATION: float = 1.1
 
-# Tamaño con el que se muestran los iconos
-const ICON_SIZE: Vector2 = Vector2(32, 32)
+# Caja máxima de cada icono: se escala manteniendo proporción para que entre
+# acá dentro. No es un cuadrado porque hay iconos muy anchos (la barra
+# espaciadora es 1150x206) que en una caja cuadrada quedaban de 6 px de alto
+const ICON_MAX_SIZE: Vector2 = Vector2(150, 56)
 
 # Datos del microjuego que se va a presentar
 var microgame_data: MicrogameData = null
@@ -37,12 +39,27 @@ func _apply_data() -> void:
 	
 	# Aplicar los iconos de controles
 	for control_data in microgame_data.controls:
+		if control_data.icon == null:
+			continue
 		var icon: TextureRect = TextureRect.new()
 		icon.texture = control_data.icon
-		icon.custom_minimum_size = ICON_SIZE
+		icon.custom_minimum_size = _icon_display_size(control_data.icon)
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		# Los iconos son dibujos grandes de línea fina que acá se reducen ~10x.
+		# Con el filtro nearest del proyecto y sin mipmaps las líneas se
+		# rompen y no se entiende qué son, así que este nodo filtra distinto
+		icon.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 		controls_container.add_child(icon)
+
+
+# Tamaño final del icono: el mayor que entra en ICON_MAX_SIZE sin deformarlo
+func _icon_display_size(texture: Texture2D) -> Vector2:
+	var source: Vector2 = texture.get_size()
+	if source.x <= 0.0 or source.y <= 0.0:
+		return ICON_MAX_SIZE
+	var factor: float = minf(ICON_MAX_SIZE.x / source.x, ICON_MAX_SIZE.y / source.y)
+	return source * factor
 
 
 func _on_intro_finished() -> void:

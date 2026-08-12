@@ -11,6 +11,9 @@ var did_press_any_button := false
 var blink_tween: Tween
 
 func _ready() -> void:
+	# El splash esconde el cursor; acá se puede clickear, así que vuelve
+	GameManager.show_cursor()
+
 	# Entramos desde el negro del splash: el overlay arranca tapando y se abre
 	fade_overlay.modulate.a = 1.0
 	var fade_in_tween: Tween = create_tween()
