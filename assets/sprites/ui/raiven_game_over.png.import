@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctpcmdvap5ff0"
-path="res://.godot/imported/space_bar.png-a0963df35c399c8bc5ad597903676864.ctex"
+uid="uid://bungs8npae06x"
+path="res://.godot/imported/raiven_game_over.png-0e5dc166478b53d7f33736678a0009b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/icons/space_bar.png"
-dest_files=["res://.godot/imported/space_bar.png-a0963df35c399c8bc5ad597903676864.ctex"]
+source_file="res://assets/sprites/ui/raiven_game_over.png"
+dest_files=["res://.godot/imported/raiven_game_over.png-0e5dc166478b53d7f33736678a0009b4.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
