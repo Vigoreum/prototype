@@ -1,9 +1,13 @@
 extends CanvasLayer
 
 # El popup del OptionButton no hereda los theme_override del botón:
-# hay que darle la fuente a mano o sale con la tipografía por defecto
+# hay que darle fuente y colores a mano o sale con el tema por defecto de Godot
 const MENU_FONT: FontFile = preload("res://assets/fonts/press_start_k.ttf")
-const MENU_FONT_SIZE: int = 14
+const MENU_FONT_SIZE: int = 11
+
+# Paleta del menú principal (ver main_menu.tscn)
+const COLOR_CREAM: Color = Color(1, 0.87058824, 0.6862745, 1)
+const COLOR_PURPLE: Color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 
 @onready var background: ColorRect = $Background
 @onready var frame: Panel = $Frame
@@ -75,13 +79,33 @@ func is_open() -> bool:
 # Crea un item por cada escala disponible. El id del item ES la escala,
 # así el índice del desplegable nunca hay que traducirlo a mano.
 func _build_scale_items() -> void:
-	var popup: PopupMenu = window_scale_option.get_popup()
-	popup.add_theme_font_override("font", MENU_FONT)
-	popup.add_theme_font_size_override("font_size", MENU_FONT_SIZE)
+	_style_scale_popup()
 
 	window_scale_option.clear()
 	for window_scale: int in range(SettingsManager.MIN_WINDOW_SCALE, SettingsManager.MAX_WINDOW_SCALE + 1):
 		window_scale_option.add_item("%dx" % window_scale, window_scale)
+
+
+# El desplegable es una ventana aparte con su propio tema: crema con texto
+# morado, igual que los botones del menú principal.
+func _style_scale_popup() -> void:
+	var popup: PopupMenu = window_scale_option.get_popup()
+	popup.add_theme_font_override("font", MENU_FONT)
+	popup.add_theme_font_size_override("font_size", MENU_FONT_SIZE)
+	popup.add_theme_color_override("font_color", COLOR_PURPLE)
+	popup.add_theme_color_override("font_hover_color", COLOR_PURPLE)
+	popup.add_theme_color_override("font_disabled_color", Color(COLOR_PURPLE, 0.4))
+
+	var panel: StyleBoxFlat = StyleBoxFlat.new()
+	panel.bg_color = COLOR_CREAM
+	panel.set_corner_radius_all(3)
+	panel.set_content_margin_all(2)
+	popup.add_theme_stylebox_override("panel", panel)
+
+	var hover: StyleBoxFlat = StyleBoxFlat.new()
+	hover.bg_color = Color(COLOR_PURPLE, 0.25)
+	hover.set_corner_radius_all(2)
+	popup.add_theme_stylebox_override("hover", hover)
 
 
 # Marca la escala activa y desactiva las que no entran en el monitor.
