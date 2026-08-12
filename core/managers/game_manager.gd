@@ -33,6 +33,9 @@ var pending_intro_data: MicrogameData = null
 var pending_microgame_data: MicrogameData = null
 var current_microgame_data: MicrogameData = null
 var is_transitioning: bool = false
+# True mientras el game over se muestre superpuesto sobre otra escena
+# (fundido encima de life_lost al perder la última vida)
+var is_game_over_overlay: bool = false
 
 
 # ===== READY =====
@@ -48,6 +51,7 @@ func _ready() -> void:
 func start_play_mode() -> void:
 	if IrisTransition.is_busy:
 		return
+	is_game_over_overlay = false
 	is_in_play_mode = true
 	lives = MAX_LIVES
 	play_queue = _load_all_microgame_data()
@@ -121,9 +125,18 @@ func continue_after_life_lost() -> void:
 		_advance_or_finish()
 
 
+# Llamada por life_lost.gd al fundir el game over encima suyo. Como no hay
+# cambio de escena, current_scene sigue siendo life_lost.tscn: hay que
+# mostrar el cursor y bloquear la pausa a mano
+func enter_game_over_overlay() -> void:
+	is_game_over_overlay = true
+	show_cursor()
+
+
 # ===== REINTENTAR =====
 
 func retry_after_loss() -> void:
+	is_game_over_overlay = false
 	if is_in_play_mode:
 		start_play_mode()
 	else:
@@ -143,6 +156,7 @@ func return_to_main_menu() -> void:
 	pending_microgame_data = null
 	current_microgame_data = null
 	is_transitioning = false
+	is_game_over_overlay = false
 	IrisTransition.transition_to_scene(MAIN_MENU_SCENE)
 
 
@@ -251,10 +265,15 @@ func try_open_pause_menu() -> void:
 
 # True si la escena actual permite pausa
 func _is_pausable_scene() -> bool:
+	# El game over superpuesto tampoco permite pausa, aunque la escena de
+	# abajo (life_lost) sí lo haría
+	if is_game_over_overlay:
+		return false
+
 	var current_scene: Node = get_tree().current_scene
 	if current_scene == null:
 		return false
-	
+
 	var scene_name: String = current_scene.scene_file_path
 	
 	# Escenas que NO permiten pausa

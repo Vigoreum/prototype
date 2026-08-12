@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bh4djqavj0lls" path="res://ui/screens/game_over.gd" id="1_v8xbx"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_mq8lb"]
+[ext_resource type="Texture2D" uid="uid://bungs8npae06x" path="res://assets/sprites/ui/raiven_game_over.png" id="3_rgvo1"]
+[ext_resource type="AudioStream" uid="uid://bohnqh7km6id2" path="res://assets/audio/ui/game_over_sound.wav" id="4_gosnd"]
 
 [node name="GameOver" type="Control" unique_id=1910833274]
 layout_mode = 3
@@ -21,6 +23,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.17254902, 0.0627451, 0.0627451, 1)
+
+[node name="Image" type="TextureRect" parent="." unique_id=1094883621]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_rgvo1")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1094883622]
+stream = ExtResource("4_gosnd")
+bus = &"SFX"
 
 [node name="Title" type="Label" parent="." unique_id=654771135]
 layout_mode = 1
