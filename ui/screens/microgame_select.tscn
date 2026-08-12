@@ -3,6 +3,35 @@
 [ext_resource type="Script" uid="uid://chib15b3swwsy" path="res://ui/screens/microgame_select.gd" id="1_k1np5"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_gikhl"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_focus"]
+bg_color = Color(1, 0.87058824, 0.6862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.47058824)
+shadow_size = 3
+shadow_offset = Vector2(-2, 2)
+
 [node name="MicrogameSelect" type="Control" unique_id=1584486885]
 layout_mode = 3
 anchors_preset = 15
@@ -26,13 +55,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -160.0
-offset_top = 40.0
-offset_right = 160.0
-offset_bottom = 80.0
+offset_left = -240.0
+offset_top = 26.0
+offset_right = 240.0
+offset_bottom = 54.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "ESCOGER MICROJUEGO"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -44,46 +74,68 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -83.5
-offset_top = -112.0
-offset_right = 83.5
-offset_bottom = 112.0
+offset_left = -120.0
+offset_top = -92.0
+offset_right = 120.0
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
 alignment = 1
 
 [node name="UsbButton" type="Button" parent="ButtonsContainer" unique_id=793105883]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "USB!"
 
 [node name="DeleteButton" type="Button" parent="ButtonsContainer" unique_id=490890835]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "DELETE!"
 
 [node name="DrawButton" type="Button" parent="ButtonsContainer" unique_id=1692395382]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "DRAW!"
 
 [node name="WakeUpButton" type="Button" parent="ButtonsContainer" unique_id=87204204]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
-theme_override_font_sizes/font_size = 14
-text = "WAKE UP! "
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
+text = "WAKE UP!"
 
 [node name="CorrectPassword" type="Button" parent="ButtonsContainer" unique_id=309519616]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "CORRECT PASSWORD!"
 
 [node name="BackButton" type="Button" parent="." unique_id=2067305188]
@@ -92,12 +144,16 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = -45.0
-offset_right = 120.0
+offset_top = -42.0
+offset_right = 116.0
 offset_bottom = -16.0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 theme_override_fonts/font = ExtResource("2_gikhl")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
 text = "← VOLVER"
 
 [connection signal="pressed" from="ButtonsContainer/UsbButton" to="." method="_on_usb_pressed"]
