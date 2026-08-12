@@ -37,11 +37,6 @@ position = Vector2(320, 180)
 texture = ExtResource("1_qh2f4")
 metadata/_edit_lock_ = true
 
-[node name="PostIt" type="Sprite2D" parent="." unique_id=887328636]
-position = Vector2(534, 39)
-texture = ExtResource("3_n7esp")
-metadata/_edit_lock_ = true
-
 [node name="PlayableArea" type="Area2D" parent="." unique_id=1089122157]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayableArea" unique_id=1922351490]
@@ -60,6 +55,11 @@ position = Vector2(556, 247.5)
 shape = SubResource("RectangleShape2D_3y1xb")
 
 [node name="FilesContainer" type="Node2D" parent="." unique_id=2108558272]
+
+[node name="PostIt" type="Sprite2D" parent="." unique_id=887328636]
+position = Vector2(534, 39)
+texture = ExtResource("3_n7esp")
+metadata/_edit_lock_ = true
 
 [node name="ExclusionZone" type="Area2D" parent="." unique_id=1871316924]
 
