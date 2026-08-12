@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpejm0r2ujm6t" path="res://microgames/delete/delete.gd" id="1_mpk3a"]
 [ext_resource type="Texture2D" uid="uid://h4x8hllgvgtk" path="res://microgames/delete/assets/background.png" id="1_qh2f4"]
+[ext_resource type="Texture2D" uid="uid://40sy2xf64hfi" path="res://microgames/delete/assets/post_it.png" id="3_n7esp"]
 [ext_resource type="Texture2D" uid="uid://b7jgq5dfxji70" path="res://microgames/delete/assets/trash_can.png" id="3_xqwb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8iucx"]
@@ -54,6 +55,11 @@ position = Vector2(556, 247.5)
 shape = SubResource("RectangleShape2D_3y1xb")
 
 [node name="FilesContainer" type="Node2D" parent="." unique_id=2108558272]
+
+[node name="PostIt" type="Sprite2D" parent="." unique_id=887328636]
+position = Vector2(534, 39)
+texture = ExtResource("3_n7esp")
+metadata/_edit_lock_ = true
 
 [node name="ExclusionZone" type="Area2D" parent="." unique_id=1871316924]
 

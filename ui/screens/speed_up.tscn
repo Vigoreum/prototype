@@ -1,9 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bgifvm6o3o15b"]
 
-[ext_resource type="Script" path="res://ui/screens/speed_up.gd" id="1_speed"]
+[ext_resource type="Script" uid="uid://dme7hrvcb7dd3" path="res://ui/screens/speed_up.gd" id="1_speed"]
 [ext_resource type="FontFile" uid="uid://qf28ivnmbu18" path="res://assets/fonts/press_start_k.ttf" id="2_speed"]
 
-[node name="SpeedUp" type="Control"]
+[node name="SpeedUp" type="Control" unique_id=437727142]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_speed")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1781424061]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0.1254902, 0.23137255, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1574441674]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,9 +35,8 @@ offset_right = 200.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_fonts/font = ExtResource("2_speed")
 theme_override_font_sizes/font_size = 32
-text = "SPEED!"
+text = "SPEED UP!"
 horizontal_alignment = 1
 vertical_alignment = 1

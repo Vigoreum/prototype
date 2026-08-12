@@ -10,6 +10,8 @@ const VALID_CHARS: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 @onready var password_label: Label = $PostIt/PasswordLabel
 @onready var typed_label: Label = $InputArea/TypedLabel
 @onready var input_area: Control = $InputArea
+@onready var caret: ColorRect = $InputArea/Caret
+@onready var caret_blink: Timer = $InputArea/CaretBlink
 
 var target_password: String = ""
 var typed_text: String = ""
@@ -96,6 +98,40 @@ func _update_typed_display() -> void:
 	for i in range(typed_text.length(), PASSWORD_LENGTH):
 		display += "_"
 	typed_label.text = display
+	_update_caret()
+
+
+# Ubica el cursor justo antes del hueco que se va a escribir. El texto está
+# centrado, así que hay que medirlo con la fuente para saber dónde empieza
+func _update_caret() -> void:
+	if has_finished or is_locked or typed_text.length() >= PASSWORD_LENGTH:
+		caret.visible = false
+		return
+
+	var font: Font = typed_label.get_theme_font(&"font")
+	var font_size: int = typed_label.get_theme_font_size(&"font_size")
+	var full_width: float = font.get_string_size(
+		typed_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size
+	).x
+	var typed_width: float = font.get_string_size(
+		typed_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size
+	).x
+
+	var text_start_x: float = (input_area.size.x - full_width) / 2.0
+	caret.position = Vector2(
+		text_start_x + typed_width,
+		(input_area.size.y - caret.size.y) / 2.0
+	)
+	# Reaparece al tipear para que no quede apagado justo cuando escribís
+	caret.visible = true
+	caret_blink.start()
+
+
+func _on_caret_blink() -> void:
+	if has_finished or is_locked or typed_text.length() >= PASSWORD_LENGTH:
+		caret.visible = false
+		return
+	caret.visible = not caret.visible
 
 func _check_password() -> void:
 	if typed_text == target_password:
@@ -105,14 +141,16 @@ func _check_password() -> void:
 
 func _on_wrong() -> void:
 	is_locked = true
+	_update_caret()
 	_shake_camera()
 	# Delay antes de limpiar y dejar reintentar
 	await get_tree().create_timer(WRONG_DELAY).timeout
 	if has_finished:
 		return
 	typed_text = ""
-	_update_typed_display()
+	# Desbloquear antes de refrescar: si no, _update_caret esconde el cursor
 	is_locked = false
+	_update_typed_display()
 
 func _shake_camera() -> void:
 	# Shake del contenedor de input (placeholder; después será la cámara/pantalla)
@@ -130,6 +168,7 @@ func _on_win() -> void:
 	if has_finished:
 		return
 	has_finished = true
+	_update_caret()
 	if timer_bar != null:
 		timer_bar.stop()
 	GameManager.notify_microgame_won()

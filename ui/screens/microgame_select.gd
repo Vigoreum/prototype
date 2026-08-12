@@ -37,3 +37,15 @@ func _on_correct_password_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	GameManager.return_to_main_menu()
+
+
+# Esta pantalla no es pausable (ver GameManager._is_pausable_scene), así que
+# ESC queda libre para volver al menú. El sonido se reproduce a mano porque
+# register_button_back sólo lo engancha al clic del botón
+func _unhandled_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("ui_cancel"):
+		return
+	if IrisTransition.is_busy:
+		return
+	AudioManager.play_click_back()
+	_on_back_pressed()

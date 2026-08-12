@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rcsjsmu042ih"
-path="res://.godot/imported/mouse.png-0d909b00d756c080a7190e3489ffb5e7.ctex"
+uid="uid://40sy2xf64hfi"
+path="res://.godot/imported/post_it.png-3aa06e12dfcc836e03a91ab0c07422bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/icons/mouse.png"
-dest_files=["res://.godot/imported/mouse.png-0d909b00d756c080a7190e3489ffb5e7.ctex"]
+source_file="res://microgames/delete/assets/post_it.png"
+dest_files=["res://.godot/imported/post_it.png-3aa06e12dfcc836e03a91ab0c07422bb.ctex"]
 
 [params]
 
