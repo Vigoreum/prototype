@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ControlData" format=3 uid="uid://c63lhyaa6viv6"]
+
+[ext_resource type="Script" uid="uid://dxkw05awcinlf" path="res://core/data/control_data.gd" id="1_2m4j3"]
+[ext_resource type="Texture2D" uid="uid://5ugwsrh2y4qf" path="res://assets/sprites/icons/keyboard.png" id="1_frkbp"]
+
+[resource]
+script = ExtResource("1_2m4j3")
+icon = ExtResource("1_frkbp")
+metadata/_custom_type_script = "uid://dxkw05awcinlf"
