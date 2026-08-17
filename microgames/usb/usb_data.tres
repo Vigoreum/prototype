@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("2_gne2o")
-title = "USB!"
+title_key = "microgame.usb"
 scene = ExtResource("4_ry2dv")
 controls = Array[ExtResource("1_kcq4w")]([ExtResource("2_nwb0o"), ExtResource("3_hxxi8")])
 metadata/_custom_type_script = "uid://b6kx6kf7cjb5o"

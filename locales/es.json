@@ -1,0 +1,41 @@
+{
+	"language.name": "ESPAÑOL",
+
+	"common.back": "← VOLVER",
+	"common.options": "OPCIONES",
+	"common.exit": "SALIR",
+	"common.yes": "SÍ",
+	"common.no": "NO",
+
+	"menu.play": "JUGAR",
+	"menu.select": "ESCOGER MICROJUEGO",
+	"menu.exit_confirm": "¿SEGURO QUE\nQUIERES SALIR?",
+
+	"select.title": "ESCOGER MICROJUEGO",
+
+	"pause.title": "PAUSA",
+	"pause.continue": "CONTINUAR",
+
+	"options.title": "OPCIONES",
+	"options.volume": "VOLUMEN",
+	"options.master": "MASTER",
+	"options.sfx": "SFX",
+	"options.music": "MÚSICA",
+	"options.window_scale": "ESCALA DE VENTANA",
+	"options.fullscreen": "PANTALLA COMPLETA",
+	"options.language": "IDIOMA",
+
+	"title.press_any_button": "Presiona cualquier botón",
+
+	"speed_up.title": "SPEED UP!",
+
+	"game_over.title": "PERDISTE",
+	"game_over.score": "MICROJUEGOS: {0}",
+	"game_over.retry": "REINTENTAR",
+
+	"microgame.usb": "USB!",
+	"microgame.delete": "DELETE!",
+	"microgame.draw": "DRAW!",
+	"microgame.wake_up": "WAKE UP!",
+	"microgame.correct_password": "CORRECT PASSWORD!"
+}

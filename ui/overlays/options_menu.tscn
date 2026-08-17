@@ -122,7 +122,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
-text = "← VOLVER"
+text = "common.back"
 
 [node name="Title" type="Label" parent="Frame/Margin/Content/TopRow" unique_id=621159250]
 layout_mode = 2
@@ -130,7 +130,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "OPCIONES"
+text = "options.title"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -143,7 +143,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "VOLUMEN"
+text = "options.volume"
 
 [node name="VolumeMargin" type="MarginContainer" parent="Frame/Margin/Content"]
 layout_mode = 2
@@ -163,7 +163,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "MASTER"
+text = "options.master"
 vertical_alignment = 1
 
 [node name="MasterSlider" type="HSlider" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow"]
@@ -195,7 +195,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "SFX"
+text = "options.sfx"
 vertical_alignment = 1
 
 [node name="SfxSlider" type="HSlider" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow"]
@@ -227,7 +227,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "MÚSICA"
+text = "options.music"
 vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow"]
@@ -262,7 +262,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "ESCALA DE VENTANA"
+text = "options.window_scale"
 vertical_alignment = 1
 
 [node name="WindowScaleOption" type="OptionButton" parent="Frame/Margin/Content/WindowScaleRow"]
@@ -288,7 +288,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
-text = "PANTALLA COMPLETA"
+text = "options.fullscreen"
 vertical_alignment = 1
 
 [node name="FullscreenCheck" type="CheckBox" parent="Frame/Margin/Content/FullscreenRow" unique_id=1752921969]
@@ -297,3 +297,29 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("2_wyyb7")
 theme_override_font_sizes/font_size = 11
+
+[node name="LanguageRow" type="HBoxContainer" parent="Frame/Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LanguageLabel" type="Label" parent="Frame/Margin/Content/LanguageRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+text = "options.language"
+vertical_alignment = 1
+
+[node name="LanguageOption" type="OptionButton" parent="Frame/Margin/Content/LanguageRow"]
+custom_minimum_size = Vector2(120, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_colors/font_hover_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_colors/font_pressed_color = Color(0.6627451, 0.43529412, 0.94509804, 1)
+theme_override_fonts/font = ExtResource("2_wyyb7")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_focus")
+fit_to_longest_item = false

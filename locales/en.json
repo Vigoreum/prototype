@@ -1,0 +1,41 @@
+{
+	"language.name": "ENGLISH",
+
+	"common.back": "← BACK",
+	"common.options": "OPTIONS",
+	"common.exit": "EXIT",
+	"common.yes": "YES",
+	"common.no": "NO",
+
+	"menu.play": "PLAY",
+	"menu.select": "SELECT MICROGAME",
+	"menu.exit_confirm": "ARE YOU SURE\nYOU WANT TO EXIT?",
+
+	"select.title": "SELECT MICROGAME",
+
+	"pause.title": "PAUSE",
+	"pause.continue": "CONTINUE",
+
+	"options.title": "OPTIONS",
+	"options.volume": "VOLUME",
+	"options.master": "MASTER",
+	"options.sfx": "SFX",
+	"options.music": "MUSIC",
+	"options.window_scale": "WINDOW SCALE",
+	"options.fullscreen": "FULLSCREEN",
+	"options.language": "LANGUAGE",
+
+	"title.press_any_button": "Press any button",
+
+	"speed_up.title": "SPEED UP!",
+
+	"game_over.title": "YOU LOSE",
+	"game_over.score": "MICROGAMES: {0}",
+	"game_over.retry": "RETRY",
+
+	"microgame.usb": "USB!",
+	"microgame.delete": "DELETE!",
+	"microgame.draw": "DRAW!",
+	"microgame.wake_up": "WAKE UP!",
+	"microgame.correct_password": "CORRECT PASSWORD!"
+}

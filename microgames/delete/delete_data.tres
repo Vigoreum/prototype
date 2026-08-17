@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("2_d3wgn")
-title = "DELETE!"
+title_key = "microgame.delete"
 scene = ExtResource("3_sr7db")
 controls = Array[ExtResource("1_q5qug")]([ExtResource("2_lc2qa")])
 metadata/_custom_type_script = "uid://b6kx6kf7cjb5o"

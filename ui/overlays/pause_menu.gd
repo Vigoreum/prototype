@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var background: ColorRect = $Background
 @onready var center_container: VBoxContainer = $CenterContainer
+@onready var title_label: Label = $CenterContainer/Title
 @onready var continue_button: Button = $CenterContainer/ContinueButton
 @onready var options_button: Button = $CenterContainer/OptionsButton
 @onready var exit_button: Button = $CenterContainer/ExitButton
@@ -15,7 +16,17 @@ func _ready() -> void:
 	AudioManager.register_button_back(exit_button)
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	_apply_texts()
+	LocalizationManager.language_changed.connect(_apply_texts)
+
 	hide_menu()
+
+func _apply_texts() -> void:
+	title_label.text = LocalizationManager.t("pause.title")
+	continue_button.text = LocalizationManager.t("pause.continue")
+	options_button.text = LocalizationManager.t("common.options")
+	exit_button.text = LocalizationManager.t("common.exit")
 
 func show_menu() -> void:
 	background.visible = true

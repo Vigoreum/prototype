@@ -1,8 +1,9 @@
 class_name MicrogameData
 extends Resource
 
-# Título que se muestra en la pantalla de intro
-@export var title: String = ""
+# Clave de traducción del título que se muestra en la pantalla de intro
+# (ej. "microgame.usb"; el texto vive en locales/*.json)
+@export var title_key: String = ""
 
 # Escena del microjuego que se carga después de la intro
 @export var scene: PackedScene

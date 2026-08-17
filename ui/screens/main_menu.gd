@@ -9,6 +9,7 @@ const EXIT_FADE_DURATION: float = 0.25  # corto: esperar a que cierre se siente 
 @onready var exit_button: Button = $ButtonsContainer/ExitButton
 
 @onready var exit_confirm_panel: Control = $ExitConfirmPanel
+@onready var confirm_label: Label = $ExitConfirmPanel/Panel/Margin/Content/ConfirmLabel
 @onready var yes_button: Button = $ExitConfirmPanel/Panel/Margin/Content/ButtonsRow/YesButton
 @onready var no_button: Button = $ExitConfirmPanel/Panel/Margin/Content/ButtonsRow/NoButton
 
@@ -27,9 +28,22 @@ func _ready() -> void:
 	AudioManager.register_button_back(yes_button)
 	AudioManager.register_button_neutral(no_button)
 	
+	_apply_texts()
+	LocalizationManager.language_changed.connect(_apply_texts)
+
 	# El panel arranca oculto
 	exit_confirm_panel.visible = false
 	_fade_in()
+
+
+func _apply_texts() -> void:
+	play_button.text = LocalizationManager.t("menu.play")
+	select_button.text = LocalizationManager.t("menu.select")
+	options_button.text = LocalizationManager.t("common.options")
+	exit_button.text = LocalizationManager.t("common.exit")
+	confirm_label.text = LocalizationManager.t("menu.exit_confirm")
+	yes_button.text = LocalizationManager.t("common.yes")
+	no_button.text = LocalizationManager.t("common.no")
 
 
 func _fade_in() -> void:
