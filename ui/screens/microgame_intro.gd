@@ -36,8 +36,8 @@ func _ready() -> void:
 
 
 func _apply_data() -> void:
-	# Aplicar el título
-	title_label.text = microgame_data.title
+	# Aplicar el título (el MicrogameData guarda la clave, no el texto)
+	title_label.text = LocalizationManager.t(microgame_data.title_key)
 	
 	# Aplicar los iconos de controles
 	for control_data in microgame_data.controls:

@@ -52,7 +52,7 @@ offset_bottom = 140.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 36
-text = "PERDISTE"
+text = "game_over.title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -69,7 +69,7 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 16
-text = "MICROJUEGOS: 0"
+text = "game_over.score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -91,14 +91,14 @@ custom_minimum_size = Vector2(140, 28)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 14
-text = "REINTENTAR"
+text = "game_over.retry"
 
 [node name="ExitButton" type="Button" parent="ButtonsContainer" unique_id=1815474848]
 custom_minimum_size = Vector2(140, 28)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mq8lb")
 theme_override_font_sizes/font_size = 14
-text = "SALIR"
+text = "common.exit"
 
 [connection signal="pressed" from="ButtonsContainer/RetryButton" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="ButtonsContainer/ExitButton" to="." method="_on_exit_pressed"]

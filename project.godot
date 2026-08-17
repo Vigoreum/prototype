@@ -20,6 +20,7 @@ boot_splash/minimum_display_time=1000
 
 [autoload]
 
+LocalizationManager="*res://core/managers/localization_manager.gd"
 GameManager="*uid://drvsyqai0mf46"
 IrisTransition="*uid://dy8efsklmn8ti"
 PauseMenu="*uid://du7ywpvabdy3g"

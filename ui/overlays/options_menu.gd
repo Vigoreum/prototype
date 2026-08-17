@@ -13,13 +13,21 @@ const COLOR_PURPLE: Color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 @onready var frame: Panel = $Frame
 @onready var title_label: Label = $Frame/Margin/Content/TopRow/Title
 @onready var back_button: Button = $Frame/Margin/Content/TopRow/BackButton
+@onready var volume_label: Label = $Frame/Margin/Content/VolumeLabel
+@onready var window_scale_label: Label = $Frame/Margin/Content/WindowScaleRow/WindowScaleLabel
 @onready var window_scale_option: OptionButton = $Frame/Margin/Content/WindowScaleRow/WindowScaleOption
+@onready var fullscreen_label: Label = $Frame/Margin/Content/FullscreenRow/FullscreenLabel
 @onready var fullscreen_check: CheckBox = $Frame/Margin/Content/FullscreenRow/FullscreenCheck
+@onready var language_label: Label = $Frame/Margin/Content/LanguageRow/LanguageLabel
+@onready var language_option: OptionButton = $Frame/Margin/Content/LanguageRow/LanguageOption
 
+@onready var master_label: Label = $Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow/MasterLabel
 @onready var master_slider: HSlider = $Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow/MasterSlider
 @onready var master_value: Label = $Frame/Margin/Content/VolumeMargin/VolumeRows/MasterRow/MasterValue
+@onready var sfx_label: Label = $Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow/SfxLabel
 @onready var sfx_slider: HSlider = $Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow/SfxSlider
 @onready var sfx_value: Label = $Frame/Margin/Content/VolumeMargin/VolumeRows/SfxRow/SfxValue
+@onready var music_label: Label = $Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow/MusicLabel
 @onready var music_slider: HSlider = $Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow/MusicSlider
 @onready var music_value: Label = $Frame/Margin/Content/VolumeMargin/VolumeRows/MusicRow/MusicValue
 
@@ -27,12 +35,15 @@ const COLOR_PURPLE: Color = Color(0.6627451, 0.43529412, 0.94509804, 1)
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	# Llenar el desplegable de escalas antes de sincronizar el estado
+	# Llenar los desplegables antes de sincronizar el estado
 	_build_scale_items()
+	_build_language_items()
 
 	# Inicializar los controles con el estado actual
 	fullscreen_check.button_pressed = SettingsManager.is_fullscreen
 	_refresh_scale_items()
+	_refresh_language_item()
+	_apply_texts()
 	_setup_volume_row(master_slider, master_value, SettingsManager.BUS_MASTER)
 	_setup_volume_row(sfx_slider, sfx_value, SettingsManager.BUS_SFX)
 	_setup_volume_row(music_slider, music_value, SettingsManager.BUS_MUSIC)
@@ -40,7 +51,9 @@ func _ready() -> void:
 	# Conectar señales
 	fullscreen_check.toggled.connect(_on_fullscreen_toggled)
 	window_scale_option.item_selected.connect(_on_scale_item_selected)
+	language_option.item_selected.connect(_on_language_item_selected)
 	back_button.pressed.connect(_on_back_pressed)
+	LocalizationManager.language_changed.connect(_apply_texts)
 	SettingsManager.fullscreen_changed.connect(_on_settings_fullscreen_changed)  # ← nueva
 	SettingsManager.window_scale_changed.connect(_on_settings_window_scale_changed)
 	SettingsManager.volume_changed.connect(_on_settings_volume_changed)
@@ -51,6 +64,8 @@ func _ready() -> void:
 	fullscreen_check.toggled.connect(_play_check_sound)
 	window_scale_option.mouse_entered.connect(AudioManager.play_hover)
 	window_scale_option.pressed.connect(AudioManager.play_click_neutral)
+	language_option.mouse_entered.connect(AudioManager.play_hover)
+	language_option.pressed.connect(AudioManager.play_click_neutral)
 
 	hide_menu()
 
@@ -62,6 +77,7 @@ func show_menu() -> void:
 	# Refrescar por si algo cambió desde otro lado (ej: F11) o cambió el monitor
 	fullscreen_check.button_pressed = SettingsManager.is_fullscreen
 	_refresh_scale_items()
+	_refresh_language_item()
 	_refresh_volume_rows()
 
 
@@ -76,20 +92,53 @@ func is_open() -> bool:
 	return background.visible
 
 
+# Textos traducibles de este menú. Se reaplican al cambiar de idioma.
+func _apply_texts() -> void:
+	title_label.text = LocalizationManager.t("options.title")
+	back_button.text = LocalizationManager.t("common.back")
+	volume_label.text = LocalizationManager.t("options.volume")
+	master_label.text = LocalizationManager.t("options.master")
+	sfx_label.text = LocalizationManager.t("options.sfx")
+	music_label.text = LocalizationManager.t("options.music")
+	window_scale_label.text = LocalizationManager.t("options.window_scale")
+	fullscreen_label.text = LocalizationManager.t("options.fullscreen")
+	language_label.text = LocalizationManager.t("options.language")
+
+
 # Crea un item por cada escala disponible. El id del item ES la escala,
 # así el índice del desplegable nunca hay que traducirlo a mano.
 func _build_scale_items() -> void:
-	_style_scale_popup()
+	_style_option_popup(window_scale_option)
 
 	window_scale_option.clear()
 	for window_scale: int in range(SettingsManager.MIN_WINDOW_SCALE, SettingsManager.MAX_WINDOW_SCALE + 1):
 		window_scale_option.add_item("%dx" % window_scale, window_scale)
 
 
+# Un item por idioma disponible. El nombre de cada uno sale de su propio
+# archivo ("ESPAÑOL" en es.json), así los idiomas nunca se traducen entre sí.
+# El código queda en el metadata del item.
+func _build_language_items() -> void:
+	_style_option_popup(language_option)
+
+	language_option.clear()
+	for code: String in LocalizationManager.available_languages:
+		language_option.add_item(LocalizationManager.get_language_name(code))
+		language_option.set_item_metadata(language_option.item_count - 1, code)
+
+
+# Marca el idioma activo. select() no emite item_selected: no hay loop de señales.
+func _refresh_language_item() -> void:
+	for index: int in language_option.item_count:
+		if language_option.get_item_metadata(index) == LocalizationManager.current_language:
+			language_option.select(index)
+			return
+
+
 # El desplegable es una ventana aparte con su propio tema: crema con texto
 # morado, igual que los botones del menú principal.
-func _style_scale_popup() -> void:
-	var popup: PopupMenu = window_scale_option.get_popup()
+func _style_option_popup(option_button: OptionButton) -> void:
+	var popup: PopupMenu = option_button.get_popup()
 	popup.add_theme_font_override("font", MENU_FONT)
 	popup.add_theme_font_size_override("font_size", MENU_FONT_SIZE)
 	popup.add_theme_color_override("font_color", COLOR_PURPLE)
@@ -164,6 +213,11 @@ func _on_fullscreen_toggled(enabled: bool) -> void:
 func _on_scale_item_selected(index: int) -> void:
 	AudioManager.play_click_neutral()
 	SettingsManager.set_window_scale(window_scale_option.get_item_id(index))
+
+
+func _on_language_item_selected(index: int) -> void:
+	AudioManager.play_click_neutral()
+	LocalizationManager.set_language(language_option.get_item_metadata(index))
 
 
 func _on_back_pressed() -> void:

@@ -105,7 +105,7 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
-text = "PLAY"
+text = "menu.play"
 
 [node name="SelectButton" type="Button" parent="ButtonsContainer" unique_id=239859181]
 layout_mode = 2
@@ -116,7 +116,7 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
-text = "ESCOGER MICROJUEGO"
+text = "menu.select"
 
 [node name="OptionsButton" type="Button" parent="ButtonsContainer" unique_id=1429165810]
 layout_mode = 2
@@ -127,7 +127,7 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
-text = "OPCIONES"
+text = "common.options"
 
 [node name="ExitButton" type="Button" parent="ButtonsContainer" unique_id=1872442369]
 layout_mode = 2
@@ -138,7 +138,7 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
-text = "SALIR"
+text = "common.exit"
 
 [node name="ExitConfirmPanel" type="Control" parent="." unique_id=2045423072]
 visible = false
@@ -190,8 +190,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.87058824, 0.6862745, 1)
 theme_override_fonts/font = ExtResource("5_oblsv")
 theme_override_font_sizes/font_size = 11
-text = "¿SEGURO QUE
-QUIERES SALIR?"
+text = "menu.exit_confirm"
 horizontal_alignment = 1
 
 [node name="ButtonsRow" type="HBoxContainer" parent="ExitConfirmPanel/Panel/Margin/Content"]
@@ -208,7 +207,7 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
-text = "SÍ"
+text = "common.yes"
 
 [node name="NoButton" type="Button" parent="ExitConfirmPanel/Panel/Margin/Content/ButtonsRow" unique_id=844125770]
 custom_minimum_size = Vector2(74, 24)
@@ -219,7 +218,7 @@ theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_yjgyn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a63lr")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oblsv")
-text = "NO"
+text = "common.no"
 
 [node name="FadeOverlay" type="ColorRect" parent="." unique_id=507309995]
 layout_mode = 1

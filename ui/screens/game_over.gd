@@ -4,11 +4,15 @@ extends Control
 @onready var exit_button: Button = $ButtonsContainer/ExitButton
 @onready var sound_player: AudioStreamPlayer = $SoundPlayer
 @onready var score_label: Label = $Score
+@onready var title_label: Label = $Title
 
 
 func _ready() -> void:
 	AudioManager.register_button_positive(retry_button)
 	AudioManager.register_button_back(exit_button)
+
+	_apply_texts()
+	LocalizationManager.language_changed.connect(_apply_texts)
 
 	_show_score()
 
@@ -27,7 +31,14 @@ func _ready() -> void:
 # partida que puntuar, así que no se muestra
 func _show_score() -> void:
 	score_label.visible = GameManager.is_in_play_mode
-	score_label.text = "MICROJUEGOS: " + str(GameManager.microgames_cleared)
+	score_label.text = LocalizationManager.t_format("game_over.score", [GameManager.microgames_cleared])
+
+
+func _apply_texts() -> void:
+	title_label.text = LocalizationManager.t("game_over.title")
+	retry_button.text = LocalizationManager.t("game_over.retry")
+	exit_button.text = LocalizationManager.t("common.exit")
+	_show_score()
 
 
 # El sonido espera a que el iris termine de descubrir la pantalla, así

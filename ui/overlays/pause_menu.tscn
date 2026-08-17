@@ -35,7 +35,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p1qj3")
 theme_override_font_sizes/font_size = 40
-text = "PAUSA"
+text = "pause.title"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -44,21 +44,21 @@ custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p1qj3")
 theme_override_font_sizes/font_size = 14
-text = "CONTINUAR"
+text = "pause.continue"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer" unique_id=1835733318]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p1qj3")
 theme_override_font_sizes/font_size = 14
-text = "OPCIONES"
+text = "common.options"
 
 [node name="ExitButton" type="Button" parent="CenterContainer" unique_id=1634429441]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p1qj3")
 theme_override_font_sizes/font_size = 14
-text = "SALIR"
+text = "common.exit"
 
 [connection signal="pressed" from="CenterContainer/ContinueButton" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CenterContainer/OptionsButton" to="." method="_on_options_pressed"]

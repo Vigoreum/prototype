@@ -38,7 +38,9 @@ Running a microgame scene on its own still loads all autoloads, so `GameManager.
 
 ### Autoloads (project.godot, order matters)
 
-`GameManager` → `IrisTransition` → `PauseMenu` → `CountdownOverlay` → `AudioManager` → `SettingsManager` → `OptionsMenu`
+`LocalizationManager` → `GameManager` → `IrisTransition` → `PauseMenu` → `CountdownOverlay` → `AudioManager` → `SettingsManager` → `OptionsMenu`
+
+`LocalizationManager` is first because every other autoload's `_ready()` (and every UI scene) asks it for text.
 
 `GameManager` (`core/managers/game_manager.gd`) is the whole game state machine: lives, play queue, pending microgame data, cursor policy, pause gating. Everything else defers to it.
 
@@ -54,7 +56,7 @@ Each microgame is preceded by `ui/screens/microgame_intro.tscn`, which reads `Ga
 
 ### Microgame contract
 
-A microgame is a directory under `microgames/<name>/` containing a scene, its scripts, and a `<name>_data.tres` (`MicrogameData` resource: `title`, `scene`, `duration`, `controls: Array[ControlData]`, `show_cursor`). The `.tres` is the registration unit — scenes are never referenced by path outside it.
+A microgame is a directory under `microgames/<name>/` containing a scene, its scripts, and a `<name>_data.tres` (`MicrogameData` resource: `title_key`, `scene`, `duration`, `controls: Array[ControlData]`, `show_cursor`). `title_key` is a translation key (`microgame.usb`), not text — see Localization. The `.tres` is the registration unit — scenes are never referenced by path outside it.
 
 The root script of a microgame scene is responsible for the shared boilerplate (see `microgames/usb/usb.gd` for the minimal version):
 
@@ -103,6 +105,31 @@ Never wire button sounds by hand — call `AudioManager.register_button_positive
 
 `default_bus_layout.tres` (repo root — Godot's default path, so no project.godot entry) defines **Master**, **Music** and **SFX**; the latter two send to Master. Every new `AudioStreamPlayer` must set `bus` to `Music` or `SFX`, never leave it on Master, or its slider won't reach it. `AudioManager`'s `ui_player` uses the `&"SFX"` literal rather than `SettingsManager.BUS_SFX` because `AudioManager` loads first in the autoload order.
 
+### Localization
+
+All UI text lives in `locales/<code>.json` — a flat `"key": "text"` file, one per language (`en.json`, `es.json`). `LocalizationManager` loads the active one and exposes `t(key)` / `t_format(key, values)` (the latter fills `{0}`, `{1}`).
+
+**No translated string may be hardcoded in a script or a `.tscn`.** Scene `text =` properties hold the *key* (`text = "menu.play"`), and the screen's script overwrites it at runtime:
+
+```gdscript
+func _ready() -> void:
+	_apply_texts()
+	LocalizationManager.language_changed.connect(_apply_texts)
+
+func _apply_texts() -> void:
+	play_button.text = LocalizationManager.t("menu.play")
+```
+
+Connecting `language_changed` is what makes an already-open screen (the pause menu, the options menu) redraw when the player switches language. Godot drops the connection when the node is freed, so no cleanup is needed. One-shot screens that can't be open while the language changes (title, speed up, microgame intro) just set their text in `_ready()`.
+
+Startup language: saved choice → `OS.get_locale_language()` if a locale file matches → `DEFAULT_LANGUAGE` (`en`).
+
+**Adding a language** is dropping a new `locales/<code>.json` next to the others — `_scan_available_languages()` picks it up and the options dropdown lists it. Its `language.name` key is the name shown in that dropdown, written in its own language ("ESPAÑOL"), so languages are never translated between each other. Keys missing from a file render as the key itself, which is how you spot them.
+
+The choice is saved to `user://settings.cfg` under `[language]`, the same file `SettingsManager` uses. Both managers reload the `ConfigFile` before writing so neither erases the other's section — keep that if you touch either `_save_*`.
+
+Note `export_presets.cfg` sets `include_filter="*.json"`: without it the locale files stay out of the exported PCK.
+
 ### Settings
 
 `SettingsManager` persists fullscreen (default on), window scale (default 2x) and per-bus volumes (default 0.8) to `user://settings.cfg`, applies all of them at boot, and owns the global F11 toggle. `OptionsMenu` mirrors them with `set_pressed_no_signal()` / `set_value_no_signal()` to avoid signal loops.
@@ -116,7 +143,8 @@ Window scale is an integer multiple of `BASE_RESOLUTION` (640×360) so pixels st
 ```
 assets/             shared only — audio/ui/, fonts/, sprites/{icons,ui}/
 core/data/          MicrogameData / ControlData + controls/*.tres
-core/managers/      game / audio / settings autoloads
+core/managers/      game / audio / settings / localization autoloads
+locales/            en.json, es.json — every UI string, keyed
 core/transitions/   iris transition: script + scene + its shader
 ui/screens/         scenes you navigate to (splash, title, main_menu, select, intro, game_over, life_lost)
 ui/overlays/        CanvasLayers drawn on top (pause_menu, options_menu, countdown_overlay, timer_bar)

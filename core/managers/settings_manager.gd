@@ -206,6 +206,9 @@ func _sanitize_scale(scale: int) -> int:
 # Guarda la configuración al archivo
 func _save_settings() -> void:
 	var config: ConfigFile = ConfigFile.new()
+	# Releer antes de escribir: LocalizationManager guarda su sección en el
+	# mismo archivo y un ConfigFile vacío se la llevaría puesta
+	config.load(CONFIG_PATH)
 	config.set_value(SECTION_DISPLAY, KEY_FULLSCREEN, is_fullscreen)
 	config.set_value(SECTION_DISPLAY, KEY_WINDOW_SCALE, window_scale)
 	for bus: StringName in volumes:

@@ -6,15 +6,31 @@ extends Control
 @onready var wake_up_button: Button = $ButtonsContainer/WakeUpButton
 @onready var correct_password_button: Button = $ButtonsContainer/CorrectPassword
 @onready var back_button: Button = $BackButton
+@onready var title_label: Label = $Title
 
 
 func _ready() -> void:
+	_apply_texts()
+	LocalizationManager.language_changed.connect(_apply_texts)
+
 	AudioManager.register_button_positive(usb_button)
 	AudioManager.register_button_positive(delete_button)
 	AudioManager.register_button_positive(draw_button)
 	AudioManager.register_button_positive(wake_up_button)
 	AudioManager.register_button_positive(correct_password_button)
 	AudioManager.register_button_back(back_button)
+
+
+# Los nombres de los microjuegos son las mismas claves que usa su MicrogameData
+func _apply_texts() -> void:
+	title_label.text = LocalizationManager.t("select.title")
+	usb_button.text = LocalizationManager.t("microgame.usb")
+	delete_button.text = LocalizationManager.t("microgame.delete")
+	draw_button.text = LocalizationManager.t("microgame.draw")
+	wake_up_button.text = LocalizationManager.t("microgame.wake_up")
+	correct_password_button.text = LocalizationManager.t("microgame.correct_password")
+	back_button.text = LocalizationManager.t("common.back")
+
 
 func _on_usb_pressed() -> void:
 	GameManager.play_single_microgame("res://microgames/usb/usb_data.tres")
