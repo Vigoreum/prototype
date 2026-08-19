@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="MicrogameData" format=3 uid="uid://comkv5h4x65cd"]
+[gd_resource type="Resource" script_class="MicrogameData" format=3]
 
 [ext_resource type="Script" uid="uid://dxkw05awcinlf" path="res://core/data/control_data.gd" id="1_kcq4w"]
 [ext_resource type="Script" uid="uid://b6kx6kf7cjb5o" path="res://core/data/microgame_data.gd" id="2_gne2o"]
 [ext_resource type="Resource" uid="uid://bdtfsesyrs08t" path="res://core/data/controls/mouse.tres" id="2_nwb0o"]
 [ext_resource type="Resource" uid="uid://p4ksiavihlt2" path="res://core/data/controls/space_bar.tres" id="3_hxxi8"]
-[ext_resource type="PackedScene" uid="uid://d1eyj7tjyr3ot" path="res://microgames/usb/usb.tscn" id="4_ry2dv"]
+[ext_resource type="PackedScene" path="res://microgames/usb/usb.tscn" id="4_ry2dv"]
 
 [resource]
 script = ExtResource("2_gne2o")

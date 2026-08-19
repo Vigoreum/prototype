@@ -1,85 +1,193 @@
-[gd_scene format=3 uid="uid://d1eyj7tjyr3ot"]
+[gd_scene load_steps=20 format=3]
 
-[ext_resource type="Script" uid="uid://b6ujtjs2ih340" path="res://microgames/usb/usb.gd" id="1_leboi"]
-[ext_resource type="Script" uid="uid://hnp0ohurkdn2" path="res://microgames/usb/notebook.gd" id="2_2yyew"]
-[ext_resource type="Script" uid="uid://bongnjubpdh5r" path="res://microgames/usb/usb_stick.gd" id="3_rqspj"]
+[ext_resource type="Script" uid="uid://cmntgqxylvaje" path="res://microgames/usb/usb.gd" id="1_root"]
+[ext_resource type="Script" uid="uid://bqw7tl1xjrljx" path="res://microgames/usb/laptop.gd" id="2_laptop"]
+[ext_resource type="Script" uid="uid://ha2pr856q7i2" path="res://microgames/usb/usb_stick.gd" id="3_stick"]
+[ext_resource type="Texture2D" uid="uid://c1masiet1tp0r" path="res://microgames/usb/assets/usb_microgame_spritesheet.png" id="4_sheet"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_btnsq"]
-size = Vector2(300, 200)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glow"]
+blend_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ece1"]
-size = Vector2(50, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_laptop"]
+atlas = ExtResource("4_sheet")
+region = Rect2(23, 79, 279, 202)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyaqt"]
-size = Vector2(180, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_logo_blue"]
+atlas = ExtResource("4_sheet")
+region = Rect2(349, 34, 11, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_no8j4"]
-size = Vector2(120, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_logo_red"]
+atlas = ExtResource("4_sheet")
+region = Rect2(373, 34, 11, 21)
 
-[node name="UsbMicrogame" type="Node2D" unique_id=778499891]
-position = Vector2(128, 72)
-scale = Vector2(0.333, 0.333)
-script = ExtResource("1_leboi")
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 25, 102, 40)
 
-[node name="Notebook" type="Node2D" parent="." unique_id=1165950147]
-position = Vector2(576, 324)
-script = ExtResource("2_2yyew")
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 71, 102, 40)
 
-[node name="Body" type="ColorRect" parent="Notebook" unique_id=1172866789]
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-offset_bottom = 100.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 108, 102, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 150, 102, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 192, 102, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 238, 102, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 279, 102, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8"]
+atlas = ExtResource("4_sheet")
+region = Rect2(481, 318, 102, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5")
+}],
+"loop": true,
+"name": &"back",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5")
+}],
+"loop": false,
+"name": &"flip_to_back",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1")
+}],
+"loop": false,
+"name": &"flip_to_front",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1")
+}],
+"loop": true,
+"name": &"front",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(76, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_connector"]
+size = Vector2(20, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grab"]
+size = Vector2(96, 36)
+
+[node name="UsbMicrogame" type="Node2D"]
+script = ExtResource("1_root")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
 mouse_filter = 2
-color = Color(0.2, 0.2, 0.2, 1)
+color = Color(0.13333334, 0.14509805, 0.19607843, 1)
 
-[node name="Port" type="ColorRect" parent="Notebook" unique_id=151926155]
-offset_right = 30.0
-offset_bottom = 40.0
-color = Color(0, 0.4, 1, 1)
+[node name="Laptop" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(320, 160)
+script = ExtResource("2_laptop")
 
-[node name="Solid" type="StaticBody2D" parent="Notebook" unique_id=429155103]
+[node name="Sprite" type="Sprite2D" parent="Laptop"]
+position = Vector2(-139, -101)
+texture = SubResource("AtlasTexture_laptop")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Notebook/Solid" unique_id=231401488]
-shape = SubResource("RectangleShape2D_btnsq")
+[node name="PortGlow" type="Polygon2D" parent="Laptop"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_glow")
+color = Color(1, 0.96862745, 0.8784314, 1)
+polygon = PackedVector2Array(0, -13, 40, -21, 40, 21, 0, 13)
+vertex_colors = PackedColorArray(1, 1, 1, 0.45, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.45)
 
-[node name="PortArea" type="Area2D" parent="Notebook" unique_id=424079023]
+[node name="PortLogoBlue" type="Sprite2D" parent="Laptop"]
+texture = SubResource("AtlasTexture_logo_blue")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Notebook/PortArea" unique_id=834351383]
-shape = SubResource("RectangleShape2D_3ece1")
+[node name="PortLogoRed" type="Sprite2D" parent="Laptop"]
+visible = false
+texture = SubResource("AtlasTexture_logo_red")
+centered = false
 
-[node name="USB" type="CharacterBody2D" parent="." unique_id=1188663404]
-position = Vector2(576, 324)
-script = ExtResource("3_rqspj")
+[node name="Solid" type="StaticBody2D" parent="Laptop"]
 
-[node name="Body" type="ColorRect" parent="USB" unique_id=548462431]
-offset_left = -60.0
-offset_top = -25.0
-offset_right = 60.0
-offset_bottom = 25.0
-mouse_filter = 2
-color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+[node name="WallTop" type="CollisionShape2D" parent="Laptop/Solid"]
 
-[node name="FrontFace" type="ColorRect" parent="USB" unique_id=893169396]
-offset_left = -50.0
-offset_top = -15.0
-offset_right = 50.0
-offset_bottom = 15.0
-mouse_filter = 2
-color = Color(0, 0.4, 1, 1)
+[node name="WallBottom" type="CollisionShape2D" parent="Laptop/Solid"]
 
-[node name="Connector" type="ColorRect" parent="USB" unique_id=235432148]
-offset_left = 60.0
-offset_top = -20.0
-offset_right = 90.0
-offset_bottom = 20.0
-mouse_filter = 2
-color = Color(0.8, 0.8, 0.8, 1)
+[node name="WallBack" type="CollisionShape2D" parent="Laptop/Solid"]
 
-[node name="BodyCollision" type="CollisionShape2D" parent="USB" unique_id=1076650748]
-shape = SubResource("RectangleShape2D_gyaqt")
+[node name="PortBlocker" type="CollisionShape2D" parent="Laptop/Solid"]
 
-[node name="Area" type="Area2D" parent="USB" unique_id=837389692]
+[node name="PortDetector" type="Area2D" parent="Laptop"]
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="USB/Area" unique_id=1017546957]
-shape = SubResource("RectangleShape2D_no8j4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laptop/PortDetector"]
+
+[node name="USB" type="CharacterBody2D" parent="."]
+position = Vector2(320, 160)
+script = ExtResource("3_stick")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="USB"]
+sprite_frames = SubResource("SpriteFrames_usb")
+animation = &"front"
+
+[node name="BodyCollision" type="CollisionShape2D" parent="USB"]
+position = Vector2(-10, 0.5)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="ConnectorCollision" type="CollisionShape2D" parent="USB"]
+position = Vector2(38.5, 0.5)
+shape = SubResource("RectangleShape2D_connector")
+
+[node name="Area" type="Area2D" parent="USB"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="USB/Area"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_grab")
