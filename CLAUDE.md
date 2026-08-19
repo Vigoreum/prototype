@@ -77,7 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 Outcomes are reported only via `GameManager.notify_microgame_won() / _lost() / _timed_out()` — a microgame never changes scenes itself. Most microgames keep a `has_finished: bool` guard so a win and a timeout can't both fire; `GameManager` also guards with `is_transitioning`.
 
-**Adding a microgame** requires touching three places: the new `_data.tres`, `GameManager.MICROGAME_DATA_PATHS`, and `ui/screens/microgame_select.gd` + its scene (note: `_on_correct_password_pressed()` exists there but has no `@onready` button — CORRECT PASSWORD is reachable in play mode only).
+**Adding a microgame** requires touching three places: the new `_data.tres`, `GameManager.MICROGAME_DATA_PATHS`, and `ui/screens/microgame_select.gd` + its scene (a `Button` under `ButtonsContainer` whose `text` is the title key, an `@onready` for it, an `AudioManager.register_button_positive()` call, a line in `_apply_texts()`, and a `pressed` handler calling `play_single_microgame()`).
 
 ### Transitions
 
